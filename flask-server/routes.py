@@ -12,6 +12,12 @@ def IMDB_search():
     category = request.args.get('category')
     results = IMDB.find_title([title,category])
     return jsonify(results)
+
+@app.route('/select')
+def TMDB_search():
+    IMDB_ID = request.args.get('item')
+    # details = IMDB.find_title([title,category])
+    # return jsonify(results)
     
     
 if __name__ == '__main__':

@@ -1,7 +1,7 @@
 import React from 'react';
 import NONE from '../photos/NONE.png'
 
-function ResultCard({imageURL, title, rating, contentRating}) {
+function Card({handleItem, imageURL, title, rating, contentRating, imdbID}) {
   if (imageURL === "") {
     imageURL = NONE;
   }
@@ -13,11 +13,11 @@ function ResultCard({imageURL, title, rating, contentRating}) {
           <h5 class="card-title">{title}</h5>
           <p><b>IMDB Rating: </b> {rating}</p>
           <p><b>Content Rating: </b> {contentRating}</p>
-          <button class="btn shadow-sm btn-search-input">Select</button>
+          <button class="btn shadow-sm btn-search-input" value={imdbID} onClick={(e)=> {handleItem(e.target.value)}} >Select</button>
         </div>
       </div>
 
     );
   }
 
-  export default ResultCard;
+  export default Card;

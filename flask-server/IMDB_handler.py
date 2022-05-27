@@ -63,7 +63,7 @@ def get_info(url):
     data = json.loads(data)
     
 
-    imdb_info['imdb_id'] = data['url'][7:-1]
+    imdb_info['imdb id'] = data['url'][7:-1]
     
     if 'image' in data:
       imdb_info['image'] = data["image"] 
