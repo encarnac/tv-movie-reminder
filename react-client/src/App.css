@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-image: linear-gradient(to bottom right, #1A3137, #254552);
+  /* background-color: #1A3137; */
 }
 
 .App-logo {
@@ -44,21 +46,20 @@
 /* ---------------------- */
 /* not active */
 .nav-pills .pill-1 .nav-link:not(.active) {
-  background-color: rgba(100,94,198,0.25);
+  background-color: rgba(165,217,208,0.25);
 }
 
 
 /* active (faded) */
 .nav-pills .pill-1 .nav-link {
-  background-color: rgba(143, 137, 211, 0.85);
+  background-color: rgba(165,217,208, 0.95);
   color: white;
 }
 
 /* not active */
 .btn-search-input:not(.active) {
-  background-color: rgba(143, 137, 211, 0.85);
+  background-color: #B5C7E9;
   color: white;
 }
-
 
 

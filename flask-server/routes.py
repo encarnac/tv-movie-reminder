@@ -6,7 +6,7 @@ import IMDB_handler as IMDB
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/home')
+@app.route('/')
 def IMDB_search():
     title = request.args.get('title').replace(" ","+")
     category = request.args.get('category')

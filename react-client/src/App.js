@@ -4,6 +4,7 @@ import './App.css';
 import Splash from './pages/Splash';
 import Home from './pages/Home';
 import NavBar from "./components/NavBar";
+import SignupEmail from './pages/SignupEmail'
 
 function App() {
 
@@ -26,8 +27,7 @@ function App() {
 
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Splash />} />
-          <Route path="/home" element={<Home category={category} selectMovie={selectMovie} selectSeries={selectSeries}/>} />
+          <Route path="/" element={<Home category={category} selectMovie={selectMovie} selectSeries={selectSeries}/>} />
         </Routes>
       </BrowserRouter>
     </div>

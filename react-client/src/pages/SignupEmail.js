@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import 'react-intl-tel-input/dist/main.css';
 import BackButton from '../components/BackButton';
 
 

@@ -1,7 +1,8 @@
 import requests
+from bs4 import BeautifulSoup
 import time
 import json
-from bs4 import BeautifulSoup
+
 
 def find_title(query):
   """
@@ -13,7 +14,9 @@ def find_title(query):
   BASE_URL = f"https://www.imdb.com/find?q={query[0]}&s=tt&ttype={query[1]}&exact=true&ref_=fn_tt_ex"
   
   response = requests.get(BASE_URL)
-  soup = BeautifulSoup(response.content, "html.parser") 
+  soup = BeautifulSoup(response.content, "html.parser")
+   
+  
   all_results = []
 
   result_rows = soup.find_all("tr", class_="findResult")
@@ -60,11 +63,12 @@ def get_info(url):
     data = json.loads(data)
     
 
-    imdb_info['description'] = data["description"].replace("&apos;", "'")
-
-    imdb_info['release date'] = data["datePublished"]
-    # imdb_info['imdb_id'] = data['url'][7:-1]
-    # imdb_info['image'] = data["image"] if 'image' in data else ''
+    imdb_info['imdb_id'] = data['url'][7:-1]
+    
+    if 'image' in data:
+      imdb_info['image'] = data["image"] 
+    else:
+      imdb_info['image'] = ""
   
   return imdb_info
 

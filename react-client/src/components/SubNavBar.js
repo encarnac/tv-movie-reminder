@@ -14,13 +14,17 @@ function SubNavBar({category, selectMovie, selectSeries}) {
                     {category === 'tv' && (
                         <ul class="nav nav-pills gap-3">
                             <li class="nav-item pill-1 shadow-lg">
-                                < button class="nav-link nav-link nav-pills-link-active-bg-secondary px-4 py-2 active" aria-current="page" onClick={selectSeries}>
-                                <IoIosEasel/>
+                                <button class="nav-link nav-link nav-pills-link-active-bg-secondary px-3 py-2 active" aria-current="page" onClick={selectSeries}>
+                                    series
+                                    <br/>
+                                    <IoIosEasel />
                                 </button>
                             </li>
                             <li class="nav-item pill-1 shadow-lg">
                                 <button class="nav-link px-4 py-2" onClick={selectMovie}>
-                                <IoIosFilm />
+                                    film
+                                    <br/>
+                                    <IoIosFilm />
                                 </button>
                             </li>
                         </ul>
@@ -29,13 +33,17 @@ function SubNavBar({category, selectMovie, selectSeries}) {
                     {category === 'ft' && (
                         <ul class="nav nav-pills gap-3">
                             <li class="nav-item pill-1 shadow-lg">
-                                <button class="nav-link nav-link nav-pills-link-active-bg-secondary px-4 py-2" aria-current="page" onClick={selectSeries}>
-                                <IoIosEasel/>
+                                <button class="nav-link nav-link nav-pills-link-active-bg-secondary px-3 py-2" aria-current="page" onClick={selectSeries}>
+                                    series
+                                    <br/>
+                                    <IoIosEasel />
                                 </button>
                             </li>
                             <li class="nav-item pill-1 shadow-lg">
                                 <button class="nav-link px-4 py-2 active" onClick={selectMovie}>
-                                <IoIosFilm />
+                                    film
+                                    <br/>
+                                    <IoIosFilm />
                                 </button>
                             </li>
                         </ul>
