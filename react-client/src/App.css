@@ -55,7 +55,7 @@
 }
 
 /* not active */
-.input-group .btn-search-input:not(.active) {
+.btn-search-input:not(.active) {
   background-color: rgb(181,199,233);
   color: white;
 }
