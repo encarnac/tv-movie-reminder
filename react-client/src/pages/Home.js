@@ -10,7 +10,7 @@ function Home({category, selectMovie, selectSeries}) {
      const [url, setURL] = useState(`http://localhost:5000/?title=${title}&category=${category}`)
      const [loading, setLoading] = useState(false)
      const [results, setResults] = useState([])
-     const [display, setDisplay] = useState(false)
+     const [display, setDisplay] = useState(true)
 
      const handleTitle = (e) => {
           setTitle(e.target.value)
@@ -18,6 +18,8 @@ function Home({category, selectMovie, selectSeries}) {
 
      const handleURL = () => {
           setURL(`http://localhost:5000/?title=${title}&category=${category}`)
+          
+
      }
 
      const clearResults = () => {
@@ -28,9 +30,9 @@ function Home({category, selectMovie, selectSeries}) {
      const handleFetchResults = useCallback(() => {
           setLoading(true)
           Axios.get(url).then(response => {
+               setDisplay(!display)
                setResults(response.data)
                setLoading(false)
-               setDisplay(true)
                })
           .catch(error => {
                console.log(error)
@@ -57,7 +59,6 @@ function Home({category, selectMovie, selectSeries}) {
      };
                
 
-
      return (
           <>
           <div class="position-relative">
@@ -71,14 +72,24 @@ function Home({category, selectMovie, selectSeries}) {
                                    <div class="input-group m-3 w-50 shadow-lg">
                                         <span class="input-group-text">Title</span>
                                         <input type="text" class="form-control shadow" placeholder="ex. Game of Thrones" aria-label="ex. 'Game of Thrones'" aria-describedby="button-addon2" onChange={handleTitle} />
-                                        <button class="btn shadow btn-outline-secondary btn-search-input" type="button" id="button-addon2" data-bs-toggle="collapse" href="#collapseExample" onClick={handleURL} >Search</button>
+                                        {!loading && !display && <button class="btn shadow btn-outline-secondary btn-search-input" type="button" id="button-addon2" onClick={handleURL} >Search</button>}
+                                        {loading && !display && <button class="btn shadow btn-outline-secondary btn-search-input" type="button" id="button-addon2" onClick={handleURL} > <LoadingSpinner /> </button>}
+                                        {!loading && display && <button class="btn shadow btn-outline-secondary btn-search-input opacity-25 disabled" type="button" id="button-addon2" onClick={handleURL} >Search</button>}
                                    </div>
-
-                              </p>      
+                              </p>
+                              {!loading && display && <p class="mt-5 card-text justify-content-evenly fw-lighter">View Results Below
+                                   <br />
+                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
+                                   </svg>
+                              </p>}
                          </div>
+
+
                </div>
           
-               {loading && !display && <LoadingSpinner /> }
+
+
                {!loading && display && (
                     <div class="container mt-4">
                          <div class="row no-gutters d-flex justify-content-center" >

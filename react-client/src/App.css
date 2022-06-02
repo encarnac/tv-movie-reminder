@@ -57,9 +57,27 @@
 }
 
 /* not active */
-.btn-search-input:not(.active) {
-  background-color: #B5C7E9;
+.input-group .btn-search-input:not(.active) {
+  background-color: rgb(181,199,233);
   color: white;
 }
 
 
+
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading-spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f3f3f3; /* Light grey */
+  border-top: 10px solid rgba(0,0,0,0); /* Black */
+  border-radius: 50%;
+  animation: spinner 1.5s linear infinite;
+}

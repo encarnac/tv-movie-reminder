@@ -1,14 +1,15 @@
 import React from 'react';
 
-function LoadingSpinner({handleClick}) {
+function LoadingSpinner({ handleClick }) {
 
-    return (
-      <div class="d-flex justify-content-center">
-        <div class="spinner-border" role="status">
-          <span class="visually-hidden">Loading...</span>
-        </div>
+  return (
+    <div class="d-flex justify-content-center">
+      {/* <p className="text-light fs-5 fw-semibold">Loading...</p> */}
+      <div class="spinner-container">
+        <div className="loading-spinner"></div>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
-  export default LoadingSpinner;
+export default LoadingSpinner;

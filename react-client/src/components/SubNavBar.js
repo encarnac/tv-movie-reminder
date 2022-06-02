@@ -14,7 +14,7 @@ function SubNavBar({category, selectMovie, selectSeries}) {
                     {category === 'tv' && (
                         <ul class="nav nav-pills gap-2">
                             <li class="nav-item pill-1 shadow-lg">
-                                <button class="nav-link nav-link nav-pills-link-active-bg-secondary px-3 py-1 active" aria-current="page" onClick={selectSeries}>
+                                <button class="nav-link nav-pills-link-active-bg-secondary px-3 py-1 active" aria-current="page" onClick={selectSeries}>
                                     series
                                     <br/>
                                     <IoIosEasel />
@@ -33,7 +33,7 @@ function SubNavBar({category, selectMovie, selectSeries}) {
                     {category === 'ft' && (
                         <ul class="nav nav-pills gap-2">
                             <li class="nav-item pill-1 shadow-lg">
-                                <button class="nav-link nav-link nav-pills-link-active-bg-secondary px-3 py-1" aria-current="page" onClick={selectSeries}>
+                                <button class="nav-link nav-pills-link-active-bg-secondary px-3 py-1" aria-current="page" onClick={selectSeries}>
                                     series
                                     <br/>
                                     <IoIosEasel />
