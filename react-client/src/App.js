@@ -1,10 +1,9 @@
 import { React, useState} from "react";
 import { BrowserRouter, Route, Routes} from "react-router-dom";
 import './App.css';
-import Splash from './pages/Splash';
-import Home from './pages/Home';
 import NavBar from "./components/NavBar";
-import SignupEmail from './pages/SignupEmail'
+import Home from './pages/Home';
+
 
 function App() {
 

@@ -62,6 +62,7 @@ def get_info(url):
     data = text.split("/*!sc*/")[0].split("IMDb")[1].split("@media screen ")[0].lstrip("IMDb")
     data = json.loads(data)
     
+    print(data)
 
     imdb_info['imdb id'] = data['url'][7:-1]
     

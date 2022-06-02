@@ -5,7 +5,6 @@ function Card({handleItem, imageURL, title, rating, contentRating, imdbID}) {
   if (imageURL === "") {
     imageURL = NONE;
   }
-
     return (
       <div class="card bg-light bg-gradient bg-opacity-50 shadow mb-5 bg-body rounded-4 " style={{'width': '18rem;', 'background-image': 'linear-gradient(to left, #607076, #253B40);'}}>
         <img src={imageURL} class="card-img-top img-fluid" alt="..."/>
@@ -20,4 +19,4 @@ function Card({handleItem, imageURL, title, rating, contentRating, imdbID}) {
     );
   }
 
-  export default Card;
+export default Card;
