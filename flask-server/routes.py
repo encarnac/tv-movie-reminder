@@ -1,9 +1,11 @@
 import os 
 import datetime
+import json
 import requests
 
 from flask import Flask, request, jsonify, url_for, session, redirect
 from flask_cors import CORS
+from flask.wrappers import Response
 
 from google_auth_oauthlib.flow import Flow
 from google.oauth2.credentials import Credentials
@@ -35,7 +37,6 @@ def TMDB_search():
     # return jsonify(results)
 
 
-
 #--------------------------
 # Connecting to Google API
 #--------------------------
@@ -61,7 +62,11 @@ def authorize():
     # Set state to verify OAuth2 server response
     session['state'] = state
 
-    return redirect(authorization_url)
+    return Response(
+        response = json.dumps({'auth_url':authorization_url}),
+        status=200,
+        mimetype='application/json'
+    )
 
 
 @app.route('/oauth2callback')
@@ -91,7 +96,9 @@ def oauth2callback():
         'client_secret': credentials.client_secret,
         'scopes': credentials.scopes}
 
-    return redirect(url_for('test_api_request'))
+    return Response(
+        response = json.dumps({})
+    )
     
 
 @app.route('/revoke')

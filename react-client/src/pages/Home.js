@@ -12,6 +12,7 @@ function Home({category, selectMovie, selectSeries}) {
      const [loading, setLoading] = useState(false)
      const [results, setResults] = useState([])
      const [display, setDisplay] = useState(true)
+     const [inputState, setInputState] = useState(false)
 
      const handleTitle = (e) => {
           setTitle(e.target.value)
@@ -32,6 +33,7 @@ function Home({category, selectMovie, selectSeries}) {
           setLoading(true)
           Axios.get(url).then(response => {
                setDisplay(!display)
+               setInputState(!inputState)
                setResults(response.data)
                setLoading(false)
                })
@@ -72,7 +74,7 @@ function Home({category, selectMovie, selectSeries}) {
                               <p class="card-text d-flex justify-content-evenly" >
                                    <div class="input-group w-50 shadow-lg">
                                         <span class="input-group-text">Title</span>
-                                        <SearchBar display={display} handleTitle={handleTitle} />
+                                        <SearchBar inputState={inputState} handleTitle={handleTitle} />
                                         {!display && !loading && 
                                              <button class="btn shadow btn-outline-secondary btn-search-input" type="button" id="button-addon2" onClick={handleURL} >Search</button>}
                                         {!display && loading && 
@@ -89,8 +91,6 @@ function Home({category, selectMovie, selectSeries}) {
                                    </p>
                               }
                          </div>
-
-
                </div>
           
 
