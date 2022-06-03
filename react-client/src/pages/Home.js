@@ -2,6 +2,7 @@ import {React, useState, useCallback, useEffect} from 'react';
 import SubNavBar from '../components/SubNavBar';
 import LoadingSpinner from '../components/LoadingSpinner';
 import CardsList from '../components/CardsList';
+import SearchBar from '../components/SearchBar';
 import IMG3 from '../photos/IMG3.jpg'
 import Axios from 'axios';
 
@@ -71,25 +72,17 @@ function Home({category, selectMovie, selectSeries}) {
                               <p class="card-text d-flex justify-content-evenly" >
                                    <div class="input-group w-50 shadow-lg">
                                         <span class="input-group-text">Title</span>
-                                        {!display && !loading && (<>
-                                             <input type="text" class="form-control shadow" placeholder="ex. Game of Thrones" aria-label="ex. 'Game of Thrones'" aria-describedby="button-addon2" onChange={handleTitle} />
-                                             <button class="btn shadow btn-outline-secondary btn-search-input" type="button" id="button-addon2" onClick={handleURL} >Search</button>
-                                             </>)}
-
-                                        {!display && loading && (<>
-                                             <input type="text" class="form-control shadow" placeholder="ex. Game of Thrones" aria-label="ex. 'Game of Thrones'" aria-describedby="button-addon2" onChange={handleTitle} />
-                                             <button class="btn shadow btn-outline-secondary btn-search-input" type="button" id="button-addon2" onClick={handleURL} > <LoadingSpinner /> </button>
-                                             </>)}                            
-
-                                        {display && (<>
-                                             <input readonly type="text" class="form-control shadow disabled" placeholder="ex. Game of Thrones" aria-label="ex. 'Game of Thrones'" aria-describedby="button-addon2" disabled readonly />
-                                             <button class="btn shadow btn-outline-secondary btn-search-input opacity-25" disabled type="button" id="button-addon2" onClick={handleURL} >Search</button>
-                                             </>)}
+                                        <SearchBar display={display} handleTitle={handleTitle} />
+                                        {!display && !loading && 
+                                             <button class="btn shadow btn-outline-secondary btn-search-input" type="button" id="button-addon2" onClick={handleURL} >Search</button>}
+                                        {!display && loading && 
+                                             <button class="btn shadow btn-outline-secondary btn-search-input" type="button" id="button-addon2"> <LoadingSpinner /> </button>}
+                                        {display && !loading &&
+                                             <button class="btn shadow btn-outline-secondary btn-search-input opacity-25" disabled type="button" id="button-addon2" >Search</button>}
                                    </div>
                               </p>
                               {!loading && display && 
-                                   <p class="mt-5 card-text position-absolute top-100 start-50 translate-middle-x fw-lighter">View Results Below
-                                        <br />
+                                   <p class="mt-5 card-text position-absolute top-100 start-50 translate-middle-x fw-lighter">View Results Below<br />
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
                                              <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z" />
                                         </svg>
