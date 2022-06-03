@@ -9,7 +9,7 @@ from google_auth_oauthlib.flow import Flow
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 
-import IMDB_handler as IMDB
+import tmdb_api.IMDB_handler as IMDB
 
 
 app = Flask(__name__)
@@ -20,7 +20,7 @@ CORS(app)
 # TV and Movie Database APIs 
 # (IMDB & TMDB)
 #--------------------------
-@app.route('/search')
+@app.route('/')
 def IMDB_search():
     title = request.args.get('title').replace(" ","+")
     category = request.args.get('category')
@@ -40,13 +40,14 @@ def TMDB_search():
 # Connecting to Google API
 #--------------------------
 app.secret_key = 'RaV6sjBQcUJVU48TewbhJ'
+CLIENT_SECRET = 'google_api\client_secret.json'
 SCOPES = ['https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/calendar.app.created']
 
 @app.route('/authorize')
 def authorize():
     # Idetify the application requesting information
     flow = Flow.from_client_secrets_file(
-        'client_secret.json', scopes=SCOPES)
+        CLIENT_SECRET, scopes=SCOPES)
 
     # Redirect path after authorization
     flow.redirect_uri = url_for('oauth2callback', _external=True)
@@ -69,7 +70,7 @@ def oauth2callback():
     state = session['state']
 
     flow = Flow.from_client_secrets_file(
-        'client_secret.json',
+        CLIENT_SECRET,
         scopes=SCOPES,
         state=state)
     flow.redirect_uri = url_for('oauth2callback', _external=True)
@@ -119,7 +120,7 @@ def clear_credentials():
   if 'credentials' in session:
     del session['credentials']
     print("---Successfully cleared credentials from the session.")
-  return redirect('http://localhost:3000')
+  return redirect('http://localhost:3000/')
 
 
 
@@ -146,8 +147,8 @@ def test_api_request():
     if not events:
         return('No upcoming events found.')
 
+    # Prints the start and name of the next 10 events and saves it to a list[{dict}]
     events_data = [] 
-    # Prints the start and name of the next 10 events
     for event in events:
         start = event['start'].get('dateTime', event['start'].get('date'))
         data = {
@@ -156,7 +157,6 @@ def test_api_request():
         }
         events_data.append(data)
     
-    print('Upcoming Events = ', events_data)
     return jsonify(events_data)
 
 if __name__ == '__main__':

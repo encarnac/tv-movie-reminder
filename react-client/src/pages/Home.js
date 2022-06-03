@@ -7,7 +7,7 @@ import Axios from 'axios';
 
 function Home({category, selectMovie, selectSeries}) {
      const [title, setTitle] = useState('')
-     const [url, setURL] = useState(`http://localhost:5000/search?title=${title}&category=${category}`)
+     const [url, setURL] = useState(`http://localhost:5000/?title=${title}&category=${category}`)
      const [loading, setLoading] = useState(false)
      const [results, setResults] = useState([])
      const [display, setDisplay] = useState(true)
@@ -17,7 +17,7 @@ function Home({category, selectMovie, selectSeries}) {
       };
 
      const handleURL = () => {
-          setURL(`http://localhost:5000/search?title=${title}&category=${category}`)
+          setURL(`http://localhost:5000/?title=${title}&category=${category}`)
           
 
      }
@@ -71,10 +71,20 @@ function Home({category, selectMovie, selectSeries}) {
                               <p class="card-text d-flex justify-content-evenly" >
                                    <div class="input-group w-50 shadow-lg">
                                         <span class="input-group-text">Title</span>
-                                        <input type="text" class="form-control shadow" placeholder="ex. Game of Thrones" aria-label="ex. 'Game of Thrones'" aria-describedby="button-addon2" onChange={handleTitle} />
-                                        {!loading && !display && <button class="btn shadow btn-outline-secondary btn-search-input" type="button" id="button-addon2" onClick={handleURL} >Search</button>}
-                                        {loading && !display && <button class="btn shadow btn-outline-secondary btn-search-input" type="button" id="button-addon2" onClick={handleURL} > <LoadingSpinner /> </button>}
-                                        {!loading && display && <button class="btn shadow btn-outline-secondary btn-search-input opacity-25 disabled" type="button" id="button-addon2" onClick={handleURL} >Search</button>}
+                                        {!display && !loading && (<>
+                                             <input type="text" class="form-control shadow" placeholder="ex. Game of Thrones" aria-label="ex. 'Game of Thrones'" aria-describedby="button-addon2" onChange={handleTitle} />
+                                             <button class="btn shadow btn-outline-secondary btn-search-input" type="button" id="button-addon2" onClick={handleURL} >Search</button>
+                                             </>)}
+
+                                        {!display && loading && (<>
+                                             <input type="text" class="form-control shadow" placeholder="ex. Game of Thrones" aria-label="ex. 'Game of Thrones'" aria-describedby="button-addon2" onChange={handleTitle} />
+                                             <button class="btn shadow btn-outline-secondary btn-search-input" type="button" id="button-addon2" onClick={handleURL} > <LoadingSpinner /> </button>
+                                             </>)}                            
+
+                                        {display && (<>
+                                             <input readonly type="text" class="form-control shadow disabled" placeholder="ex. Game of Thrones" aria-label="ex. 'Game of Thrones'" aria-describedby="button-addon2" disabled readonly />
+                                             <button class="btn shadow btn-outline-secondary btn-search-input opacity-25" disabled type="button" id="button-addon2" onClick={handleURL} >Search</button>
+                                             </>)}
                                    </div>
                               </p>
                               {!loading && display && 
