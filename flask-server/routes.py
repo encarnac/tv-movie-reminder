@@ -1,12 +1,12 @@
-import os 
+import os ,json
 import datetime
 import requests
 from dotenv import load_dotenv
-
-from flask import Flask, request, jsonify, url_for, session, redirect
+from flask.wrappers import Response
+from flask import Flask, request, jsonify, url_for, session
 from flask_cors import CORS, cross_origin
 from werkzeug.utils import redirect
-
+import jwt
 import google.auth.transport.requests
 from google_auth_oauthlib.flow import Flow
 from google.oauth2.credentials import Credentials
@@ -67,11 +67,14 @@ def oauth2callback():
     token_request = google.auth.transport.requests.Request(session=request_session)
 
     id_info = id_token.verify_oauth2_token(
-        id_token=credentials._id_token, request=token_request,
+        id_token=credentials._id_token, 
+        request=token_request,
         audience=GOOGLE_CLIENT_ID
     )
-    session["google_id"] = id_info.get("sub")
 
+    session["google_id"] = id_info.get("sub")
+    del id_info['aud']
+    jwt_token=Generate_JWT(id_info)
     session['credentials'] = {
         'token': credentials.token,
         'refresh_token': credentials.refresh_token,
@@ -80,8 +83,8 @@ def oauth2callback():
         'client_secret': credentials.client_secret,
         'scopes': credentials.scopes}
 
-    token = credentials.token
-    return redirect(f'{CLIENT_URL}/?auth={token}')
+    # token = credentials.token
+    return redirect(f'{CLIENT_URL}/?jwt={jwt_token}')
 
 
 @app.route('/authorize')
@@ -93,10 +96,15 @@ def authorize():
     
     # Set state to verify OAuth2 server response
     session['state'] = state
-    print(session['state'])
 
-    return jsonify (authorization_url = authorization_url)
+    return Response(
+        response=json.dumps({'auth_url':authorization_url}),
+        status=200,
+        mimetype='application/json')
 
+def Generate_JWT(payload):
+    encoded_jwt = jwt.encode(payload, app.secret_key)
+    return encoded_jwt
     
 
 @app.route('/revoke')
