@@ -16,7 +16,7 @@ function NavBar({ selectMovie, selectSeries }) {
       },
     })
       .then((res) => {
-        window.location.assign(res.data.auth_url);
+        window.location.assign(res.data.authorization_url);
       })
       .catch((err) => console.log(err));
   };

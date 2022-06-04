@@ -1,14 +1,16 @@
 import os 
 import datetime
-import json
 import requests
+from dotenv import load_dotenv
 
 from flask import Flask, request, jsonify, url_for, session, redirect
-from flask_cors import CORS
-from flask.wrappers import Response
+from flask_cors import CORS, cross_origin
+from werkzeug.utils import redirect
 
+import google.auth.transport.requests
 from google_auth_oauthlib.flow import Flow
 from google.oauth2.credentials import Credentials
+from google.oauth2 import id_token
 from googleapiclient.discovery import build
 
 import tmdb_api.IMDB_handler as IMDB
@@ -16,7 +18,23 @@ import tmdb_api.IMDB_handler as IMDB
 
 app = Flask(__name__)
 CORS(app)
+app.config['Access-Control-Allow-Origin'] = '*'
+app.config["Access-Control-Allow-Headers"]="Content-Type"
 
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+
+app.secret_key = os.getenv("SECRET_KEY")
+GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
+CLIENT_SECRET = 'google_api\client_secret.json'
+SCOPES = ['https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/calendar.app.created']
+SERVER_URL = 'http://localhost:5000'
+CLIENT_URL = 'http://localhost:3000'
+
+# Idetify the application requesting information
+flow = Flow.from_client_secrets_file(
+    client_secrets_file = CLIENT_SECRET,
+    scopes = SCOPES,
+    redirect_uri = SERVER_URL + '/oauth2callback')
 
 #--------------------------
 # TV and Movie Database APIs 
@@ -40,54 +58,20 @@ def TMDB_search():
 #--------------------------
 # Connecting to Google API
 #--------------------------
-app.secret_key = 'RaV6sjBQcUJVU48TewbhJ'
-CLIENT_SECRET = 'google_api\client_secret.json'
-SCOPES = ['https://www.googleapis.com/auth/calendar','https://www.googleapis.com/auth/calendar.app.created']
-
-@app.route('/authorize')
-def authorize():
-    # Idetify the application requesting information
-    flow = Flow.from_client_secrets_file(
-        CLIENT_SECRET, scopes=SCOPES)
-
-    # Redirect path after authorization
-    flow.redirect_uri = url_for('oauth2callback', _external=True)
-
-    # Generate URL to access Google's OAuth2 server
-    authorization_url, state = flow.authorization_url(
-        access_type='offline', 
-        prompt='consent', 
-        include_granted_scopes='true') 
-    
-    # Set state to verify OAuth2 server response
-    session['state'] = state
-
-    return Response(
-        response = json.dumps({'auth_url':authorization_url}),
-        status=200,
-        mimetype='application/json'
-    )
-
-
 @app.route('/oauth2callback')
 def oauth2callback():
-    # Set callback state so it is verified in OAuth2 server response
-    state = session['state']
-
-    flow = Flow.from_client_secrets_file(
-        CLIENT_SECRET,
-        scopes=SCOPES,
-        state=state)
-    flow.redirect_uri = url_for('oauth2callback', _external=True)
-
-    # Saves the parameters applied to the redirect URI after authentication
-    authorization_response = request.url.replace('http', 'https')
-
-    # Gets token from authentication response
-    flow.fetch_token(authorization_response=authorization_response)
-
-    # Save the credential object to the session
+    # Uses authentication response code to fetch access token
+    flow.fetch_token(authorization_response = request.url.replace('http', 'https'))
     credentials = flow.credentials
+    request_session = requests.session()
+    token_request = google.auth.transport.requests.Request(session=request_session)
+
+    id_info = id_token.verify_oauth2_token(
+        id_token=credentials._id_token, request=token_request,
+        audience=GOOGLE_CLIENT_ID
+    )
+    session["google_id"] = id_info.get("sub")
+
     session['credentials'] = {
         'token': credentials.token,
         'refresh_token': credentials.refresh_token,
@@ -96,9 +80,23 @@ def oauth2callback():
         'client_secret': credentials.client_secret,
         'scopes': credentials.scopes}
 
-    return Response(
-        response = json.dumps({})
-    )
+    token = credentials.token
+    return redirect(f'{CLIENT_URL}/?auth={token}')
+
+
+@app.route('/authorize')
+def authorize():
+    # Generate URL to access Google's OAuth2 server
+    authorization_url, state = flow.authorization_url(
+        access_type='offline',
+        prompt='consent') 
+    
+    # Set state to verify OAuth2 server response
+    session['state'] = state
+    print(session['state'])
+
+    return jsonify (authorization_url = authorization_url)
+
     
 
 @app.route('/revoke')
@@ -127,7 +125,7 @@ def clear_credentials():
   if 'credentials' in session:
     del session['credentials']
     print("---Successfully cleared credentials from the session.")
-  return redirect('http://localhost:3000/')
+  return redirect(CLIENT_URL)
 
 
 
@@ -167,5 +165,4 @@ def test_api_request():
     return jsonify(events_data)
 
 if __name__ == '__main__':
-    os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
     app.run('localhost', 5000, debug=True)
