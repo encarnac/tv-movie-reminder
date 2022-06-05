@@ -1,12 +1,15 @@
-import os ,json
+import os 
 import datetime
 import requests
 from dotenv import load_dotenv
-from flask.wrappers import Response
-from flask import Flask, request, jsonify, url_for, session
+
+from flask import Flask, request, jsonify, url_for, session, redirect
+from flask_session import Session
+import redis
+
 from flask_cors import CORS, cross_origin
 from werkzeug.utils import redirect
-import jwt
+
 import google.auth.transport.requests
 from google_auth_oauthlib.flow import Flow
 from google.oauth2.credentials import Credentials
@@ -17,6 +20,10 @@ import tmdb_api.IMDB_handler as IMDB
 
 
 app = Flask(__name__)
+SESSION_TYPE = 'filesystem'
+app.config.from_object(__name__)
+Session(app)
+
 CORS(app)
 app.config['Access-Control-Allow-Origin'] = '*'
 app.config["Access-Control-Allow-Headers"]="Content-Type"
@@ -41,6 +48,11 @@ flow = Flow.from_client_secrets_file(
 # (IMDB & TMDB)
 #--------------------------
 @app.route('/')
+# def check():
+#     if 'credentials' in session:
+#         print("-------------CURRENT SESSION CREDENTIALS---------", session.get('credentials'))
+#         return jsonify(session.get('credentials'))
+
 def IMDB_search():
     title = request.args.get('title').replace(" ","+")
     category = request.args.get('category')
@@ -60,21 +72,14 @@ def TMDB_search():
 #--------------------------
 @app.route('/oauth2callback')
 def oauth2callback():
+    state = session['state']
+    print("-------------CALL BACK SESSION STATE---------", session.get('state'))
+
     # Uses authentication response code to fetch access token
     flow.fetch_token(authorization_response = request.url.replace('http', 'https'))
     credentials = flow.credentials
-    request_session = requests.session()
-    token_request = google.auth.transport.requests.Request(session=request_session)
 
-    id_info = id_token.verify_oauth2_token(
-        id_token=credentials._id_token, 
-        request=token_request,
-        audience=GOOGLE_CLIENT_ID
-    )
 
-    session["google_id"] = id_info.get("sub")
-    del id_info['aud']
-    jwt_token=Generate_JWT(id_info)
     session['credentials'] = {
         'token': credentials.token,
         'refresh_token': credentials.refresh_token,
@@ -82,9 +87,12 @@ def oauth2callback():
         'client_id': credentials.client_id,
         'client_secret': credentials.client_secret,
         'scopes': credentials.scopes}
+    
+    print("-------------CALL BACK SESSION CREDENTIALS---------", session.get('credentials'))
 
-    # token = credentials.token
-    return redirect(f'{CLIENT_URL}/?jwt={jwt_token}')
+    token = credentials.token
+    return  redirect(f'{CLIENT_URL}/?auth={token}')
+    return redirect(f'{CLIENT_URL}/?auth={token}')
 
 
 @app.route('/authorize')
@@ -96,15 +104,14 @@ def authorize():
     
     # Set state to verify OAuth2 server response
     session['state'] = state
+    print("------------- REQUEST SESSION STATE---------", session['state'])
+    if 'credentials' in session:
+        print("-------------REQUEST SESSION CREDENTIALS---------", session.get('credentials'))
 
-    return Response(
-        response=json.dumps({'auth_url':authorization_url}),
-        status=200,
-        mimetype='application/json')
+    # return redirect(authorization_url)
 
-def Generate_JWT(payload):
-    encoded_jwt = jwt.encode(payload, app.secret_key)
-    return encoded_jwt
+    return jsonify (authorization_url = authorization_url)
+
     
 
 @app.route('/revoke')
