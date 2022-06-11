@@ -5,12 +5,10 @@ from dotenv import load_dotenv
 
 from flask import Flask, request, jsonify, url_for, session, redirect
 from flask_session import Session
-import redis
 
 from flask_cors import CORS, cross_origin
 from werkzeug.utils import redirect
 
-import google.auth.transport.requests
 from google_auth_oauthlib.flow import Flow
 from google.oauth2.credentials import Credentials
 from google.oauth2 import id_token
@@ -72,7 +70,7 @@ def TMDB_search():
 #--------------------------
 @app.route('/oauth2callback')
 def oauth2callback():
-    state = session['state']
+    state = session.get('state')
     print("-------------CALL BACK SESSION STATE---------", session.get('state'))
 
     # Uses authentication response code to fetch access token
