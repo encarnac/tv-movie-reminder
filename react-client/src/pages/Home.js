@@ -7,7 +7,7 @@ import IMG3 from '../photos/IMG3.jpg'
 import Axios from 'axios';
 
 function Home({category, selectMovie, selectSeries}) {
-     const SERVER_URL = 'http://localhost:5000';
+     const SERVER_URL = 'http://localhost:3000';
      const [title, setTitle] = useState('')
      const [url, setURL] = useState(`${SERVER_URL}/?title=${title}&category=${category}`)
      const [loading, setLoading] = useState(false)

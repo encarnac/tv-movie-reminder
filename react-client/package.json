@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-backend": "cd ../flask-server && venv/bin/flask run --no-debugger",
+    "server": "node server/bin/www",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
