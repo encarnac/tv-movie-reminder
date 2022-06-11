@@ -6,10 +6,11 @@ import SearchBar from '../components/SearchBar';
 import IMG3 from '../photos/IMG3.jpg'
 import Axios from 'axios';
 
+const SERVER_URL = 'http://localhost:3000';
+
 function Home({category, selectMovie, selectSeries}) {
-     const SERVER_URL = 'http://localhost:3000';
      const [title, setTitle] = useState('')
-     const [url, setURL] = useState(`${SERVER_URL}/?title=${title}&category=${category}`)
+     const [url, setURL] = useState(`${SERVER_URL}/search?title=${title}&category=${category}`)
      const [loading, setLoading] = useState(false)
      const [results, setResults] = useState([])
      const [display, setDisplay] = useState(true)
@@ -20,7 +21,7 @@ function Home({category, selectMovie, selectSeries}) {
       };
 
      const handleURL = () => {
-          setURL(`${SERVER_URL}/?title=${title}&category=${category}`)
+          setURL(`${SERVER_URL}/search?category=${category}&title=${title}`)
      }
 
      const clearResults = () => {
