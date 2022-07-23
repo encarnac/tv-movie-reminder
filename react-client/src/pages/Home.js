@@ -35,6 +35,7 @@ function Home({category, selectMovie, selectSeries}) {
                setDisplay(!display)
                setInputState(!inputState)
                setResults(response.data)
+               console.log(response.data)
                setLoading(false)
                })
           .catch(error => {

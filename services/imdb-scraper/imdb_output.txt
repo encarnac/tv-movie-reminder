@@ -1,1 +1,0 @@
-{'imdb_id': 'tt0076759', 'genres': ['Action', 'Adventure', 'Fantasy'], 'title': 'Star Wars'}

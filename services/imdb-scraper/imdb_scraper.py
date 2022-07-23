@@ -59,6 +59,7 @@ while True:
 
     # Get all results and their basic info from IMDB and writes it to a file
     if title:
+        print(True)
         results = get_results(category, title)
         
         outfile = open('imdb_output.txt', 'w+')
@@ -69,6 +70,6 @@ while True:
 
     else:
         print(False)
-    time.sleep(3.0)
+    time.sleep(1.0)
 
 
