@@ -34,19 +34,26 @@ def get_info(imdb_id):
 
     title = soup.find('h1', attrs={'data-testid':'hero-title-block__title'}).get_text()
 
-    tags = soup.find_all('span', class_='ipc-chip__text')
-    genre_list = []
-    for tag in tags:
+    imdb_genres = soup.find_all('span', class_='ipc-chip__text')
+    genres = []
+    for tag in imdb_genres:
         genre = tag.get_text()
-        genre_list.append(genre)
+        genres.append(genre)
 
+    rating = soup.find('div', attrs={'data-testid':'hero-rating-bar__aggregate-rating__score'})
+    if rating is None:
+        rating = '--/10'
+    else:
+        rating = rating.get_text()
+
+    
     info = {
         'imdb_id' : imdb_id,
-        'genres' : genre_list, 
-        'title' : title
+        'title' : title,
+        'genres' : genres,
+        'rating' : rating
     }
     return info
-
 
 while True:
     # Read file to get user search parameters
@@ -61,15 +68,14 @@ while True:
     if title:
         print(True)
         results = get_results(category, title)
-        
         outfile = open('imdb_output.txt', 'w+')
         outfile.truncate(0)
         for result in results:
             outfile.write(f'{result}\n')
         outfile.close()
-
     else:
         print(False)
+        
     time.sleep(1.0)
 
 
