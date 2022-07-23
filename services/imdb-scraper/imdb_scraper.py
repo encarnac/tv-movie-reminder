@@ -10,51 +10,64 @@ def get_results(category, title):
     """
 
     search_url = f"https://www.imdb.com/find?q={title}&s=tt&ttype={category}&exact=true&ref_=fn_tt_ex"
-
     response = requests.get(search_url)
     soup = BeautifulSoup(response.content, 'html.parser')
-
-    result_rows = soup.find_all("tr", class_="findResult")
-    all_results = []
+    result_rows = soup.find_all("td", class_="result_text")
+    imdb_results = []
     for result in result_rows:
-        url = result.td.a['href']
-        info = get_info(f"https://www.imdb.com{url}")
-        all_results.append(info)
+        imdb_id = result.a['href'][7:-1]
+        info = get_info(imdb_id)
+        imdb_results.append(info)
 
-    return (str(all_results))
+    return (str(imdb_results))
 
-def get_info(result_url):
+def get_info(imdb_id):
     """
     Gets data on the specified tv show or movie using given URL.
     Receives: IMDB URL to scrape
     Returns:
     """
-    response = requests.get(result_url)
+    imdb_page = f"https://www.imdb.com/title/{imdb_id}/"
+    response = requests.get(imdb_page)
     soup = BeautifulSoup(response.content, 'html.parser')
 
-    title = soup.find('title')
-    print('SOUP=', title)
-    return title
+    title = soup.find('h1', attrs={'data-testid':'hero-title-block__title'}).get_text()
+
+    tags = soup.find_all('span', class_='ipc-chip__text')
+    genre_list = []
+    for tag in tags:
+        genre = tag.get_text()
+        genre_list.append(genre)
+
+    info = {
+        'imdb_id' : imdb_id,
+        'genres' : genre_list, 
+        'title' : title
+    }
+
+    return info
 
 
 
 while True:
     # Read file to get user search parameters
     infile = open('imdb_input.txt', 'r+') 
-    category = infile.readline()
+    
+    category = infile.readline().rstrip('\n')
     title = infile.readline().replace(' ', '+')
     infile.truncate(0)
     infile.close()
 
     # Get all results and their basic info from IMDB and writes it to a file
     if title:
-        print(title)
+        print(title, category)
         print(True)
         results = get_results(category, title)
-        with open('imdb_output.txt', encoding="utf-8") as outfile:
+        print('RESULTS = ', results)
+        with open('imdb_output.txt', 'w', encoding="utf-8") as outfile:
             outfile.write(results)
     else:
         print(False)
-    time.sleep(5.0)
+    time.sleep(2.0)
 
 
