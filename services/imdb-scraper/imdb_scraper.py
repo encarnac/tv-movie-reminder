@@ -19,7 +19,8 @@ def get_results(category, title):
         info = get_info(imdb_id)
         imdb_results.append(info)
 
-    return (str(imdb_results))
+    return (imdb_results)
+
 
 def get_info(imdb_id):
     """
@@ -44,9 +45,7 @@ def get_info(imdb_id):
         'genres' : genre_list, 
         'title' : title
     }
-
     return info
-
 
 
 while True:
@@ -60,14 +59,16 @@ while True:
 
     # Get all results and their basic info from IMDB and writes it to a file
     if title:
-        print(title, category)
-        print(True)
         results = get_results(category, title)
-        print('RESULTS = ', results)
-        with open('imdb_output.txt', 'w', encoding="utf-8") as outfile:
-            outfile.write(results)
+        
+        outfile = open('imdb_output.txt', 'w+')
+        outfile.truncate(0)
+        for result in results:
+            outfile.write(f'{result}\n')
+        outfile.close()
+
     else:
         print(False)
-    time.sleep(2.0)
+    time.sleep(3.0)
 
 
