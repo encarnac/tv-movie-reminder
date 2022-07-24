@@ -1,13 +1,13 @@
 import React from 'react';
 import NONE from '../photos/NONE.png'
 
-function Card({handleItem, item}) {
-  const imdbID = item.imdb_id
-  const title = item.title
-  const year = item.year
-  const genres = item.genres
-  const score = item.score
-  const imageUrl = item.image                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+function Card({handleSelection, content}) {
+  const imdbID = content.imdb_id
+  const title = content.title
+  const year = content.year
+  const genres = content.genres
+  const score = content.score
+  const imageUrl = content.image                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 
     return (
       <div class="card bg-light bg-gradient bg-opacity-50 shadow mb-5 bg-body rounded-4 " style={{'width': '18rem;', 'background-image': 'linear-gradient(to left, #607076, #253B40);'}}>
@@ -28,7 +28,9 @@ function Card({handleItem, item}) {
               })}
           </p>
           <p><b>IMDB Score: </b> {score}</p>
-          <button class="btn shadow-sm btn-search-input" value={item.imdb_id} onClick={(e)=> {handleItem(e.target.value)}} >Select</button>
+          <button type="button" class="btn shadow-sm btn-search-input" value={content.imdb_id}
+            data-bs-toggle="modal" data-bs-target="#selectionModal" 
+            onClick={(e)=> {handleSelection(e.target.value)}}>Select</button>
         </div>
       </div>
 

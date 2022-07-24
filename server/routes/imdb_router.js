@@ -24,7 +24,7 @@ function writeInput(req, res, next) {
 }
 
 function readOutput (req, res) {
-  /* Read IMDB web scrape results from text file and send as response to frontend */
+  /* Read IMDB web scrape results from the output file and send as response to frontend */
   console.log('Need to read output')
   setTimeout(() => {
     const text = fs.readFileSync(imdbOutput, 'utf8')

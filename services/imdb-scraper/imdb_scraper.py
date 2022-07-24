@@ -13,11 +13,13 @@ def get_results(category, title):
     search_url = f"https://www.imdb.com/find?q={title}&s=tt&ttype={category}&exact=true&ref_=fn_tt_ex"
     response = requests.get(search_url)
     soup = BeautifulSoup(response.content, 'html.parser')
+
+    # Gets all the content that matched the search parameters
     result_rows = soup.find_all("td", class_="result_text")
     imdb_results = []
     for result in result_rows:
         imdb_id = result.a['href'][7:-1]
-        info = get_info(imdb_id)
+        info = get_info(imdb_id) # Gets more detailed info for each content
         imdb_results.append(info)
 
     return (imdb_results)
@@ -33,27 +35,32 @@ def get_info(imdb_id):
     response = requests.get(imdb_page)
     soup = BeautifulSoup(response.content, 'html.parser')
 
+    # Gets the content's title
     title = soup.find('h1', attrs={'data-testid':'hero-title-block__title'}).get_text()
 
+    # Gets the content's image url
     image = soup.find('img', class_='ipc-image', attrs={'loading':'eager'})
     if image is None:
         image = ''
     else:
         image=image['src']
     print(image)
-        
+
+    # Gets the content's genres   
     imdb_genres = soup.find_all('span', class_='ipc-chip__text')
     genres = []
     for tag in imdb_genres:
         genre = tag.get_text()
         genres.append(genre)
 
+    # Gets the content's IMDB review score
     score = soup.find('div', attrs={'data-testid':'hero-rating-bar__aggregate-rating__score'})
     if score is None:
         score = '--/10'
     else:
         score = score.get_text()
 
+    # Gets the content's year of release
     metadata = soup.find('ul', attrs={'data-testid':'hero-title-block__metadata'})
     year = metadata.find('a').text
     

@@ -6,7 +6,7 @@ const logger = require('morgan');
 const cors = require("cors");
 
 // Paths to middleware controllers
-const imdbRouter = require('./routes/imdb');
+const imdbRouter = require('./routes/imdb_router');
 
 // Express configuration
 const app = express();
