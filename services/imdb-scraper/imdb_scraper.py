@@ -35,6 +35,8 @@ def get_info(imdb_id):
 
     title = soup.find('h1', attrs={'data-testid':'hero-title-block__title'}).get_text()
 
+    image = soup.find('img', class_='ipc-image')['src']
+
     imdb_genres = soup.find_all('span', class_='ipc-chip__text')
     genres = []
     for tag in imdb_genres:
@@ -55,7 +57,8 @@ def get_info(imdb_id):
         'title' : title,
         'year' : year,
         'genres' : genres,
-        'score' : score
+        'score' : score,
+        'image' : image
     }
     return info
 
@@ -73,7 +76,6 @@ while True:
         print(True)
         results = get_results(category, title)
         results = json.dumps(results)
-        print('RETURN = ', results)
         outfile = open('imdb_output.json', 'w+')
         outfile.truncate(0)
         outfile.write(results)
