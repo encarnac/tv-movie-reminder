@@ -2,10 +2,13 @@ import React from 'react';
 // import NONE from '../photos/NONE.png'
 
 function Card({handleItem, item}) {
-  const title = item.title
-  const score = item.score
-  const genres = item.genres
   const imdb_id = item.imdb_id
+  const title = item.title
+  const year = item.year
+  const genres = item.genres
+  const score = item.score
+ 
+  
 
   // if (imageURL === "") {
   //   imageURL = NONE;
@@ -15,7 +18,7 @@ function Card({handleItem, item}) {
         {/* <img src={imageURL} class="card-img-top img-fluid" alt="..."/> */}
         <div class="card-body ">
           <h5 class="card-title">{title}</h5>
-          <p><b>IMDB Score: </b> {score}</p>
+          <p><b>Year:</b> {year}</p>
           <p><b>Genre: </b> 
             {genres.map((genre, i, genres) => {
               if (i + 1 === genres.length) {
@@ -25,6 +28,7 @@ function Card({handleItem, item}) {
                 }
               })}
           </p>
+          <p><b>IMDB Score: </b> {score}</p>
           <button class="btn shadow-sm btn-search-input" value={item.imdb_id} onClick={(e)=> {handleItem(e.target.value)}} >Select</button>
         </div>
       </div>

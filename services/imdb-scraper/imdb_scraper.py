@@ -47,10 +47,13 @@ def get_info(imdb_id):
     else:
         score = score.get_text()
 
+    metadata = soup.find('ul', attrs={'data-testid':'hero-title-block__metadata'})
+    year = metadata.find('a').text[:4]
     
     info = {
         'imdb_id' : imdb_id,
         'title' : title,
+        'year' : year,
         'genres' : genres,
         'score' : score
     }
@@ -69,11 +72,11 @@ while True:
     if title:
         print(True)
         results = get_results(category, title)
-        data = json.dumps(results)
-        print('RETURN = ', data)
+        results = json.dumps(results)
+        print('RETURN = ', results)
         outfile = open('imdb_output.json', 'w+')
         outfile.truncate(0)
-        outfile.write(data)
+        outfile.write(results)
         outfile.close()
     else:
         print(False)
