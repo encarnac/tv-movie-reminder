@@ -1,7 +1,12 @@
 import React from 'react';
 // import NONE from '../photos/NONE.png'
 
-function Card({handleItem, title, genres, score, imdbID}) {
+function Card({handleItem, item}) {
+  const title = item.title
+  const score = item.score
+  const genres = item.genres
+  const imdb_id = item.imdb_id
+
   // if (imageURL === "") {
   //   imageURL = NONE;
   // }
@@ -11,8 +16,16 @@ function Card({handleItem, title, genres, score, imdbID}) {
         <div class="card-body ">
           <h5 class="card-title">{title}</h5>
           <p><b>IMDB Score: </b> {score}</p>
-          <p><b>Genre: </b> {genres}</p>
-          {/* <button class="btn shadow-sm btn-search-input" value={imdbID} onClick={(e)=> {handleItem(e.target.value)}} >Select</button> */}
+          <p><b>Genre: </b> 
+            {genres.map((genre, i, genres) => {
+              if (i + 1 === genres.length) {
+                return (<span>{ genre }</span>)
+              } else {
+                return (<span>{ genre }, </span>)
+                }
+              })}
+          </p>
+          <button class="btn shadow-sm btn-search-input" value={item.imdb_id} onClick={(e)=> {handleItem(e.target.value)}} >Select</button>
         </div>
       </div>
 

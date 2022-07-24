@@ -7,7 +7,11 @@ function CardsList({ results, handleItem }) {
   return (
     <div class="d-grid gap-5 ">
       <div class="row no-gutters d-flex gap-3 justify-content-center">
-        <p>{results.title}</p>
+        {results.map((item, i) =>
+          <div key={i} class="col col-xs-12 col-md-4 col-lg-3">
+            <Card handleItem={handleItem} item={item}/>
+          </div>
+        )}
       </div>
     </div>
   );
