@@ -119,4 +119,4 @@ function Home( { category, selectMovie, selectSeries } ) {
     </>);
 }
 
-      export default Home;;;
+export default Home;;;
