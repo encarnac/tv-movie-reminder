@@ -3,7 +3,7 @@ const router = express.Router();
 const fs = require('fs');
 
 const imdbInput = '../services/imdb-scraper/imdb_input.txt';
-const imdbOutput = '../services/imdb-scraper/imdb_output.txt';
+const imdbOutput = '../services/imdb-scraper/imdb_output.json';
 
 /* Handle request for the communication pipeline with the IMDB scraper */
 router.get('/', writeInput, readOutput);
@@ -27,7 +27,8 @@ function readOutput (req, res) {
   /* Read IMDB web scrape results from text file and send as response to frontend */
   console.log('Need to read output')
   setTimeout(() => {
-    const data = fs.readFileSync(imdbOutput, 'utf8')
+    const text = fs.readFileSync(imdbOutput, 'utf8')
+    const data = JSON.parse(text)
     fs.truncate(imdbOutput, 0,  function(){console.log('File Truncated Successfully !!!')} )
     res.send(data)
   }, 5000);

@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import json
 import time
 
 def get_results(category, title):
@@ -40,18 +41,18 @@ def get_info(imdb_id):
         genre = tag.get_text()
         genres.append(genre)
 
-    rating = soup.find('div', attrs={'data-testid':'hero-rating-bar__aggregate-rating__score'})
-    if rating is None:
-        rating = '--/10'
+    score = soup.find('div', attrs={'data-testid':'hero-rating-bar__aggregate-rating__score'})
+    if score is None:
+        score = '--/10'
     else:
-        rating = rating.get_text()
+        score = score.get_text()
 
     
     info = {
         'imdb_id' : imdb_id,
         'title' : title,
         'genres' : genres,
-        'rating' : rating
+        'score' : score
     }
     return info
 
@@ -68,10 +69,11 @@ while True:
     if title:
         print(True)
         results = get_results(category, title)
-        outfile = open('imdb_output.txt', 'w+')
+        data = json.dumps(results)
+        print('RETURN = ', data)
+        outfile = open('imdb_output.json', 'w+')
         outfile.truncate(0)
-        for result in results:
-            outfile.write(f'{result}\n')
+        outfile.write(data)
         outfile.close()
     else:
         print(False)
