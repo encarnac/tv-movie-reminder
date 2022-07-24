@@ -7,6 +7,7 @@ const cors = require("cors");
 
 // Paths to middleware controllers
 const imdbRouter = require('./routes/imdb_router');
+const tmdbRouter = require('./routes/tmdb_router');
 
 // Express configuration
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Mounts middleware at given paths
 app.use('/search', imdbRouter);
+app.use('/details', tmdbRouter);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {

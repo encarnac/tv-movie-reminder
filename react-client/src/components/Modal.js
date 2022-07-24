@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Modal( { handleItem, imageURL, title, rating, contentRating, imdbID } ) {
+function Modal( {  } ) {
 
   return (
     <>

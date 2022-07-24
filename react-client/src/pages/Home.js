@@ -3,6 +3,7 @@ import SubNavBar from '../components/SubNavBar';
 import LoadingSpinner from '../components/LoadingSpinner';
 import CardsList from '../components/CardsList';
 import SearchBar from '../components/SearchBar';
+import Modal from '../components/Modal';
 import IMG3 from '../photos/IMG3.jpg';
 import Axios from 'axios';
 
@@ -12,7 +13,7 @@ function Home( { category, selectMovie, selectSeries } ) {
   const [ title, setTitle ] = useState( '' );
   const [ url, setURL ] = useState( `${ SERVER_URL }/search?title=${ title }&category=${ category }` );
   const [ loading, setLoading ] = useState( false );
-  const [ results, setResults ] = useState( [] );
+  const [ imdbData, setImdbData ] = useState( [] );
   const [ display, setDisplay ] = useState( true );
   const [ inputState, setInputState ] = useState( false );
 
@@ -26,7 +27,7 @@ function Home( { category, selectMovie, selectSeries } ) {
 
   const clearResults = () => {
     setDisplay( false );
-    setResults( [] );
+    setImdbData( [] );
     setInputState( true );
   };
 
@@ -35,7 +36,7 @@ function Home( { category, selectMovie, selectSeries } ) {
     Axios.get( url ).then( response => {
       setDisplay( !display );
       setInputState( !inputState );
-      setResults( response.data );
+      setImdbData( response.data );
       console.log( response.data );
       setLoading( false );
     } )
@@ -49,15 +50,16 @@ function Home( { category, selectMovie, selectSeries } ) {
   }, [ handleFetchResults ] );
 
   const [ selection, setSelection ] = useState( '' );
-  const [ details, setDetails ] = useState( [] );
+  const [ tmdbData, setTmdbData ] = useState( [] );
 
   const handleSelection = ( e ) => {
     setSelection( e.target.value );
+    fetchTmdb()
   };
 
-  const fetchDetails = () => {
+  const fetchTmdb = () => {
     Axios.get( 'http://localhost:5000/details/', { params: { selection: selection } } ).then( response => {
-      setDetails( response.data );
+      setTmdbData( response.data );
     } ).catch( error => {
       console.log( error );
     } );
@@ -100,13 +102,14 @@ function Home( { category, selectMovie, selectSeries } ) {
         { !loading && display && (
           <div class="container mt-3">
             <div class="row no-gutters d-flex justify-content-center" >
+              < Modal />
               <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="rgba(165,217,208, 0.95)" class="bi bi-x-circle-fill opacity-75" viewBox="0 0 20 50" onClick={ clearResults }>
                 <path class="shadow-lg" d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" />
               </svg>
-              {/* <p>{results}</p> */ }
+              {/* <p>{imdbData}</p> */ }
               <div class="d-grid gap-5 ">
                 <div class="row no-gutters d-flex gap-3 justify-content-center">
-                  <CardsList results={ results } handleSelection={ handleSelection } />
+                  <CardsList imdbData={ imdbData } handleSelection={ handleSelection } />
                 </div>
               </div>
             </div>

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
-import Modal from './components/Modal'
+
 
 
 function App() {
@@ -30,10 +30,7 @@ function App() {
           <Route path='/' element={<Home category={category} selectMovie={selectMovie} selectSeries={selectSeries}/>} />
         </Routes>
       </BrowserRouter>
-      
-      < Modal />
     </div>
-  
   </>
   )
 }
