@@ -1,9 +1,5 @@
 import requests
 
-IMDB_ID_SAMPLE = "tt0436992"
-CATEGORY = "TV"
-
-
 class tmdb_api:
     def __init__(self, imdb_id, category="TV"):
         self.URL = "https://api.themoviedb.org/3/"
@@ -15,22 +11,30 @@ class tmdb_api:
         # json.dump(self.main(), f"{r_file}.json")
 
     def find(self):
-        self.params['external_source'] = 'imdb_id'
-        r = requests.get(
-            self.URL+'find/'+self.imdb_id,
-            params=self.params
+      """
+      Returns the content's TMDB id to retrieve and return the film/series' relevant data 
+        Required parameters: 
+          api_key,
+          external_id (from IMDB),
+          external_source (accepted string option)
+        Returns:
+          The TMDB id and requested film or series' details after calling 
+          either movie_details() or tv_details()
+      """
+      # Uses the known IMDB id to get the TMDB id
+      self.params['external_source'] = 'imdb_id'
+      r = requests.get(
+        self.URL+'find/'+self.imdb_id,
+        params=self.params
         ).json()
+        
+        # Gets the TMDB id for a film and uses it to get more data from movie_details()
         if self.category == "FT":
-            # add-in additional fixes for conditions of multiple results
             self.id = r['movie_results'][0]['id']
             info = self.movie_details(self.id)
             return info
 
-            # genres = requests.get(
-            #     self.URL+"genres/movie/list", params=self.params).json()
-            # print([genre['name'] for genre in genres if genre['id'] in info['genres']])
-
-            # info['genres'] = [z['name'] for z in genres if z['id'] in info['genres']]
+        # Gets the TMDB id for a series and uses it to get  more data from tv_details() 
         elif self.category == "TV":
             # continue with additional requests
             self.id = r['tv_results'][0]['id']
@@ -38,44 +42,63 @@ class tmdb_api:
             return info
         del self.params['external_source']
 
-    def movie_details(self, movie_id):  # get by movie_ID
-        r = requests.get(
-            self.URL+f"movie/{movie_id}",
-            params=self.params
-        ).json()
+    def movie_details(self, movie_id):
+      """
+      Returns the requested film's data.
+      Required: 
+        movie_id (string) from the TMDB API
+      Response:
+        The film's data in a dictionary containing the
+        title, overview, genres, popularity, language, 
+        country, runtimes, and status.
+      """
+      r = requests.get(
+          self.URL+f"movie/{movie_id}",
+          params=self.params
+      ).json()
 
-        movie_info = {
-            "title": r['title'],
-            "overview": r['overview'],
-            "genres":  [x['name'] for x in r['genres']],
-            "popularity": r['popularity'],
-            "language": r['original_language'],
-            "country": r['production_companies'][0]['origin_country'],
-            "runtimes": r['runtime'],
-            "status": r['status'],
-        }
-        return movie_info
+      movie_info = {
+          "title": r['title'],
+          "overview": r['overview'],
+          "genres":  [x['name'] for x in r['genres']],
+          "popularity": r['popularity'],
+          "language": r['original_language'],
+          "country": r['production_companies'][0]['origin_country'],
+          "runtimes": r['runtime'],
+          "status": r['status'],
+      }
+      
+      return movie_info
 
     def tv_details(self, tv_id):  # get by tv_ID
+      """
+      Returns the requested tv series' data.
+      Required:
+        tv_id (string) from the TMDB API
+      Response:
+        The series' data in a dictionary containing the
+        title, overview, genres, popularity, language,
+        country, status, number of episodes, number of seasons, 
+        first airdate, lasgt airdate, and runtime.
+      """
+      r = requests.get(self.URL+f"tv/{tv_id}", params=self.params).json()
 
-        r = requests.get(self.URL+f"tv/{tv_id}", params=self.params).json()
+      tv_info = {
+          "title": r['name'],
+          "overview": r['overview'],
+          "genres": [x['name'] for x in r['genres']],
+          "popularity": r['popularity'],
+          "language": r['original_language'],
+          "country": r['origin_country'][0],
+          "status": r['status'],
+          "number_of_episodes": r['number_of_episodes'],
+          "number_of_seasons": r['number_of_seasons'],
+          "first_air_date": r['first_air_date'],
+          "last_air_date": r['last_air_date'],
+          "episode_run_time": r['episode_run_time'][0],
+      }
 
-        tv_info = {
-            "title": r['name'],
-            "overview": r['overview'],
-            "genres": [x['name'] for x in r['genres']],
-            "popularity": r['popularity'],
-            "language": r['original_language'],
-            "country": r['origin_country'][0],
-            "status": r['status'],
-            "number_of_episodes": r['number_of_episodes'],
-            "number_of_seasons": r['number_of_seasons'],
-            "first_air_date": r['first_air_date'],
-            "last_air_date": r['last_air_date'],
-            "episode_run_time": r['episode_run_time'][0],
-        }
-
-        return tv_info
+      return tv_info
 
     def get_season_ep(self, season_number):
         if self.category != "TV":

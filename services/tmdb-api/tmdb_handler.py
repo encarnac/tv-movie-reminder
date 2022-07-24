@@ -2,33 +2,32 @@
 from tmdb_api import tmdb_api
 import time
 
-FILE_IN = 'tmdb_input.txt'
-FILE_OUT = 'tmdb_output.json'
+infile = 'tmdb_input.txt'
+outfile = 'tmdb_output.json'
 
 while True:
     # Checks if file is empty by converting string from file to list
-    if open(FILE_IN, "r").read().splitlines() == []:
+    if open(infile, "r").read().splitlines() == []:
         print(False)
         time.sleep(1.0)
         continue
     
-    # Saves the input from the file as a list
-    with open(FILE_IN, "r+") as file_in:
-        data = file_in.read().splitlines()
-        file_in.close()
+    # Saves the input from the file as a list [category, imdb_id]
+    with open(infile, "r+") as infile:
+        data = infile.read().splitlines()
+        infile.truncate(0)
+        infile.close()
 
-
-    with open(FILE_OUT, "r+") as file_out:
+    # Calls the TMDB API with the saved inputs to get and write the film/series' data to a file
+    with open(outfile, "r+") as outfile:
         info = str(tmdb_api(data[1], data[0]).find())
-        file_out.write(info)
-        file_out.close()
-        
+        outfile.write(info)
+        outfile.close()
+    
+    # Calls the TMDB API to append data to the file about the series' seasons 
     if data[1] == 'TV':
-        with open(FILE_OUT, "a") as file_out:
+        with open(outfile, "a") as outfile:
             eps = str(tmdb_api(data[1], data[0]).get_season_ep())
-            file_out.write(eps)
-            file_out.close()
+            outfile.write(eps)
+            outfile.close()
 
-    with open(FILE_IN, "r+") as file_clean:
-        file_clean.truncate(0)
-        file_clean.close()
