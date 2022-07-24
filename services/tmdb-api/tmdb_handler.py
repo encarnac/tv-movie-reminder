@@ -5,10 +5,11 @@ import time
 infile = 'tmdb_input.txt'
 outfile = 'tmdb_output.json'
 
+print('Checking infile for input...')
 while True:
     # Checks if file is empty by converting string from file to list
     if open(infile, "r").read().splitlines() == []:
-        print(False)
+        # print(False)
         time.sleep(1.0)
         continue
     
