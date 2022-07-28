@@ -9,7 +9,6 @@ def get_results(category, title):
     Receives: query = [category = tv or film, title = search terms] 
     Returns: list of every matching item's info in a dictionary 
     """
-
     search_url = f"https://www.imdb.com/find?q={title}&s=tt&ttype={category}&exact=true&ref_=fn_tt_ex"
     response = requests.get(search_url)
     soup = BeautifulSoup(response.content, 'html.parser')
@@ -44,7 +43,6 @@ def get_info(imdb_id):
         image = ''
     else:
         image=image['src']
-    print(image)
 
     # Gets the content's genres   
     imdb_genres = soup.find_all('span', class_='ipc-chip__text')
@@ -74,9 +72,12 @@ def get_info(imdb_id):
     }
     return info
 
+
+print('Checking infile for input...')
 while True:
     # Read file to get user search parameters
-    infile = open('imdb_input.txt', 'r+') 
+    infile = open('imdb_input.txt', 'r+')
+    
     
     category = infile.readline().rstrip('\n')
     title = infile.readline().replace(' ', '+')
@@ -94,7 +95,7 @@ while True:
         outfile.write(results)
         outfile.close()
     else:
-        print(False)
+        continue
         
     time.sleep(1.0)
 

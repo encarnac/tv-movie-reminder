@@ -30,11 +30,12 @@ class tmdb_api:
         ).json()
 
         # Gets the TMDB id for a film and uses it to get more data from movie_details()
-        if self.category == "FT":
-            self.id = r['movie_results'][0]['id']
-            info = self.movie_details(self.id)
-            return info
+      if self.category == "FT":
+          self.id = r['movie_results'][0]['id']
+          info = self.movie_details(self.id)
+          return info
 
+<<<<<<< HEAD
         # Gets the TMDB id for a series and uses it to get  more data from tv_details()
         elif self.category == "TV":
             # continue with additional requests
@@ -42,6 +43,15 @@ class tmdb_api:
             info = self.tv_details(self.id)
             return info
         del self.params['external_source']
+=======
+      # Gets the TMDB id for a series and uses it to get  more data from tv_details() 
+      elif self.category == "TV":
+          # continue with additional requests
+          self.id = r['tv_results'][0]['id']
+          info = self.tv_details(self.id)
+          return info
+      del self.params['external_source']
+>>>>>>> a956cbbf2f8f8729a35376ea935ea4f9200be2f9
 
     def movie_details(self, movie_id):
         """
@@ -117,6 +127,7 @@ class tmdb_api:
         return season_episodes
 
 
+<<<<<<< HEAD
 if __name__ == '__main__':
     # when called by itself, it shows the example tt4574334("stranger things")
     strgr_things = tmdb_api(IMDB_ID_SAMPLE,CATEGORY)
@@ -127,3 +138,13 @@ if __name__ == '__main__':
     show_details['season_episodes'] = recent_season_eps
     print(show_details)
     
+=======
+# if __name__ == '__main__':
+#     # when called by itself, it shows the example tt4574334("stranger things")
+#     strgr_things = tmdb_api(IMDB_ID_SAMPLE)
+#     show_details = strgr_things.find()
+#     recent_season_eps = strgr_things.get_season_ep()
+
+#     print(show_details)
+#     print(recent_season_eps)
+>>>>>>> a956cbbf2f8f8729a35376ea935ea4f9200be2f9

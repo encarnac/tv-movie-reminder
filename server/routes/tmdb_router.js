@@ -13,6 +13,7 @@ function tmdbReq(req, res, next) {
   const category = req.query.category;
   const imdb_id = req.query.imdb_id;
   const input = `${category}\n${imdb_id}`
+  console.log(input)
 
   if (imdb_id) {
     fs.writeFile(tmdbInput, input, function (err) {

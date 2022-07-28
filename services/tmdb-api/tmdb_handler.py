@@ -5,12 +5,20 @@ import time
 INFILE = 'tmdb_input.txt'
 OUTFILE = 'tmdb_output.json'
 
+print('Checking infile for input...')
 while True:
     time.sleep(1.0)
     # Checks if file is empty by converting string from file to list
+<<<<<<< HEAD
     if open(INFILE, "r").read().splitlines() == []:
       print(False)
       continue
+=======
+    if open(infile, "r").read().splitlines() == []:
+        # print(False)
+        time.sleep(1.0)
+        continue
+>>>>>>> a956cbbf2f8f8729a35376ea935ea4f9200be2f9
     
     # Saves the input from the file as a list [category, imdb_id]
     with open(INFILE, "r+") as infile:
