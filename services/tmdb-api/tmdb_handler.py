@@ -5,38 +5,46 @@ import time
 INFILE = 'tmdb_input.txt'
 OUTFILE = 'tmdb_output.json'
 
-print('Checking infile for input...')
-while True:
-    time.sleep(1.0)
-    # Checks if file has all required input by converting to list for comparison
-    if open(INFILE, "r").read().splitlines() == []:
-        continue
+def main():
+    '''
+    Continuously reads INFILE for valid arguments (category, imdb_id) to be used with The Movie Database (TMDB) API,
+    and writes the returned tv/movie data to OUTFILE.
+    '''
 
-    # Saves the input from the file as a list [category, imdb_id]
-    with open(INFILE, "r+") as infile:
-        print('Found input in file')
-        input = infile.read().splitlines()
-        infile.truncate(0)
-        infile.close()
-
-    # Calls the TMDB API with the saved inputs to get and write the film/series' input to a file
-    with open(OUTFILE, "r+") as outfile:
-        tmdb = tmdb_api(input[1], input[0])
-        data = tmdb.find()
-        outfile.write(str(data))
-        print('Finished gathering data from TMDB API...')
-        outfile.close()
-
-    print(input[0])
-    # Calls the TMDB API to append input to the file about the series' seasons
-    if input[0] == 'tv':
-        with open(OUTFILE, "w+") as outfile:
-            season = tmdb.info['number_of_seasons']
-            updated_data = str(tmdb.get_season_ep(season))
-            outfile.write(updated_data)
-            print('Finished gathering episode data from TMDB API...')
+    print('Checking for required parameters (category, imdb_id)...')
+    while True:
+        time.sleep(1.0)
+        # Checks input file for 2 lines containing the required category and imdb_id input
+        with open(INFILE, "r+") as infile:
+            input = infile.read().splitlines()
+            if input == []:
+                continue
+            else: 
+                print('Found valid arguments!')
+                infile.truncate(0)
+                infile.close()
+        
+        # Requests tv/movie data from TMDB API to write to the output file
+        with open(OUTFILE, "r+") as outfile:
+            print('Requesting tv or movie data from TMDB API...')
+            tmdb = tmdb_api(input[1], input[0])
+            data = tmdb.find()
+            outfile.truncate(0)
+            outfile.write(str(data))
             outfile.close()
 
+        # Updates the output file with episode details from TMDB API
+        if input[0] == 'tv':
+            with open(OUTFILE, "w+") as outfile:
+                print('Requesting episode data from TMDB API...')
+                season = tmdb.info['number_of_seasons']
+                updated_data = str(tmdb.get_season_ep(season))
+                outfile.truncate(0)
+                outfile.write(updated_data)
+                outfile.close()
 
+        print('DONE\nChecking for required parameters (category, imdb_id)...')
 
+if __name__ == '__main__':
+    main()
 
