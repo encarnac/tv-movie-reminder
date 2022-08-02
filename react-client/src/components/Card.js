@@ -1,7 +1,7 @@
 import React from 'react';
 import NONE from '../photos/NONE.png'
 
-function Card({handleSelection, content}) {
+function Card({handleImdbID, content}) {
   const imdbID = content.imdb_id
   const title = content.title
   const year = content.year
@@ -28,9 +28,9 @@ function Card({handleSelection, content}) {
               })}
           </p>
           <p><b>IMDB Score: </b> {score}</p>
-          <button type="button" class="btn shadow-sm btn-search-input" value={content.imdb_id}
+          <button type="button" class="btn shadow-sm btn-search-input" value={imdbID}
             data-bs-toggle="modal" data-bs-target="#selectionModal" 
-            onClick={(e)=> {handleSelection(e.target.value)}}>Select</button>
+            onClick={ handleImdbID }>Select</button>
         </div>
       </div>
 

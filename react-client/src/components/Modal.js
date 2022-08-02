@@ -1,9 +1,22 @@
-import React from 'react';
+import { React, useEffect, useState } from 'react';
+import Axios from 'axios';
 
-function Modal( {  } ) {
+function Modal( { server, category, imdbID} ) {
+  const [tmdbData, setTmdbData] = useState([])
+
+
+  useEffect( () => {
+    Axios.get( `${ server }/details?category=${ category }&imdb_id=${ imdbID }`)
+      .then( response => {
+      setTmdbData( response.data );
+    } ).catch( error => {
+      console.log( error );
+    } );
+  }, [])
 
   return (
     <>
+    <p>{tmdbData}</p>
       <div class="modal fade" id="selectionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
