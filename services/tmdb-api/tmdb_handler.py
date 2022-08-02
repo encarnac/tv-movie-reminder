@@ -1,6 +1,7 @@
 # running loop for tmdb_api.py
 from tmdb_api import tmdb_api
 import time
+import json
 
 INFILE = 'tmdb_input.txt'
 OUTFILE = 'tmdb_output.json'
@@ -28,7 +29,8 @@ def main():
         with open(OUTFILE, "r+") as outfile:
             print('Requesting tv or movie data from TMDB API...')
             tmdb = tmdb_api(input[1], input[0])
-            data = tmdb.find()
+            data = json.dumps(tmdb.find())
+            print(data)
             outfile.truncate(0)
             outfile.write(str(data))
             outfile.close()
