@@ -32,7 +32,7 @@ def main():
             data = json.dumps(tmdb.find())
             print(data)
             outfile.truncate(0)
-            outfile.write(str(data))
+            outfile.write(data)
             outfile.close()
 
         # Updates the output file with episode details from TMDB API
@@ -40,7 +40,7 @@ def main():
             with open(OUTFILE, "w+") as outfile:
                 print('Requesting episode data from TMDB API...')
                 season = tmdb.info['number_of_seasons']
-                updated_data = str(tmdb.get_season_ep(season))
+                updated_data = json.dumps(tmdb.get_season_ep(season))
                 outfile.truncate(0)
                 outfile.write(updated_data)
                 outfile.close()

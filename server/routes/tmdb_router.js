@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
-const tmdbInput = '../services/tmdb_api/tmdb_input.txt';
-const tmdbOutput = '../services/tmdb_api/tmdb_output.json';
+const tmdbInput = '../services/tmdb-api/tmdb_input.txt';
+const tmdbOutput = '../services/tmdb-api/tmdb_output.json';
 
 // Handle request for the communication pipeline with the TMDB scraper
 router.get('/', tmdbReq, tmdbRes);
@@ -29,9 +29,9 @@ function tmdbRes (req, res) {
   console.log('Awaiting output in outfile')
   setTimeout(() => {
     const text = fs.readFileSync(tmdbOutput, 'utf8')
-    const data = JSON.parse(text)
+    // const data = JSON.stringify(text)
     fs.truncate(tmdbOutput, 0,  function(){console.log('Output retrieved and outfile cleared successfully.')} )
-    res.send(data)
+    res.send(text)
   }, 5000);
 };
 
