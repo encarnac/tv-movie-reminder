@@ -1,6 +1,7 @@
 import { React } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image'
 
 function InfoModal({ modalState, 
                       handleClose,
@@ -22,12 +23,12 @@ function InfoModal({ modalState,
 
   return (
     <>
-      <Modal show={ modalState } onHide={ handleClose }>
+      <Modal show={ modalState } onHide={ handleClose } >
         <Modal.Header closeButton>
           <Modal.Title>{ title }</Modal.Title>
-          <img src={poster} class="card-img-top img-fluid" alt="..."/>
         </Modal.Header>
         <Modal.Body>
+          <Image src={poster} fluid='true' thumbnail='true' rounded='true' class="w-50 p-3"/>
           <p><span>Overview: </span>{ overview }</p>
           <p><span>Genres: </span>{ genres }</p>
           <p><span>Popularity:</span>{ popularity }</p>
