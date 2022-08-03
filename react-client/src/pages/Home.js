@@ -57,17 +57,6 @@ function Home( { category, selectMovie, selectSeries } ) {
   };
   const handleClose = () => setModalState(false)
 
-  useEffect( () => {
-    Axios.get(`${ SERVER_URL }/details?category=${ category }&imdb_id=${ imdbID }` )
-      .then( response => {
-        setTmdbData(response.data);
-        setModalState(true);
-      })
-      .catch( error => {
-        console.log( error );
-      });
-  }, [ imdbID ] )
-
   return (
     <>
       <div class="position-absolute">

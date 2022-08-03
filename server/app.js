@@ -6,7 +6,6 @@ const logger = require('morgan');
 const cors = require("cors");
 
 // Paths to middleware controllers
-const imdbRouter = require('./routes/imdb_router');
 const tmdbRouter = require('./routes/tmdb_router');
 
 // Express configuration
@@ -19,8 +18,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Mounts middleware at given paths
-app.use('/search', imdbRouter);
-app.use('/details', tmdbRouter);
+app.use('/search', tmdbRouter);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
