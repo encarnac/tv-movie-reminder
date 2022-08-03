@@ -60,12 +60,7 @@ function Home( { category, selectMovie, selectSeries } ) {
   useEffect( () => {
     Axios.get(`${ SERVER_URL }/details?category=${ category }&imdb_id=${ imdbID }` )
       .then( response => {
-        if (response.data.status === "success") {
-        setTmdbData( response.data );
-        console.log(response.data)
-        }
-      })
-      .then ( resposne => {
+        setTmdbData(response.data);
         setModalState(true);
       })
       .catch( error => {
