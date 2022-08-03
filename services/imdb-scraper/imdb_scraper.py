@@ -44,20 +44,6 @@ def get_info(imdb_id):
     else:
         image=image['src']
 
-    # Gets the content's genres   
-    imdb_genres = soup.find_all('span', class_='ipc-chip__text')
-    genres = []
-    for tag in imdb_genres:
-        genre = tag.get_text()
-        genres.append(genre)
-
-    # Gets the content's IMDB review score
-    score = soup.find('div', attrs={'data-testid':'hero-rating-bar__aggregate-rating__score'})
-    if score is None:
-        score = '--/10'
-    else:
-        score = score.get_text()
-
     # Gets the content's year of release
     metadata = soup.find('ul', attrs={'data-testid':'hero-title-block__metadata'})
     year = metadata.find('a').text
@@ -66,37 +52,42 @@ def get_info(imdb_id):
         'imdb_id' : imdb_id,
         'title' : title,
         'year' : year,
-        'genres' : genres,
-        'score' : score,
         'image' : image
     }
     return info
 
 
-print('Checking infile for input...')
-while True:
-    # Read file to get user search parameters
-    infile = open('imdb_input.txt', 'r+')
-    
-    
-    category = infile.readline().rstrip('\n')
-    title = infile.readline().replace(' ', '+')
-    infile.truncate(0)
-    infile.close()
+def main():
+  '''
+  Continously reads infile for valid arguments (category, title) to webscrape IMDB results.
+  Calls get_results to return tv/movie IMDB id, name, year, and image. 
+  '''
+  print('Checking infile for input...')
+  while True:
+      # Read file to get user search parameters
+      infile = open('imdb_input.txt', 'r+')
 
-    # Get all results and their basic info from IMDB and writes it to a file
-    if title:
-        print(True)
-        results = get_results(category, title)
-        results = json.dumps(results)
-        print(results)
-        outfile = open('imdb_output.json', 'w+')
-        outfile.truncate(0)
-        outfile.write(results)
-        outfile.close()
-    else:
-        continue
-        
-    time.sleep(1.0)
+      category = infile.readline().rstrip('\n')
+      title = infile.readline().replace(' ', '+')
+      infile.truncate(0)
+      infile.close()
+
+      # Get all results and their basic info from IMDB and writes it to a file
+      if title:
+          print(True)
+          results = get_results(category, title)
+          results = json.dumps(results)
+          print(results)
+          outfile = open('imdb_output.json', 'w+')
+          outfile.truncate(0)
+          outfile.write(results)
+          outfile.close()
+          print('Checking infile for input...')
+      else:
+          continue
+          
+      time.sleep(1.0)
 
 
+if __name__ == '__main__':
+    main()

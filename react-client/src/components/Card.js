@@ -6,8 +6,6 @@ function Card({content, handleImdbID }) {
   const imdbID = content.imdb_id
   const title = content.title
   const year = content.year
-  const genres = content.genres
-  const score = content.score
   const imageUrl = content.image                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
 
     return (
@@ -18,17 +16,7 @@ function Card({content, handleImdbID }) {
          }
         <div class="card-body ">
           <h5 class="card-title">{title}</h5>
-          <p><b>Year:</b> {year}</p>
-          <p><b>Genre: </b> 
-            {genres.map((genre, i, genres) => {
-              if (i + 1 === genres.length) {
-                return (<span>{ genre }</span>)
-              } else {
-                return (<span>{ genre }, </span>)
-                }
-              })}
-          </p>
-          <p><b>IMDB Score: </b> {score}</p>
+          <p><i>{year}</i></p>
           <button type="button" class="btn shadow-sm btn-search-input" value={imdbID}
             onClick={ handleImdbID }>Select</button>
         </div>
