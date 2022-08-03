@@ -65,26 +65,50 @@ def main():
   print('Checking infile for input...')
   while True:
       # Read file to get user search parameters
-      infile = open('imdb_input.txt', 'r+')
+      with open('imdb_input.txt', 'r+') as infile:
+        input = infile.read().splitlines()
 
-      category = infile.readline().rstrip('\n')
-      title = infile.readline().replace(' ', '+')
-      infile.truncate(0)
-      infile.close()
-
-      # Get all results and their basic info from IMDB and writes it to a file
-      if title:
+        if input == []:
+          continue
+        else: 
+          infile.truncate(0)
+          infile.close()
           print(True)
-          results = get_results(category, title)
+
+          results = get_results(input[0], input[1])
           results = json.dumps(results)
           print(results)
+
           outfile = open('imdb_output.json', 'w+')
           outfile.truncate(0)
           outfile.write(results)
           outfile.close()
+          
           print('Checking infile for input...')
-      else:
-          continue
+
+
+
+
+      # infile = open('imdb_input.txt', 'r+')
+
+      # category = infile.readline().rstrip('\n')
+      # title = infile.readline().replace(' ', '+')
+      # infile.truncate(0)
+      # infile.close()
+
+      # Get all results and their basic info from IMDB and writes it to a file
+      # if title:
+      #     print(True)
+      #     results = get_results(category, title)
+      #     results = json.dumps(results)
+      #     print(results)
+      #     outfile = open('imdb_output.json', 'w+')
+      #     outfile.truncate(0)
+      #     outfile.write(results)
+      #     outfile.close()
+      #     print('Checking infile for input...')
+      # else:
+      #     continue
           
       time.sleep(1.0)
 

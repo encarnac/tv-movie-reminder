@@ -16,9 +16,9 @@ function Home( { category, selectMovie, selectSeries } ) {
   const [ imdbData, setImdbData ] = useState( [] );
   const [ display, setDisplay ] = useState( true );
   const [ inputState, setInputState ] = useState( false );
-  const [ imdbID, setImdbID ] = useState( ' ' );
+  const [ imdbID, setImdbID ] = useState( '' );
   const [ modalState, setModalState ] = useState(false)
-  const [tmdbData, setTmdbData] = useState([])
+  const [tmdbData, setTmdbData] = useState('')
 
   const handleTitle = ( e ) => {
     setTitle( e.target.value );
@@ -58,10 +58,11 @@ function Home( { category, selectMovie, selectSeries } ) {
   const handleClose = () => setModalState(false)
 
   useEffect( () => {
-    Axios.get( `${ SERVER_URL }/details?category=${ category }&imdb_id=${ imdbID }` )
+    Axios.get(`${ SERVER_URL }/details?category=${ category }&imdb_id=${ imdbID }` )
       .then( response => {
         if (response.data.status === "success") {
         setTmdbData( response.data );
+        console.log(response.data)
         }
       })
       .then ( resposne => {
@@ -76,14 +77,14 @@ function Home( { category, selectMovie, selectSeries } ) {
     <>
       <div class="position-absolute">
         <div class="card text-black d-flex">
-          <img src={ IMG3 } class="card-img vw-100 opacity-50" alt="header" />
+          <img src={ IMG3 } class="card-img vw-100 opacity-25" alt="header" />
           <div class="card-img-overlay position-absolute top-50 translate-middle-y ">
             <h1 class="card-title d-flex justify-content-evenly text-black fw-bolder">watch-soon</h1>
-            <p class="card-text d-flex justify-content-evenly">Search for shows/movies to get reminded when they come out!</p>
+            <p class="card-text d-flex justify-content-evenly">Search for shows/movies by exact title and get reminded when they come out!</p>
             <p class="card-text d-flex justify-content-evenly"><SubNavBar category={ category } selectMovie={ selectMovie } selectSeries={ selectSeries } /></p>
             <p class="card-text d-flex justify-content-evenly" >
               <div class="input-group w-50 shadow-lg">
-                <span class="input-group-text">Title</span>
+                {/* <span class="input-group-text">Title</span> */}
                 <SearchBar inputState={ inputState } handleTitle={ handleTitle } />
                 { !display && !loading &&
                   <button class="btn shadow btn-outline-secondary btn-search-input" type="button" id="button-addon2" onClick={ handleURL } >Search</button> }
