@@ -2,17 +2,17 @@ import { React } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
-function InfoModal( { modalState, handleClose, tmdbData } ) {
+function InfoModal( { modalState, handleClose, selection } ) {
 
   return (
     <>
       <Modal show={ modalState } onHide={ handleClose }>
         <Modal.Header closeButton>
-          <Modal.Title>{tmdbData.title}</Modal.Title>
+          <Modal.Title>{selection.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>
-          
+          {selection}
           </p>
         </Modal.Body>
         <Modal.Footer>

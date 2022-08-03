@@ -29,7 +29,7 @@ function SubNavBar({ category, selectMovie, selectSeries }) {
                             </ul>
                         )}
 
-                        {category === 'ft' && (
+                        {category === 'movie' && (
                             <ul class="nav nav-pills gap-2">
                                 <li class="nav-item pill-1 shadow-lg">
                                     <button class="nav-link nav-pills-link-active-bg-secondary px-3 py-1" aria-current="page" onClick={selectSeries}>

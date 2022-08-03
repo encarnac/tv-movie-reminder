@@ -76,13 +76,13 @@ class tmdb_api:
           ).json()
 
           movie = {
+              "category": self.category,
               "title": req_movie['title'],
               "overview": req_movie['overview'],
               "genres":  [x['name'] for x in req_movie['genres']],
               "popularity": req_movie['popularity'],
-              "language": req_movie['original_language'],
-              "country": req_movie['production_companies'][0]['origin_country'],
               "runtimes": req_movie['runtime'],
+              "release":  req_movie['release_date'],
               "status": req_movie['status'],
               "poster": f"https://image.tmdb.org/t/p/w500/{req_movie['poster_path']}"
           }
@@ -104,6 +104,7 @@ class tmdb_api:
           ).json()
 
           tv_show = {
+              "category": self.category,
               "title": req_tv['name'],
               "overview": req_tv['overview'],
               "genres": [x['name'] for x in req_tv['genres']],
@@ -112,7 +113,7 @@ class tmdb_api:
               "number_of_episodes": req_tv['number_of_episodes'],
               "number_of_seasons": req_tv['number_of_seasons'],
               "season_episodes": self.get_season_ep(id, req_tv['number_of_seasons']),
-              "first_air_date": req_tv['first_air_date'],
+              "release": req_tv['first_air_date'],
               "last_air_date": req_tv['last_air_date'],
               "episode_run_time": req_tv['episode_run_time'],
               "poster": f"https://image.tmdb.org/t/p/w500/{req_tv['poster_path']}"

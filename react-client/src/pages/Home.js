@@ -13,12 +13,31 @@ function Home( { category, selectMovie, selectSeries } ) {
   const [ title, setTitle ] = useState( '' );
   const [ url, setURL ] = useState( `${ SERVER_URL }/search?title=${ title }&category=${ category }` );
   const [ loading, setLoading ] = useState( false );
-  const [ imdbData, setImdbData ] = useState( [] );
   const [ display, setDisplay ] = useState( true );
   const [ inputState, setInputState ] = useState( false );
-  const [ imdbID, setImdbID ] = useState( '' );
   const [ modalState, setModalState ] = useState(false)
-  const [tmdbData, setTmdbData] = useState('')
+  const [ tmdbData, setTmdbData ] = useState( [] );
+  const [ selection, setSelection ] = useState( '' );
+
+  const handleFetchResults = useCallback( () => {
+    setLoading( true );
+    Axios.get( url ).then( response => {
+      setDisplay( !display );
+      setInputState( !inputState );
+      setTmdbData( response.data );
+      console.log( response.data );
+      setLoading( false );
+    } )
+      .catch( error => {
+        console.log( error );
+      } );
+  }, [ url ] );
+
+
+  useEffect( () => {
+    handleFetchResults();
+  }, [ handleFetchResults ] );
+  
 
   const handleTitle = ( e ) => {
     setTitle( e.target.value );
@@ -30,32 +49,16 @@ function Home( { category, selectMovie, selectSeries } ) {
 
   const clearResults = () => {
     setDisplay( false );
-    setImdbData( [] );
+    setTmdbData( [] );
     setInputState( true );
   };
 
-  const handleFetchResults = useCallback( () => {
-    setLoading( true );
-    Axios.get( url ).then( response => {
-      setDisplay( !display );
-      setInputState( !inputState );
-      setImdbData( response.data );
-      console.log( response.data );
-      setLoading( false );
-    } )
-      .catch( error => {
-        console.log( error );
-      } );
-  }, [ url ] );
-
-  useEffect( () => {
-    handleFetchResults();
-  }, [ handleFetchResults ] );
-
-  const handleImdbID = ( e ) => {
-    setImdbID( e.target.value );
+  const handleSelection = ( e ) => {
+    setSelection( e.target.value );
+    setModalState(true);
   };
   const handleClose = () => setModalState(false)
+
 
   return (
     <>
@@ -96,13 +99,13 @@ function Home( { category, selectMovie, selectSeries } ) {
               </svg>
               <div class="d-grid gap-5 ">
                 <div class="row no-gutters d-flex gap-3 justify-content-center">
-                  <CardsList imdbData={ imdbData } handleImdbID={ handleImdbID }/>
+                  <CardsList tmdbData={ tmdbData } handleSelection={ handleSelection }/>
                 </div>
               </div>
             </div>
           </div>
         )}
-        < InfoModal modalState={ modalState } handleClose={ handleClose } tmdbData={ tmdbData } /> 
+        < InfoModal modalState={ modalState } handleClose={ handleClose } selection={ selection } /> 
          
       </div>
     </>);
