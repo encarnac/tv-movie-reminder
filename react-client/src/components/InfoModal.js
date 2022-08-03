@@ -8,9 +8,13 @@ function InfoModal( { modalState, handleClose, tmdbData } ) {
     <>
       <Modal show={ modalState } onHide={ handleClose }>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>{tmdbData.title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{tmdbData} Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>
+          <p>
+          
+          </p>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={ handleClose }>
             Close

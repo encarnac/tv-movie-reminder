@@ -28,9 +28,9 @@ function imdbRes (req, res) {
   console.log('Awaiting output in outfile')
   setTimeout(() => {
     const text = fs.readFileSync(imdbOutput, 'utf8')
-    const data = JSON.parse(text)
+    // const data = JSON.parse(text)
     fs.truncate(imdbOutput, 0,  function(){console.log('File Truncated Successfully !!!')} )
-    res.send(data)
+    res.send(text)
   }, 5000);
 };
 

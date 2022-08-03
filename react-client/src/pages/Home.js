@@ -16,7 +16,7 @@ function Home( { category, selectMovie, selectSeries } ) {
   const [ imdbData, setImdbData ] = useState( [] );
   const [ display, setDisplay ] = useState( true );
   const [ inputState, setInputState ] = useState( false );
-  const [ imdbID, setImdbID ] = useState( '' );
+  const [ imdbID, setImdbID ] = useState( ' ' );
   const [ modalState, setModalState ] = useState(false)
   const [tmdbData, setTmdbData] = useState([])
 
@@ -54,19 +54,23 @@ function Home( { category, selectMovie, selectSeries } ) {
 
   const handleImdbID = ( e ) => {
     setImdbID( e.target.value );
-    setModalState(true)
   };
   const handleClose = () => setModalState(false)
 
   useEffect( () => {
     Axios.get( `${ SERVER_URL }/details?category=${ category }&imdb_id=${ imdbID }` )
       .then( response => {
-        setTmdbData( response.data );;
+        if (response.data.status === "success") {
+        setTmdbData( response.data );
+        }
+      })
+      .then ( resposne => {
+        setModalState(true);
       })
       .catch( error => {
         console.log( error );
       });
-  }, [ modalState ] )
+  }, [ imdbID ] )
 
   return (
     <>
