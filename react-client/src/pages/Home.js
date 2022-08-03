@@ -3,7 +3,7 @@ import SubNavBar from '../components/SubNavBar';
 import LoadingSpinner from '../components/LoadingSpinner';
 import CardsList from '../components/CardsList';
 import SearchBar from '../components/SearchBar';
-import Modal from '../components/Modal';
+import InfoModal from '../components/InfoModal';
 import IMG3 from '../photos/IMG3.jpg';
 import Axios from 'axios';
 
@@ -18,6 +18,7 @@ function Home( { category, selectMovie, selectSeries } ) {
   const [ inputState, setInputState ] = useState( false );
   const [ imdbID, setImdbID ] = useState( '' );
   const [ modalState, setModalState ] = useState(false)
+  const [tmdbData, setTmdbData] = useState([])
 
   const handleTitle = ( e ) => {
     setTitle( e.target.value );
@@ -55,6 +56,17 @@ function Home( { category, selectMovie, selectSeries } ) {
     setImdbID( e.target.value );
     setModalState(true)
   };
+  const handleClose = () => setModalState(false)
+
+  useEffect( () => {
+    Axios.get( `${ SERVER_URL }/details?category=${ category }&imdb_id=${ imdbID }` )
+      .then( response => {
+        setTmdbData( response.data );;
+      })
+      .catch( error => {
+        console.log( error );
+      });
+  }, [ modalState ] )
 
   return (
     <>
@@ -97,16 +109,14 @@ function Home( { category, selectMovie, selectSeries } ) {
               </svg>
               <div class="d-grid gap-5 ">
                 <div class="row no-gutters d-flex gap-3 justify-content-center">
-                  <CardsList imdbData={ imdbData } handleImdbID={ handleImdbID } />
+                  <CardsList imdbData={ imdbData } handleImdbID={ handleImdbID }/>
                 </div>
               </div>
             </div>
           </div>
         )}
-
-        { modalState && (
-          < Modal server={SERVER_URL} category={ category } imdbID={ imdbID } />
-        )}   
+        < InfoModal modalState={ modalState } handleClose={ handleClose } tmdbData={ tmdbData } /> 
+         
       </div>
     </>);
 }
