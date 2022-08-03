@@ -21,32 +21,23 @@ def main():
             if input == []:
                 continue
             else: 
-                print('Found valid arguments!')
+                print('Found valid arguments!', input)
                 infile.truncate(0)
                 infile.close()
+                category = input[0]
+                title = input[1]
         
                 # Requests tv/movie data from TMDB API to write to the output file
                 with open(OUTFILE, "w+") as outfile:
                     print('Requesting tv or movie data from TMDB API...')
-                    tmdb = tmdb_api(input[1], input[0])
+                    tmdb = tmdb_api(category, title)
                     data = json.dumps(tmdb.find())
                     print(data)
                     outfile.truncate(0)
                     outfile.write(data)
                     outfile.close()
 
-                # Updates the output file with episode details from TMDB API
-                if input[0] == 'tv':
-                    with open(OUTFILE, "w+") as outfile:
-                        print('Requesting episode data from TMDB API...')
-                        season = tmdb.info['number_of_seasons']
-                        updated_data = json.dumps(tmdb.get_season_ep(season))
-                        outfile.truncate(0)
-                        outfile.write(updated_data)
-                        outfile.close()
-
                 print('DONE\nChecking for required parameters (category, imdb_id)...')
 
 if __name__ == '__main__':
     main()
-

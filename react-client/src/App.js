@@ -11,7 +11,7 @@ function App() {
   const[category, setCategory] = useState('tv')
 
   const selectMovie = () => {
-       setCategory('ft')
+       setCategory('movie')
   }
 
   const selectSeries = () => {

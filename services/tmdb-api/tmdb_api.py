@@ -1,4 +1,6 @@
 import requests
+from datetime import date
+
 
 class tmdb_api:
     '''
@@ -24,14 +26,20 @@ class tmdb_api:
             Returns the airdate, episode number, and title of a series' most recent season.
     '''
 
-    def __init__(self, imdb_id, category="TV"):
+    def __init__(self, category, title):
         ''' Initializes a tmdb_api object.'''
-        self.URL = "https://api.themoviedb.org/3/"
-        self.params = {"api_key": "c81e0496efc2e52533b8d931d70ee535", }
-        self.imdb_id = imdb_id
+        self.URL = 'https://api.themoviedb.org/3/'
+        self.api_key =  'c81e0496efc2e52533b8d931d70ee535'
         self.category = category
-        self.tmdb_id = None
-        self.info = None
+        self.query = title
+        self.year = date.today().year
+        self.params = {'api_key': self.api_key, 
+                       'query': self.query,
+                       'year': self.year, 
+                       'language': 'en-US',
+                       'page' : '1',
+                       'include_adult': 'false'}
+        self.data = None
 
 
     def find(self):
@@ -39,85 +47,93 @@ class tmdb_api:
         Sends request to the TMDB API '/find/{imdb_id}' endpoint to get the tmdb_id,
         which is used to gather further data on the movie or tv show.
         '''
-        self.params['external_source'] = 'imdb_id'
-        req_id = requests.get(
-            self.URL+'find/'+self.imdb_id,
-            params=self.params
-        ).json()
+        print(self.year)
+        req_id = requests.get(self.URL+'search/'+self.category , params=self.params).json()
+        results = req_id['results']
+        result_ids = []
+        for x in results:
+          id = x['id']
+          result_ids.append(id)
 
         # Uses the listing's tmdb_id to get more info from get_movie_details()
-        if self.category == "ft":
-            self.tmdb_id = req_id['movie_results'][0]['id']
-            self.info = self.get_movie_details(self.tmdb_id)
-            return self.info
+        if self.category == "movie":
+            self.data = self.get_movie_details(result_ids)
+            return self.data
 
         # Uses the listing's tmdb_id to get more info from get_tv_details() 
         elif self.category == "tv":
-            self.tmdb_id = req_id['tv_results'][0]['id']
-            self.info = self.get_tv_details(self.tmdb_id)
-            return self.info
-        del self.params['external_source']
+            self.data = self.get_tv_details(result_ids)
+            return self.data
+       
+    def get_movie_details(self, movie_ids):
+        ''' Sends request to the TMDB API '/movie/{movie_id}' endpoint to get movie data'''
+
+        movie_results = []
+
+        for id in movie_ids:
+          req_movie = requests.get(
+              f'{self.URL}movie/{id}?api_key={self.api_key}'
+          ).json()
+
+          movie = {
+              "title": req_movie['title'],
+              "overview": req_movie['overview'],
+              "genres":  [x['name'] for x in req_movie['genres']],
+              "popularity": req_movie['popularity'],
+              "language": req_movie['original_language'],
+              "country": req_movie['production_companies'][0]['origin_country'],
+              "runtimes": req_movie['runtime'],
+              "status": req_movie['status'],
+              "poster": f"https://image.tmdb.org/t/p/w500/{req_movie['poster_path']}"
+          }
+          
+          movie_results.append(movie)
+        
+        return movie_results
 
 
-    def get_movie_details(self, movie_id):
-        ''' Sends request to the TMDB API '/movie/{tmdb_id}' endpoint to get movie data'''
-        req_movie = requests.get(
-            self.URL+f"movie/{movie_id}",
-            params=self.params
-        ).json()
 
-        movie_info = {
-            "title": req_movie['title'],
-            "overview": req_movie['overview'],
-            "genres":  [x['name'] for x in req_movie['genres']],
-            "popularity": req_movie['popularity'],
-            "language": req_movie['original_language'],
-            "country": req_movie['production_companies'][0]['origin_country'],
-            "runtimes": req_movie['runtime'],
-            "status": req_movie['status'],
-        }
-        return movie_info
+    def get_tv_details(self, tv_ids):  # get by tv_ID
+        '''Sends request to the TMDB API '/tv/{tv_id}' endpoint to get tv data'''
 
+        tv_results = []
 
-    def get_tv_details(self, tv_id):  # get by tv_ID
-        '''Sends request to the TMDB API '/tv/{tmdb_id}' endpoint to get tv data'''
-        req_tv = requests.get(
-            self.URL+f"tv/{tv_id}",
-             params=self.params
-        ).json()
+        for id in tv_ids:
+          req_tv = requests.get(
+              f'{self.URL}tv/{id}?api_key={self.api_key}'
+          ).json()
 
-        tv_info = {
-            "title": req_tv['name'],
-            "overview": req_tv['overview'],
-            "genres": [x['name'] for x in req_tv['genres']],
-            "popularity": req_tv['popularity'],
-            "language": req_tv['original_language'],
-            "country": req_tv['origin_country'][0],
-            "status": req_tv['status'],
-            "number_of_episodes": req_tv['number_of_episodes'],
-            "number_of_seasons": req_tv['number_of_seasons'],
-            "first_air_date": req_tv['first_air_date'],
-            "last_air_date": req_tv['last_air_date'],
-            "episode_run_time": req_tv['episode_run_time'][0],
-        }
-        return tv_info
+          tv_show = {
+              "title": req_tv['name'],
+              "overview": req_tv['overview'],
+              "genres": [x['name'] for x in req_tv['genres']],
+              "popularity": req_tv['popularity'],
+              "status": req_tv['status'],
+              "number_of_episodes": req_tv['number_of_episodes'],
+              "number_of_seasons": req_tv['number_of_seasons'],
+              "season_episodes": self.get_season_ep(id, req_tv['number_of_seasons']),
+              "first_air_date": req_tv['first_air_date'],
+              "last_air_date": req_tv['last_air_date'],
+              "episode_run_time": req_tv['episode_run_time'],
+              "poster": f"https://image.tmdb.org/t/p/w500/{req_tv['poster_path']}"
+          }
+          tv_results.append(tv_show)
 
+        return tv_results
 
-    def get_season_ep(self, season_number):
-        ''' Sends request to the TMDB API '/tv/{tmdb_id}/season/{season_number}' endpoint to get season data'''
-        if self.category != "tv":
-            return
-    
-        req_season = requests.get(
-            self.URL+f'/tv/{self.tmdb_id}/season/{season_number}', params=self.params).json()
+    def get_season_ep(self, tv_id, season_number):
+      ''' Sends request to the TMDB API '/tv/{tmdb_id}/season/{season_number}' endpoint to get season data'''
+      if season_number < 1:
+        return ''
 
-        season_episodes = []
-        for x in range(len(req_season['episodes'])):
-            tv_seasons = {}
-            tv_seasons['air_date'] = req_season['episodes'][x]['air_date']
-            tv_seasons['episode_number'] = req_season['episodes'][x]['episode_number']
-            tv_seasons['name'] = req_season['episodes'][x]['name']
-            season_episodes.append(tv_seasons)
-        self.info['episodes'] = season_episodes
-        return self.info
+      req_season = requests.get(
+          f'{self.URL}tv/{tv_id}/season/{season_number}?api_key={self.api_key}').json()
 
+      season_episodes = []
+      for ep in req_season['episodes']:
+        tv_season = {}
+        tv_season['air_date'] = ep['air_date']
+        tv_season['episode_number'] = ep['episode_number']
+        tv_season['name'] = ep['name']
+        season_episodes.append(tv_season)
+      return season_episodes
