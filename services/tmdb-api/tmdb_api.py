@@ -42,6 +42,7 @@ class tmdb_api:
         self.data = None
 
 
+
     def find(self):
         '''
         Sends request to the TMDB API '/find/{imdb_id}' endpoint to get the tmdb_id,
@@ -65,6 +66,8 @@ class tmdb_api:
             self.data = self.get_tv_details(result_ids)
             return self.data
        
+
+
     def get_movie_details(self, movie_ids):
         ''' Sends request to the TMDB API '/movie/{movie_id}' endpoint to get movie data'''
 
@@ -81,7 +84,6 @@ class tmdb_api:
               "overview": req_movie['overview'],
               "genres":  [x['name'] for x in req_movie['genres']],
               "popularity": req_movie['popularity'],
-              "runtimes": req_movie['runtime'],
               "release":  req_movie['release_date'],
               "status": req_movie['status'],
               "poster": f"https://image.tmdb.org/t/p/w500/{req_movie['poster_path']}"
@@ -109,13 +111,12 @@ class tmdb_api:
               "overview": req_tv['overview'],
               "genres": [x['name'] for x in req_tv['genres']],
               "popularity": req_tv['popularity'],
-              "status": req_tv['status'],
-              "number_of_episodes": req_tv['number_of_episodes'],
-              "number_of_seasons": req_tv['number_of_seasons'],
+              "first_release": req_tv['first_air_date'],
+              "latest_release": req_tv['last_air_date'],
+              "episode_count": req_tv['number_of_episodes'],
+              "season_count": req_tv['number_of_seasons'],
               "season_episodes": self.get_season_ep(id, req_tv['number_of_seasons']),
-              "release": req_tv['first_air_date'],
-              "last_air_date": req_tv['last_air_date'],
-              "episode_run_time": req_tv['episode_run_time'],
+              "status": req_tv['status'],
               "poster": f"https://image.tmdb.org/t/p/w500/{req_tv['poster_path']}"
           }
           tv_results.append(tv_show)
@@ -132,9 +133,9 @@ class tmdb_api:
 
       season_episodes = []
       for ep in req_season['episodes']:
-        tv_season = {}
-        tv_season['air_date'] = ep['air_date']
-        tv_season['episode_number'] = ep['episode_number']
-        tv_season['name'] = ep['name']
-        season_episodes.append(tv_season)
+        episode = {}
+        episode['air_date'] = ep['air_date']
+        episode['episode_number'] = ep['episode_number']
+        episode['name'] = ep['name']
+        season_episodes.append(episode)
       return season_episodes

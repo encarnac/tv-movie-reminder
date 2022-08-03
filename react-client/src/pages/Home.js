@@ -3,7 +3,6 @@ import SubNavBar from '../components/SubNavBar';
 import LoadingSpinner from '../components/LoadingSpinner';
 import CardsList from '../components/CardsList';
 import SearchBar from '../components/SearchBar';
-import InfoModal from '../components/InfoModal';
 import IMG3 from '../photos/IMG3.jpg';
 import Axios from 'axios';
 
@@ -15,9 +14,7 @@ function Home( { category, selectMovie, selectSeries } ) {
   const [ loading, setLoading ] = useState( false );
   const [ display, setDisplay ] = useState( true );
   const [ inputState, setInputState ] = useState( false );
-  const [ modalState, setModalState ] = useState(false)
   const [ tmdbData, setTmdbData ] = useState( [] );
-  const [ selection, setSelection ] = useState( '' );
 
   const handleFetchResults = useCallback( () => {
     setLoading( true );
@@ -53,11 +50,7 @@ function Home( { category, selectMovie, selectSeries } ) {
     setInputState( true );
   };
 
-  const handleSelection = ( e ) => {
-    setSelection( e.target.value );
-    setModalState(true);
-  };
-  const handleClose = () => setModalState(false)
+
 
 
   return (
@@ -99,13 +92,12 @@ function Home( { category, selectMovie, selectSeries } ) {
               </svg>
               <div class="d-grid gap-5 ">
                 <div class="row no-gutters d-flex gap-3 justify-content-center">
-                  <CardsList tmdbData={ tmdbData } handleSelection={ handleSelection }/>
+                  <CardsList tmdbData={ tmdbData } />
                 </div>
               </div>
             </div>
           </div>
         )}
-        < InfoModal modalState={ modalState } handleClose={ handleClose } selection={ selection } /> 
          
       </div>
     </>);
