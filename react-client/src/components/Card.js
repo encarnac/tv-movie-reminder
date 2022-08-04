@@ -41,7 +41,6 @@ function Card({content}) {
           release={content.release}
           firstRelease={ content.first_release }
           latestRelease={ content.latest_release }
-          nextRelease={content.upcoming_release}
           episodeCount={ content.episode_count }
           seasonCount={ content.season_count }
           seasonEpisodes={ content.season_episodes }

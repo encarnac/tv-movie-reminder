@@ -113,7 +113,6 @@ class tmdb_api:
               "popularity": req_tv['popularity'],
               "first_release": req_tv['first_air_date'],
               "latest_release": req_tv['last_air_date'],
-              "upcoming_release": req_tv['next_episode_to_air'],
               "episode_count": req_tv['number_of_episodes'],
               "season_count": req_tv['number_of_seasons'],
               "season_episodes": self.get_season_ep(id, req_tv['number_of_seasons']),

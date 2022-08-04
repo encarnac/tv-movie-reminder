@@ -37,7 +37,7 @@ function NavBar({ selectMovie, selectSeries }) {
               watch-soon
             </a></li>
 
-            {/* <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 My Watchlist
               </a>
@@ -47,10 +47,10 @@ function NavBar({ selectMovie, selectSeries }) {
                 </li>
 
               </ul>
-            </li> */}
+            </li>
 
             {/* // Dropdown Links // */}
-            {/* <li class="nav-item dropdown">
+            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Find a Show/Movie
               </a>
@@ -58,7 +58,7 @@ function NavBar({ selectMovie, selectSeries }) {
                 <li><a class="dropdown-item" onClick={selectSeries}>Show</a></li>
                 <li><a class="dropdown-item" onClick={selectMovie}>Movie</a></li>
               </ul>
-            </li> */}
+            </li>
             
           </ul>
 
