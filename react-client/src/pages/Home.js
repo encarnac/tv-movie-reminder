@@ -3,7 +3,7 @@ import SubNavBar from '../components/SubNavBar';
 import LoadingSpinner from '../components/LoadingSpinner';
 import CardsList from '../components/CardsList';
 import SearchBar from '../components/SearchBar';
-import IMG6 from '../photos/IMG6.jpg';
+import IMG3 from '../photos/IMG3.jpg';
 import Axios from 'axios';
 
 const SERVER_URL = 'http://localhost:3000';
@@ -57,16 +57,13 @@ function Home( { category, selectMovie, selectSeries } ) {
     <>
       <div class="position-absolute">
         <div class="card text-black d-flex">
-          <img src={ IMG6 } class="card-img m-3 opacity-25" alt="header" />
-          <div class="card-img-overlay position-absolute top-50 translate-middle-y text-start ">
-            {/* <h1 class="card-title d-flex justify-content-evenly text-black fw-bolder">watch-soon</h1> */}
-            <h1 class="display-6 text-start text-wrap lh-1" >Search for shows/movies by exact title <br/> and get reminded when they come out!</h1>
-            {/* <p class="card-text d-flex justify-content-evenly lead">Search for shows/movies by exact title and get reminded when they come out!</p> */}
-            <p class="card-text d-flex px-5 mx-5 gx-5 my-3">
-              <SubNavBar category={ category } selectMovie={ selectMovie } selectSeries={ selectSeries } />
-            </p>
-            <p class="card-text d-flex justify-content-start mx-4 px-3 gx-4" >
-              <div class="input-group w-50 shadow-lg start-0">
+          <img src={ IMG3 } class="card-img vw-100 opacity-25" alt="header" />
+          <div class="card-img-overlay position-absolute top-50 translate-middle-y ">
+            <h1 class="card-title d-flex justify-content-evenly text-black fw-bolder">watch-soon</h1>
+            <p class="card-text d-flex justify-content-evenly">Search for shows/movies by exact title and get reminded when they come out!</p>
+            <p class="card-text d-flex justify-content-evenly"><SubNavBar category={ category } selectMovie={ selectMovie } selectSeries={ selectSeries } /></p>
+            <p class="card-text d-flex justify-content-evenly" >
+              <div class="input-group w-50 shadow-lg">
                 {/* <span class="input-group-text">Title</span> */}
                 <SearchBar inputState={ inputState } handleTitle={ handleTitle } />
                 { !display && !loading &&
