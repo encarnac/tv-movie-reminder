@@ -7,8 +7,8 @@ function SubNavBar({ category, selectMovie, selectSeries }) {
 
     return (
         <>
-            <nav class="navbar" >
-                <div class="container-fluid">
+            <nav class="navbar gx-5 px-5" >
+                <div class="container-fluid px-5 mx-5">
                     <div class="btn-group" role="group" aria-label="...">
                         {category === 'tv' && (
                             <ul class="nav nav-pills gap-2">

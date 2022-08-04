@@ -17,6 +17,7 @@ function InfoModal({ modalState,
                       release,
                       firstRelease,
                       latestRelease,
+                      nextRelease,
                       episodeCount,
                       seasonCount,
                       seasonEpisodes,
@@ -33,106 +34,103 @@ function InfoModal({ modalState,
         <Modal.Body className="show-grid">
           <Container>
             <Row>
-              <Col xs={ 4 }>
+              <Col sm={ 4 }>
                 <Image src={poster} fluid='true' rounded='true' />
               </Col>
               <Col sm={ 8 }>
                 <Row>
-                  <Col sm={6}>
+                  <Col sm={5}>
                     <h6>Overview:</h6>
                   </Col>
-                  <Col sm={6}>
+                  <Col sm={7}>
                      <p>{overview}</p>
                   </Col>
                 </Row>
 
                 <Row>
-                  <Col sm={6}>
+                  <Col sm={5}>
                     <h6>Genres:</h6>
                   </Col>
-                  <Col sm={6}>
+                  <Col sm={7}>
                      <p>{genres}</p>
                   </Col>
                 </Row>
 
                 <Row>
-                  <Col sm={6}>
+                  <Col sm={5}>
                     <h6>Popularity:</h6>
                   </Col>
-                  <Col sm={6}>
+                  <Col sm={7}>
                      <p>{popularity}</p>
                   </Col>
                 </Row>
 
                 <Row>
-                  <Col sm={ 6 }>
+                  <Col sm={ 5 }>
                     <h6>Status:</h6>
                   </Col>
-                  <Col sm={ 6 }>
+                  <Col sm={ 7 }>
                     <p>{ status }</p>
                   </Col>
                 </Row>
 
                 { category === 'movie' ?
                   <Row>
-                    <Col sm={ 6 }>
+                    <Col sm={ 5 }>
                       <h6>Release Date:</h6>
                     </Col>
-                    <Col sm={ 6 }>
+                    <Col sm={ 7 }>
                       <p>{ release }</p>
                     </Col>
                   </Row> :
 
                   <>
                     <Row> 
-                      <Col sm={ 6 }>
+                      <Col sm={ 5 }>
                         <h6>First Release:</h6>
                       </Col>
-                      <Col sm={ 6 }>
+                      <Col sm={ 7 }>
                         <p>{ firstRelease }</p>
                       </Col>
                     </Row>
 
                     <Row>
-                      <Col sm={ 6 }>
+                      <Col sm={ 5 }>
                         <h6>Latest Release:</h6>
                       </Col>
-                      <Col sm={ 6 }>
+                      <Col sm={ 7 }>
                         <p>{ latestRelease }</p>
                       </Col>
                     </Row>
 
                     <Row>
-                      <Col sm={ 6 }>
+                      <Col sm={ 5 }>
+                        <h6>Next Release:</h6>
+                      </Col>
+                      <Col sm={ 7 }>
+                        <p>{ nextRelease }</p>
+                      </Col>
+                    </Row>
+
+                    <Row>
+                      <Col sm={ 5 }>
                         <h6>Episode Count:</h6>
                       </Col>
-                      <Col sm={ 6 }>
+                      <Col sm={ 7 }>
                         <p>{ episodeCount }</p>
                       </Col>
                     </Row>
 
                     <Row>
-                      <Col sm={ 6 }>
+                      <Col sm={ 5 }>
                         <h6>Season Count:</h6>
                       </Col>
-                      <Col sm={ 6 }>
+                      <Col sm={ 7 }>
                         <p>{ seasonCount }</p>
-                      </Col>
-                    </Row>
-
-                    <Row>
-                      <Col sm={ 6 }>
-                        <h6>New Episodes:</h6>
-                      </Col>
-                      <Col sm={ 6 }>
-                        <p>{ seasonEpisodes }</p>
                       </Col>
                     </Row>
                   </> 
                 }
-
-
-
               </Col>
             </Row>
           </Container>
