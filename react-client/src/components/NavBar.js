@@ -12,8 +12,8 @@ function NavBar( ) {
     const handleAuthorization = () => {
         Axios.get( `http://localhost:5000/authorize`, {
             headers: {
-                "Access-Control-Allow-Origin": "* ",
-                "Access-Control-Allow-Headers": "Content-Type",
+                'Access-Control-Allow-Origin': '* ',
+                'Access-Control-Allow-Headers': 'Content-Type',
             },
         } )
             .then( ( res ) => {
@@ -22,66 +22,65 @@ function NavBar( ) {
             .catch( ( err ) => console.log( err ) );
     };
 
-
+    const handleRemoveAuth = () => {
+        setAuthorized(false)
+    }
 
 
     return (
         <>
-            <nav class="navbar navbar-expand navbar-light bg-light" >
-                <div class="container-fluid ">
-                    {/* // Icon and Name // */ }
-                    <ul class="navbar-nav">
-                        <li>
-                            <a class="navbar-brand h1" href="/">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hexagon-half mx-2" viewBox="0 0 16 16">
-                                    <path d="M14 4.577v6.846L8 15V1l6 3.577zM8.5.134a1 1 0 0 0-1 0l-6 3.577a1 1 0 0 0-.5.866v6.846a1 1 0 0 0 .5.866l6 3.577a1 1 0 0 0 1 0l6-3.577a1 1 0 0 0 .5-.866V4.577a1 1 0 0 0-.5-.866L8.5.134z" />
-                                </svg>
-                                watch-soon
-                            </a>
-                        </li>
+            <nav className='navbar navbar-expand navbar-light bg-light' >
+                <div className='container-fluid '>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                < IoNotifications />
-                            </a>
-                            <ul class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
-                                <li class="px-2 ">
-                                    { authorized ? <span>Insert Upcoming</span> : <span>No calendar found</span> }
-                                </li>
+                    <a className='navbar-brand h1' href='/'>
+                        <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' className='bi bi-hexagon-half mx-2' viewBox='0 0 16 16'>
+                            <path d='M14 4.577v6.846L8 15V1l6 3.577zM8.5.134a1 1 0 0 0-1 0l-6 3.577a1 1 0 0 0-.5.866v6.846a1 1 0 0 0 .5.866l6 3.577a1 1 0 0 0 1 0l6-3.577a1 1 0 0 0 .5-.866V4.577a1 1 0 0 0-.5-.866L8.5.134z' />
+                        </svg>
+                        watch-soon
+                    </a>
 
-                            </ul>
-                        </li>
+                    <ul className='navbar-nav'>
+                            <li className='nav-item dropdown dropstart'> {/* // Reminders Button // */ }
+                                <a className='nav-link' href='#' id='navbarDropdownMenuLink' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                                    < IoNotifications />
+                                </a>
+                                <ul className='dropdown-menu ' aria-labelledby='navbarDropdownMenuLink'>
+                                    <li className='px-2 '>
+                                        { authorized ? <span>Insert Upcoming</span> : <span>No calendar found</span> }
+                                    </li>
+                                </ul>
+                            </li>
 
-                        <li class="nav-item"> {/* // Settings Button // */ }
-                            <a class="nav-link" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
-                                <FaUser />
-                            </a>
-                        </li>
+                            <li className='nav-item'> {/* // Settings Button // */ }
+                                <a className='nav-link' data-bs-toggle='offcanvas' href='#offcanvasAccount' role='button' aria-controls='offcanvasExample'>
+                                    <FaUser />
+                                </a>
+                            </li>
                     </ul>
-
-
 
                 </div>
             </nav>
 
 
 
-            {/* 
-      //
-      // Offcanvas pop-up on right 
-      //
-      */}
-            <div class="offcanvas offcanvas-end text-dark " tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header">
-                    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Settings</h5>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        {/* 
+        // Offcanvas pop-up on right 
+        */}
+            <div className='offcanvas offcanvas-end text-dark ' tabindex='-1' id='offcanvasAccount' aria-labelledby='offcanvasAccountLabel'>
+                <div className='offcanvas-header'>
+                    <h5 className='offcanvas-title' id='offcanvasAccountLabel'>
+                        Account Settings</h5>
+                    <button type='button' className='btn-close' data-bs-dismiss='offcanvas'></button>
                 </div>
-                <div class="offcanvas-body opacity-75">
-                    { authorized ? <button class="btn shadow btn-outline-secondary btn-search-input" type="button" id="button-addon2" >Remove Google Calendar</button>
-                        : <button class="btn shadow btn-outline-secondary btn-search-input" type="button" id="button-addon2" onClick={ handleAuthorization } >Connect Google Calendar</button>
+                <div className='offcanvas-body opacity-75'>
+                    { authorized ? 
+                        <button className='btn shadow btn-search-input' type='button' onClick={ handleRemoveAuth }>
+                            Remove Google Calendar</button> :
+                        <button className='btn shadow btn-search-input' type='button' onClick={ handleAuthorization }> 
+                            Connect Google Calendar </button>
                     }
 
-                    <p class="mt-2">Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
+                    <p className='mt-2'>Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
                 </div>
             </div>
         </>

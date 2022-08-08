@@ -55,9 +55,16 @@
 }
 
 /* not active */
-.btn-search-input:not(.active) {
+.btn-search-input {
   background-color: rgb(181,199,233);
+  border-color: rgb(181,199,233);
   color: white;
+}
+
+.btn-search-input:disabled {
+  background-color: rgb(181,199,233);
+  border-color: rgb(181,199,233);
+  color: black;
 }
 
 
