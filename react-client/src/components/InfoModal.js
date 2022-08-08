@@ -135,7 +135,25 @@ function InfoModal({ modalState,
                                                       <h6>Season {seasonCount} Episodes:</h6>
                                                   </div>
                                                   <div className='col-8'>
-                                                      <p>hi</p>
+                                                      <table className='table table-hover'>
+                                                        <thead>
+                                                            <tr>
+                                                                <th>#</th>
+                                                                <th>Title</th>
+                                                                <th>Date</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {seasonEpisodes.map((episode) => (
+                                                                <tr>
+                                                                    <td>{episode.episode_number}</td>
+                                                                    <td>{episode.name}</td>
+                                                                    <td>{episode.air_date}</td>
+                                                                </tr>
+                                                            ))}
+                                                        </tbody>
+
+                                                      </table>
                                                   </div>
                                               </div>
                                           </>
