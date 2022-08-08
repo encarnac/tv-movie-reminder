@@ -25,12 +25,12 @@ function InfoModal({ modalState,
 
 
   return (
-    <div class="h-50 d-inline-block">
-      <Modal show={ modalState } onHide={ handleClose } size="lg" centered>
+    <div className='h-50 d-inline-block'>
+      <Modal show={ modalState } onHide={ handleClose } size='lg' centered>
         <Modal.Header closeButton>
           <Modal.Title>{ title }</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="show-grid">
+        <Modal.Body className='show-grid'>
           <Container>
             <Row>
               <Col xs={ 4 }>
@@ -138,10 +138,10 @@ function InfoModal({ modalState,
           </Container>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={ handleClose }>
+          <Button variant='secondary' onClick={ handleClose }>
             Close
           </Button>
-          <Button variant="btn shadow-sm btn-search-input" onClick={ handleReminder }>
+          <Button variant='btn shadow-sm btn-search-input' onClick={ handleReminder }>
             Get Reminders
           </Button>
         </Modal.Footer>

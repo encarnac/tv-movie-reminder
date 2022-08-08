@@ -6,7 +6,7 @@ import Axios from 'axios';
 
 
 
-function NavBar( { selectMovie, selectSeries } ) {
+function NavBar( ) {
     const [ authorized, setAuthorized ] = useState( false );
 
     const handleAuthorization = () => {

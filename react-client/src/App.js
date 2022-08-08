@@ -8,26 +8,16 @@ import Home from './pages/Home';
 
 function App() {
 
-  const[category, setCategory] = useState('tv')
-
-  const selectMovie = () => {
-       setCategory('movie')
-  }
-
-  const selectSeries = () => {
-       setCategory('tv')
-  }
-
   return (
     <>
     <div className='App'>
       <div class='row fixed-top'>
-        <NavBar selectMovie={selectMovie} selectSeries={selectSeries} />
+        < NavBar />
       </div>
 
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home category={category} selectMovie={selectMovie} selectSeries={selectSeries}/>} />
+          <Route path='/' element={< Home />} />
         </Routes>
       </BrowserRouter>
     </div>
