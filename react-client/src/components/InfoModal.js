@@ -4,6 +4,7 @@ import Image from 'react-bootstrap/Image'
 function InfoModal({ modalState,
                       handleClose,
                       handleReminder,
+                      id,
                       category, 
                       title,
                       overview, 
@@ -38,94 +39,103 @@ function InfoModal({ modalState,
                                   </div>
                                   <div className='col-8'>
                                       <div className='row'>
-                                          <div className='col-6'>
+                                          <div className='col-4'>
                                               <h6>Overview:</h6>
                                           </div>
-                                          <div className='col-6'>
+                                          <div className='col-8'>
                                               <p>{ overview }</p>
                                           </div>
                                       </div>
 
                                       <div className='row'>
-                                          <div className='col-6'>
+                                          <div className='col-4'>
                                               <h6>Genres:</h6>
                                           </div>
-                                          <div className='col-6'>
-                                              <p>{ genres }</p>
+                                              <div className='col-8'>
+                                                  <p>{genres.map( ( genre, i, genres ) => {
+                                                          if ( i + 1 === genres.length ) {
+                                                              return ( <span>{ genre }</span> );
+                                                          } else {
+                                                              return ( <span>{ genre }, </span> );
+                                                          }
+                                                      })
+                                                    }</p>
                                           </div>
                                       </div>
 
                                       <div className='row'>
-                                          <div className='col-6'>
+                                          <div className='col-4'>
                                               <h6>Popularity:</h6>
                                           </div>
-                                          <div className='col-6'>
+                                          <div className='col-8'>
                                               <p>{ popularity }</p>
                                           </div>
                                       </div>
 
                                       <div className='row'>
-                                          <div className='col-6'>
+                                          <div className='col-4'>
                                               <h6>Status:</h6>
                                           </div>
-                                          <div className='col-6'>
+                                          <div className='col-8'>
                                               <p>{ status }</p>
                                           </div>
                                       </div>
 
                                       { category === 'movie' ?
                                           <div className='row'>
-                                              <div className='col-6'>
+                                              <div className='col-4'>
                                                   <h6>Release Date:</h6>
                                               </div>
-                                              <div className='col-6'>
+                                              <div className='col-8'>
                                                   <p>{ release }</p>
                                               </div>
                                           </div> :
 
                                           <>
                                               <div className='row'>
-                                                  <div className='col-6'>
+                                                  <div className='col-4'>
                                                       <h6>First Release:</h6>
                                                   </div>
-                                                  <div className='col-6'>
+                                                  <div className='col-8'>
                                                       <p>{ firstRelease }</p>
                                                   </div>
                                               </div>
 
                                               <div className='row'>
-                                                  <div className='col-6'>
+                                                  <div className='col-4'>
                                                       <h6>Latest Release:</h6>
                                                   </div>
-                                                  <div className='col-6'>
+                                                  <div className='col-8'>
                                                       <p>{ latestRelease }</p>
                                                   </div>
                                               </div>
 
+                                              
                                               <div className='row'>
-                                                  <div className='col-6'>
-                                                      <h6>Episode Count:</h6>
+                                                  <div className='col-4'>
+                                                      <h6># Seasons:</h6>
                                                   </div>
-                                                  <div className='col-6'>
-                                                      <p>{ episodeCount }</p>
-                                                  </div>
-                                              </div>
-
-                                              <div className='row'>
-                                                  <div className='col-6'>
-                                                      <h6>Season Count:</h6>
-                                                  </div>
-                                                  <div className='col-6'>
+                                                  <div className='col-8'>
                                                       <p>{ seasonCount }</p>
                                                   </div>
                                               </div>
 
                                               <div className='row'>
-                                                  <div className='col-6'>
-                                                      <h6>New Episodes:</h6>
+                                                  <div className='col-4'>
+                                                      <h6># Episodes:</h6>
                                                   </div>
-                                                  <div className='col-6'>
-                                                      <p>{ seasonEpisodes }</p>
+                                                  <div className='col-8'>
+                                                      <p>{ episodeCount }</p>
+                                                  </div>
+                                              </div>
+
+
+                                              <div className='row'>
+                                                  <div className='col-4'>
+                                                      <h6>Season {seasonCount} Episodes:</h6>
+                                                  </div>
+                                                  <div className='col-8'>
+                                                      <p>hi</p>
                                                   </div>
                                               </div>
                                           </>
