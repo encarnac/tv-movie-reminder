@@ -1,12 +1,7 @@
 import { React } from 'react';
-import Container from 'react-bootstrap/Container';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image'
 
-function InfoModal({ modalState, 
+function InfoModal({ modalState,
                       handleClose,
                       handleReminder,
                       category, 
@@ -25,127 +20,135 @@ function InfoModal({ modalState,
 
 
   return (
-    <div className='h-50 d-inline-block'>
-      <Modal show={ modalState } onHide={ handleClose } size='lg' centered>
-        <Modal.Header closeButton>
-          <Modal.Title>{ title }</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className='show-grid'>
-          <Container>
-            <Row>
-              <Col xs={ 4 }>
-                <Image src={poster} fluid='true' rounded='true' />
-              </Col>
-              <Col sm={ 8 }>
-                <Row>
-                  <Col sm={6}>
-                    <h6>Overview:</h6>
-                  </Col>
-                  <Col sm={6}>
-                     <p>{overview}</p>
-                  </Col>
-                </Row>
+      <div className='h-50 d-inline-block'> 
+ {modalState && (
+          <div className='modal' id='infoModal' tabindex='-1'>
+              <div className='modal-dialog modal-lg'>
+                  <div className='modal-content'>
+                      <div className='modal-header'>
+                          <h5 className='modal-title'>{ title }</h5>
+                          <button type='button' className='btn-close'  data-bs-dismiss='modal' onClick={ handleClose } ></button>
+                      </div>
+                      <div className='modal-body'>
 
-                <Row>
-                  <Col sm={6}>
-                    <h6>Genres:</h6>
-                  </Col>
-                  <Col sm={6}>
-                     <p>{genres}</p>
-                  </Col>
-                </Row>
+                          <div className='container'>
+                              <div className='row'>
+                                  <div className='col-4'>
+                                      <img src={ poster } className='img-fluid rounded-5' alt=''/>
+                                  </div>
+                                  <div className='col-8'>
+                                      <div className='row'>
+                                          <div className='col-6'>
+                                              <h6>Overview:</h6>
+                                          </div>
+                                          <div className='col-6'>
+                                              <p>{ overview }</p>
+                                          </div>
+                                      </div>
 
-                <Row>
-                  <Col sm={6}>
-                    <h6>Popularity:</h6>
-                  </Col>
-                  <Col sm={6}>
-                     <p>{popularity}</p>
-                  </Col>
-                </Row>
+                                      <div className='row'>
+                                          <div className='col-6'>
+                                              <h6>Genres:</h6>
+                                          </div>
+                                          <div className='col-6'>
+                                              <p>{ genres }</p>
+                                          </div>
+                                      </div>
 
-                <Row>
-                  <Col sm={ 6 }>
-                    <h6>Status:</h6>
-                  </Col>
-                  <Col sm={ 6 }>
-                    <p>{ status }</p>
-                  </Col>
-                </Row>
+                                      <div className='row'>
+                                          <div className='col-6'>
+                                              <h6>Popularity:</h6>
+                                          </div>
+                                          <div className='col-6'>
+                                              <p>{ popularity }</p>
+                                          </div>
+                                      </div>
 
-                { category === 'movie' ?
-                  <Row>
-                    <Col sm={ 6 }>
-                      <h6>Release Date:</h6>
-                    </Col>
-                    <Col sm={ 6 }>
-                      <p>{ release }</p>
-                    </Col>
-                  </Row> :
+                                      <div className='row'>
+                                          <div className='col-6'>
+                                              <h6>Status:</h6>
+                                          </div>
+                                          <div className='col-6'>
+                                              <p>{ status }</p>
+                                          </div>
+                                      </div>
 
-                  <>
-                    <Row> 
-                      <Col sm={ 6 }>
-                        <h6>First Release:</h6>
-                      </Col>
-                      <Col sm={ 6 }>
-                        <p>{ firstRelease }</p>
-                      </Col>
-                    </Row>
+                                      { category === 'movie' ?
+                                          <div className='row'>
+                                              <div className='col-6'>
+                                                  <h6>Release Date:</h6>
+                                              </div>
+                                              <div className='col-6'>
+                                                  <p>{ release }</p>
+                                              </div>
+                                          </div> :
 
-                    <Row>
-                      <Col sm={ 6 }>
-                        <h6>Latest Release:</h6>
-                      </Col>
-                      <Col sm={ 6 }>
-                        <p>{ latestRelease }</p>
-                      </Col>
-                    </Row>
+                                          <>
+                                              <div className='row'>
+                                                  <div className='col-6'>
+                                                      <h6>First Release:</h6>
+                                                  </div>
+                                                  <div className='col-6'>
+                                                      <p>{ firstRelease }</p>
+                                                  </div>
+                                              </div>
 
-                    <Row>
-                      <Col sm={ 6 }>
-                        <h6>Episode Count:</h6>
-                      </Col>
-                      <Col sm={ 6 }>
-                        <p>{ episodeCount }</p>
-                      </Col>
-                    </Row>
+                                              <div className='row'>
+                                                  <div className='col-6'>
+                                                      <h6>Latest Release:</h6>
+                                                  </div>
+                                                  <div className='col-6'>
+                                                      <p>{ latestRelease }</p>
+                                                  </div>
+                                              </div>
 
-                    <Row>
-                      <Col sm={ 6 }>
-                        <h6>Season Count:</h6>
-                      </Col>
-                      <Col sm={ 6 }>
-                        <p>{ seasonCount }</p>
-                      </Col>
-                    </Row>
+                                              <div className='row'>
+                                                  <div className='col-6'>
+                                                      <h6>Episode Count:</h6>
+                                                  </div>
+                                                  <div className='col-6'>
+                                                      <p>{ episodeCount }</p>
+                                                  </div>
+                                              </div>
 
-                    <Row>
-                      <Col sm={ 6 }>
-                        <h6>New Episodes:</h6>
-                      </Col>
-                      <Col sm={ 6 }>
-                        <p>{ seasonEpisodes }</p>
-                      </Col>
-                    </Row>
-                  </> 
-                }
+                                              <div className='row'>
+                                                  <div className='col-6'>
+                                                      <h6>Season Count:</h6>
+                                                  </div>
+                                                  <div className='col-6'>
+                                                      <p>{ seasonCount }</p>
+                                                  </div>
+                                              </div>
+
+                                              <div className='row'>
+                                                  <div className='col-6'>
+                                                      <h6>New Episodes:</h6>
+                                                  </div>
+                                                  <div className='col-6'>
+                                                      <p>{ seasonEpisodes }</p>
+                                                  </div>
+                                              </div>
+                                          </>
+                                      }
 
 
 
-              </Col>
-            </Row>
-          </Container>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant='secondary' onClick={ handleClose }>
-            Close
-          </Button>
-          <Button variant='btn shadow-sm btn-search-input' onClick={ handleReminder }>
-            Get Reminders
-          </Button>
-        </Modal.Footer>
-      </Modal>
+                                  </div>
+                              </div>
+                          </div>
+
+
+
+
+                      </div>
+                      <div className='modal-footer'>
+                          <button type='button' className='btn btn-secondary' data-bs-dismiss='modal'  onClick={ handleClose }>Close</button>
+                          <button type='button' className='btn shadow-sm btn-search-input' onClick={ handleReminder }>Get Reminders</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+ )}
     </div>
   );
 }

@@ -80,6 +80,7 @@ class tmdb_api:
 
           movie = {
               "category": self.category,
+              "id": req_movie['id'],
               "title": req_movie['title'],
               "overview": req_movie['overview'],
               "genres":  [x['name'] for x in req_movie['genres']],
@@ -107,6 +108,7 @@ class tmdb_api:
 
           tv_show = {
               "category": self.category,
+              "id": req_tv['id'],
               "title": req_tv['name'],
               "overview": req_tv['overview'],
               "genres": [x['name'] for x in req_tv['genres']],
