@@ -35,8 +35,8 @@ function InfoModal( { modalState,
                                 <div className='container text-start'>
                                     <div className='row'>
 
-                                        <div className='col-4 mt-3'>
-                                            <img src={ poster } className='img-fluid rounded img-thumbnail' alt='' />
+                                        <div className='col-4 my-2'>
+                                            <img src={ poster } className='img-fluid rounded img-thumbnail rounded-4' alt='' />
                                         </div>
 
                                         <div className='col-8'>
@@ -134,8 +134,8 @@ function InfoModal( { modalState,
 
                                                     <div className='row'>
                                                         <div className='col'>
-                                                            <a className='btn'  data-bs-toggle='collapse' href='#episodeDetails' role='button' aria-expanded='false' aria-controls='episodeDetails'>
-                                                                <p className='fw-bolder'>View Season { seasonCount } Episodes</p>
+                                                            <a className='btn'  data-bs-toggle='collapse' href='#episodeDetails' role='button'>
+                                                                <span className='fw-bolder'>View Season { seasonCount } Episodes</span>
                                                             </a>
                                                         
     
@@ -169,8 +169,8 @@ function InfoModal( { modalState,
                             </div>
 
                             <div className='modal-footer'>
-                                <button type='button' className='btn btn-secondary' data-bs-dismiss='modal' onClick={ handleClose }>Close</button>
-                                <button type='button' className='btn shadow-sm btn-search-input' onClick={ handleReminder }>Get Reminders</button>
+                                <button type='button' className='btn btn-secondary rounded-edge' data-bs-dismiss='modal' onClick={ handleClose }>Close</button>
+                                <button type='button' className='btn btn-search-input' onClick={ handleReminder }>Get Reminders</button>
                             </div>
                             
                         </div>

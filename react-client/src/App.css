@@ -45,6 +45,8 @@
 /* not active */
 .nav-pills .pill-1 .nav-link:not(.active) {
   background-color: rgba(165,217,208,0.30);
+  border-radius: 30px;
+  box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
 }
 
 
@@ -52,6 +54,8 @@
 .nav-pills .pill-1 .nav-link {
   background-color: rgba(165,217,208, 1);
   color: white;
+  border-radius: 30px;
+  box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
 }
 
 /* not active */
@@ -59,14 +63,24 @@
   background-color: rgb(181,199,233);
   border-color: rgb(181,199,233);
   color: white;
+  border-radius: 30px;
+  box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .btn-search-input:disabled {
   background-color: rgb(181,199,233);
   border-color: rgb(181,199,233);
   color: black;
+  border-radius: 30px;
+  box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
 }
 
+.rounded-edge {
+  border-radius: 30px;
+  box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
+}
 
 /* Loading spinner */
 @keyframes spinner {
@@ -86,7 +100,7 @@
   animation: spinner 1.5s linear infinite;
 }
 
-/* Animated down arrow */
+/* Animated scroll arrow */
 .scroll-down {
   position: absolute;
   left: 50%;
@@ -112,7 +126,7 @@
 }
 
 
-/*animated scroll arrow animation*/
+/*Animated scroll arrow animation*/
 @-webkit-keyframes fade_move_down {
   0%   { -webkit-transform:translate(0,-10px) rotate(45deg); opacity: 0;  }
   50%  { opacity: 1;  }
