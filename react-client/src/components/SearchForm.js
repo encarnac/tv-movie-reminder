@@ -21,7 +21,6 @@ function SearchForm( { props } ) {
                 { props.display && !props.loading &&
                     <button className='btn shadow btn-outline-secondary btn-search-input opacity-25' disabled type='button' id='button-addon2' >search</button> }
             </div>
-
         </>
 
     );
