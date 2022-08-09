@@ -25,7 +25,7 @@ function Header( props ) {
                                 <p className='lead'>
                                     Get reminders about upcoming tv or movie releases</p>
                                 <SearchForm props={props}/>
-                                { props.display && !props.loading && <div class="scroll-down"></div> }
+                                { props.display && !props.loading && <div className='scroll-down'></div> }
                             </div>
                         </div>
 

@@ -135,12 +135,12 @@ function InfoModal( { modalState,
 
                                                     <div className='row'>
                                                         <div className='col'>
-                                                            <a class="btn"  data-bs-toggle="collapse" href="#episodeDetails" role="button" aria-expanded="false" aria-controls="episodeDetails">
+                                                            <a className='btn'  data-bs-toggle='collapse' href='#episodeDetails' role='button' aria-expanded='false' aria-controls='episodeDetails'>
                                                                 <p className='fw-bolder'>View Season { seasonCount } Episodes</p>
                                                             </a>
                                                         
     
-                                                            <div class="collapse" id="episodeDetails">
+                                                            <div className='collapse' id='episodeDetails'>
                                                                 <table className='table table-hover'>
                                                                     <thead>
                                                                         <tr>
