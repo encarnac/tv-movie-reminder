@@ -1,45 +1,53 @@
-import { React, useEffect, useState } from 'react';
-import Axios from 'axios';
-import { GoogleLogin } from 'react-google-login';
+import { React, useState } from 'react';
+import { useGoogleLogin, GoogleLogin } from '@react-oauth/google';
 
-const SERVER_URL = process.env.REACT_APP_URL
+const clientId = process.env.REACT_APP_GAPI_KEY;
 
-function Login({ }) {
-    const [clientId, setClientId] = useState('');
-    const [profileData, setProfileData] = useState('')
+function Login() {
 
-    useEffect( () => {
-        Axios.get(`${SERVER_URL}/gapi_key/`)
-        .then(response => {
-            console.log(response.data)
-            setClientId(response.data)
-        })
-        .catch(error => {
-            console.log( error )
-        });
-    }, [])
+    const login = useGoogleLogin( {
+        onSuccess: codeResponse => console.log( codeResponse ),
+        onError: errorResponse => console.log( errorResponse ),
+        flow: 'auth-code',
+        scopes: 'openid email profile ./auth/calendar'
+    } );
 
-    const handleSuccess = ( response ) => {
-        console.log('Login Success - Current User:', response.profileObj )
-        setProfileData(response.profileObj);
-    }
+    const impLogin = useGoogleLogin( {
+        onSuccess: tokenResponse => console.log( tokenResponse ),
+        onError: errorResponse => console.log( errorResponse ),
+        flow: 'implicit'
+    } );
 
-    const handleFailure = ( response ) => {
-        console.log('Login FAILED. Error:', response);
-    }
-    
     return (
         <div>
-            < GoogleLogin  
-                clientId={clientId}
-                buttonText='Sign In with Google'
-                onSuccess={handleSuccess}
-                onFailure={handleFailure}
-                cookiePolicy={'single_host_origin'}
-                responseType='code'
-                accessType='offline'
+
+            <GoogleLogin
+                onSuccess={ credentialResponse => {
+                    console.log( credentialResponse );
+                    }}
+                onError={() => {
+                    console.log('Login Failed');
+                    }}
+                type='standard'
+                theme='outline'
+                size='large'
+                text='continue_with'
+                shape='pill'
+                width='260px'
             />
+
+            <button onClick={ () => impLogin() }>
+                Sign In With Google (Imp)
+            </button>
+
+            <button onClick={ () => login() }>
+                Sign In With Google (Auth)
+            </button>
+
         </div>
+
+
+
     );
 }
 

@@ -4,13 +4,14 @@ import './App.css';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
-
+const clientId = process.env.REACT_APP_GAPI_KEY
 
 function App() {
 
     return (
-        <>
+        <> <GoogleOAuthProvider clientId={clientId}>
             <div className='App'>
                 <div class='row fixed-top'>
                     < NavBar />
@@ -26,6 +27,7 @@ function App() {
                     < Footer />
                 </div>
             </div>
+            </GoogleOAuthProvider>
         </>
     );
 }

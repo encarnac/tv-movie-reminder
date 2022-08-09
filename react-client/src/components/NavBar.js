@@ -9,23 +9,6 @@ import { IoNotifications } from 'react-icons/io5';
 function NavBar( ) {
     const [ authorized, setAuthorized ] = useState( false );
 
-    const handleAuthorization = () => {
-        Axios.get( `http://localhost:5000/authorize`, {
-            headers: {
-                'Access-Control-Allow-Origin': '* ',
-                'Access-Control-Allow-Headers': 'Content-Type',
-            },
-        } )
-            .then( ( res ) => {
-                window.location.assign( res.data.authorization_url );
-            } )
-            .catch( ( err ) => console.log( err ) );
-    };
-
-    const handleRemoveAuth = () => {
-        setAuthorized(false)
-    }
-
 
     return (
         <>
@@ -67,14 +50,13 @@ function NavBar( ) {
                         Account Settings</h5>
                     <button type='button' className='btn-close' data-bs-dismiss='offcanvas'></button>
                 </div>
-                <div className='offcanvas-body opacity-75'>
-                    { authorized ? 
-                        <button className='btn shadow btn-search-input' type='button' onClick={ handleRemoveAuth }>
-                            Remove Google Calendar</button> :
+                <div className='offcanvas-body '>
+                    <p className='mx-2'>
+                        Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
+                    <div className='d-flex justify-content-center'>
                         < Login />
-                    }
+                    </div>
 
-                    <p className='mt-2'>Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
                 </div>
             </div>
 
