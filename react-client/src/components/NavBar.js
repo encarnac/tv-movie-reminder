@@ -39,20 +39,15 @@ function NavBar( ) {
                         watch-soon
                     </a>
 
-                    <ul className='navbar-nav'>
-                            <li className='nav-item dropdown dropstart'> {/* // Reminders Button // */ }
-                                <a className='nav-link' href='#' id='navbarDropdownMenuLink' role='button' data-bs-toggle='dropdown' aria-expanded='false'>
+                    <ul className='navbar-nav gap-2'>
+                            <li className='nav-item'> {/* // Reminders Button // */ }
+                                <a className='nav-link' data-bs-toggle='offcanvas' href='#offcanvasReminders' role='button'>
                                     < IoNotifications />
                                 </a>
-                                <ul className='dropdown-menu ' aria-labelledby='navbarDropdownMenuLink'>
-                                    <li className='px-2 '>
-                                        { authorized ? <span>Insert Upcoming</span> : <span>No calendar found</span> }
-                                    </li>
-                                </ul>
                             </li>
 
                             <li className='nav-item'> {/* // Settings Button // */ }
-                                <a className='nav-link' data-bs-toggle='offcanvas' href='#offcanvasAccount' role='button' aria-controls='offcanvasExample'>
+                                <a className='nav-link' data-bs-toggle='offcanvas' href='#offcanvasAccount' role='button'>
                                     <FaUser />
                                 </a>
                             </li>
@@ -64,9 +59,9 @@ function NavBar( ) {
 
 
         {/* 
-        // Offcanvas pop-up on right 
+        // Offcanvas for Account Settings
         */}
-            <div className='offcanvas offcanvas-end text-dark ' tabindex='-1' id='offcanvasAccount' aria-labelledby='offcanvasAccountLabel'>
+            <div className='offcanvas offcanvas-end' id='offcanvasAccount'>
                 <div className='offcanvas-header'>
                     <h5 className='offcanvas-title' id='offcanvasAccountLabel'>
                         Account Settings</h5>
@@ -81,6 +76,23 @@ function NavBar( ) {
                     }
 
                     <p className='mt-2'>Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
+                </div>
+            </div>
+
+
+        {/* 
+        // Offcanvas for Reminders
+        */}
+            <div className='offcanvas offcanvas-end' id='offcanvasReminders'>
+                <div className='offcanvas-header'>
+                    <h5 className='offcanvas-title' id='offcanvasReminders'>
+                        Upcoming Releases</h5>
+                    <button type='button' className='btn-close' data-bs-dismiss='offcanvas'></button>
+                </div>
+                <div className='offcanvas-body opacity-75'>
+                    { !authorized && (
+                        <p>No Google Calendar found</p>
+                    )}
                 </div>
             </div>
         </>

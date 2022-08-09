@@ -6,7 +6,7 @@ function Header( props ) {
 
     return (
             <div style={ {
-                backgroundImage: `linear-gradient(rgba(255,255,255,.35), rgba(255,255,255,.35)), url(${ IMG3 })`,
+                backgroundImage: `linear-gradient(rgba(255,255,255,.4), rgba(255,255,255,.4)), url(${ IMG3 })`,
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
                 backgroundSize: 'cover'}}>
@@ -15,7 +15,7 @@ function Header( props ) {
                         d-flex 
                         justify-content-start 
                         align-items-center 
-                        m-3 
+                        mx-5 
                         vh-100" >
 
                         <div className="row text-center">
