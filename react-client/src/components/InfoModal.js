@@ -35,14 +35,14 @@ function InfoModal( { modalState,
                                 <div className='container text-start'>
                                     <div className='row'>
 
-                                        <div className='col-4 my-2'>
+                                        <div className='col-5 my-2'>
                                             <img src={ poster } className='img-fluid rounded img-thumbnail rounded-4' alt='' />
                                         </div>
 
-                                        <div className='col-8'>
+                                        <div className='col-7'>
                                             <div className='row'>
                                                 <div className='col-4'>
-                                                    <h6>Overview:</h6>
+                                                    <h6 className='fw-semibold'>Overview:</h6>
                                                 </div>
                                                 <div className='col-8'>
                                                     <p>{ overview }</p>
@@ -51,7 +51,7 @@ function InfoModal( { modalState,
 
                                             <div className='row'>
                                                 <div className='col-4'>
-                                                    <h6>Genres:</h6>
+                                                    <h6 className='fw-semibold'>Genres:</h6>
                                                 </div>
                                                 <div className='col-8'>
                                                     <p>{ genres.map( ( genre, i, genres ) => {
@@ -67,7 +67,7 @@ function InfoModal( { modalState,
 
                                             <div className='row'>
                                                 <div className='col-4'>
-                                                    <h6>Popularity:</h6>
+                                                    <h6 className='fw-semibold'>Popularity:</h6>
                                                 </div>
                                                 <div className='col-8'>
                                                     <p>{ popularity }</p>
@@ -76,7 +76,7 @@ function InfoModal( { modalState,
 
                                             <div className='row'>
                                                 <div className='col-4'>
-                                                    <h6>Status:</h6>
+                                                    <h6 className='fw-semibold'>Status:</h6>
                                                 </div>
                                                 <div className='col-8'>
                                                     <p>{ status }</p>
@@ -86,7 +86,7 @@ function InfoModal( { modalState,
                                             { category === 'movie' ?
                                                 <div className='row'>
                                                     <div className='col-4'>
-                                                        <h6>Release Date:</h6>
+                                                        <h6 className='fw-semibold'>Release Date:</h6>
                                                     </div>
                                                     <div className='col-8'>
                                                         <p>{ release }</p>
@@ -96,7 +96,7 @@ function InfoModal( { modalState,
                                                 <>
                                                     <div className='row'>
                                                         <div className='col-4'>
-                                                            <h6>First Release:</h6>
+                                                            <h6 className='fw-semibold'>First Release:</h6>
                                                         </div>
                                                         <div className='col-8'>
                                                             <p>{ firstRelease }</p>
@@ -105,7 +105,7 @@ function InfoModal( { modalState,
 
                                                     <div className='row'>
                                                         <div className='col-4'>
-                                                            <h6>Latest Release:</h6>
+                                                            <h6 className='fw-semibold'>Latest Release:</h6>
                                                         </div>
                                                         <div className='col-8'>
                                                             <p>{ latestRelease }</p>
@@ -115,7 +115,7 @@ function InfoModal( { modalState,
 
                                                     <div className='row'>
                                                         <div className='col-4'>
-                                                            <h6># Seasons:</h6>
+                                                            <h6 className='fw-semibold'># Seasons:</h6>
                                                         </div>
                                                         <div className='col-8'>
                                                             <p>{ seasonCount }</p>
@@ -124,7 +124,7 @@ function InfoModal( { modalState,
 
                                                     <div className='row'>
                                                         <div className='col-4'>
-                                                            <h6># Episodes:</h6>
+                                                            <h6 className='fw-semibold'># Episodes:</h6>
                                                         </div>
                                                         <div className='col-8'>
                                                             <p>{ episodeCount }</p>
@@ -134,8 +134,8 @@ function InfoModal( { modalState,
 
                                                     <div className='row'>
                                                         <div className='col'>
-                                                            <a className='btn'  data-bs-toggle='collapse' href='#episodeDetails' role='button'>
-                                                                <span className='fw-bolder'>View Season { seasonCount } Episodes</span>
+                                                            <a className='btn-sm text-dark text-decoration-none'  data-bs-toggle='collapse' href='#episodeDetails' role='button'>
+                                                                <span className='fw-semibold'>View Season { seasonCount } Episodes &nbsp; ▼ </span>
                                                             </a>
                                                         
     

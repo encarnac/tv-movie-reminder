@@ -4,8 +4,6 @@ import { FaUser } from 'react-icons/fa';
 import { IoNotifications } from 'react-icons/io5';
 import Axios from 'axios';
 
-
-
 function NavBar( ) {
     const [ authorized, setAuthorized ] = useState( false );
 
@@ -29,8 +27,8 @@ function NavBar( ) {
 
     return (
         <>
-            <nav className='navbar navbar-expand navbar-light bg-light' >
-                <div className='container-fluid '>
+            <nav className='navbar navbar-expand navbar-light bg-light p-3' >
+                <div className='container-fluid'>
 
                     <a className='navbar-brand h1' href='/'>
                         <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' className='bi bi-hexagon-half mx-2' viewBox='0 0 16 16'>
