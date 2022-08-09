@@ -1,13 +1,23 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { React, useState } from 'react';
 import Axios from 'axios';
-import Login from '../components/Login';
+
+import Account from '../components/Account';
+import Calendar from '../components/Calendar';
+
 import { FaUser } from 'react-icons/fa';
 import { IoNotifications } from 'react-icons/io5';
 
 
 function NavBar( ) {
-    const [ authorized, setAuthorized ] = useState( false );
+    const [ token, setToken ] = useState(false)
+
+    const saveToken = ( res ) => { 
+        setToken( res );
+        }
+
+    const clearToken = () => {
+        setToken(false)
+    }
 
 
     return (
@@ -25,7 +35,7 @@ function NavBar( ) {
                     <ul className='navbar-nav gap-2'>
                             <li className='nav-item'> {/* // Reminders Button // */ }
                                 <a className='nav-link' data-bs-toggle='offcanvas' href='#offcanvasReminders' role='button'>
-                                    < IoNotifications />
+                                    <IoNotifications />
                                 </a>
                             </li>
 
@@ -41,41 +51,14 @@ function NavBar( ) {
 
 
 
-        {/* 
-        // Offcanvas for Account Settings
-        */}
-            <div className='offcanvas offcanvas-end' id='offcanvasAccount'>
-                <div className='offcanvas-header'>
-                    <h5 className='offcanvas-title' id='offcanvasAccountLabel'>
-                        Account Settings</h5>
-                    <button type='button' className='btn-close' data-bs-dismiss='offcanvas'></button>
-                </div>
-                <div className='offcanvas-body '>
-                    <p className='mx-2'>
-                        Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
-                    <div className='d-flex justify-content-center'>
-                        < Login />
-                    </div>
+        <div className='container'>
+            < Account token={token} saveToken={saveToken} clearToken={clearToken} />
+        </div>
 
-                </div>
-            </div>
+        <div className='container'>
+            < Calendar token={token} />
+        </div>
 
-
-        {/* 
-        // Offcanvas for Reminders
-        */}
-            <div className='offcanvas offcanvas-end' id='offcanvasReminders'>
-                <div className='offcanvas-header'>
-                    <h5 className='offcanvas-title' id='offcanvasReminders'>
-                        Upcoming Releases</h5>
-                    <button type='button' className='btn-close' data-bs-dismiss='offcanvas'></button>
-                </div>
-                <div className='offcanvas-body opacity-75'>
-                    { !authorized && (
-                        <p>No Google Calendar found</p>
-                    )}
-                </div>
-            </div>
         </>
     );
 }
