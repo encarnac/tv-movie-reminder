@@ -1,17 +1,21 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# Node JS
+node_modules/
 package-lock.json
-node_modules
 /.pnp
 .pnp.js
-venv/
-
-# testing
-/coverage
-
-# production
+/coverage 
 /build
+npm-debug.log*
+
+# Python
+__pycache__/
+venv/
+.env
+.venv
+env/
+venv/
 
 # misc
 .DS_Store
@@ -22,4 +26,6 @@ venv/
 
 
 
-npm-debug.log*
+
+
+
