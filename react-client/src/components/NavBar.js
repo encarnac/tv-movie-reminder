@@ -1,8 +1,10 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { React, useState } from 'react';
+import Axios from 'axios';
+import Login from '../components/Login';
 import { FaUser } from 'react-icons/fa';
 import { IoNotifications } from 'react-icons/io5';
-import Axios from 'axios';
+
 
 function NavBar( ) {
     const [ authorized, setAuthorized ] = useState( false );
@@ -69,8 +71,7 @@ function NavBar( ) {
                     { authorized ? 
                         <button className='btn shadow btn-search-input' type='button' onClick={ handleRemoveAuth }>
                             Remove Google Calendar</button> :
-                        <button className='btn shadow btn-search-input' type='button' onClick={ handleAuthorization }> 
-                            Connect Google Calendar </button>
+                        < Login />
                     }
 
                     <p className='mt-2'>Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
