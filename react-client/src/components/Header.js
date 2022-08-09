@@ -11,24 +11,21 @@ function Header( props ) {
                 backgroundPosition: 'center',
                 backgroundSize: 'cover'}}>
 
-                    <div className="container 
+                    <div className='container 
                         d-flex 
                         justify-content-start 
                         align-items-center 
                         mx-5 
-                        vh-100" >
+                        vh-100' >
 
-                        <div className="row text-center">
-                            <div className="col">
-                                <h1 class="display-3">
+                        <div className='row text-center'>
+                            <div className='col'>
+                                <h1 className='display-3'>
                                     watch-soon</h1>
-                                <p class="lead">
-                                    Never miss a tv or film release again</p>
+                                <p className='lead'>
+                                    Get reminders about upcoming tv or movie releases</p>
                                 <SearchForm props={props}/>
-<<<<<<< HEAD
                                 { props.display && !props.loading && <div className='scroll-down'></div> }
-=======
->>>>>>> parent of 532e6e00 (Added footer and animted scroll arrow)
                             </div>
                         </div>
 
@@ -37,4 +34,4 @@ function Header( props ) {
     );
 }
 
-export default Header;;
+export default Header;

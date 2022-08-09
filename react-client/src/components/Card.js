@@ -27,7 +27,7 @@ function Card( { content } ) {
                         <p><i>{ content.first_release.slice( 0, 4 ) }</i></p>
                     }
                     <button type='button' className='btn shadow-sm btn-search-input'
-                        data-bs-toggle="modal"
+                        data-bs-toggle='modal'
                         data-bs-target='#infoModal'
                         onClick={ handleOpen }> Select </button>
                 </div>
