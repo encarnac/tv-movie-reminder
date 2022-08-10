@@ -10,7 +10,7 @@ function TypeButtons( { category, selectMovie, selectSeries } ) {
 
                     { category === 'tv' && (
                         <ul className='nav nav-pills gap-2'>
-                            <li className='nav-item pill-1'>
+                            <li className='nav-item pill-1 '>
                                 <button className='nav-link px-5 py-2 active' onClick={ selectSeries }>
                                     tv
                                 </button>

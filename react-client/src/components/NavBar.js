@@ -1,5 +1,4 @@
 import { React, useState } from 'react';
-import Axios from 'axios';
 
 import Account from '../components/Account';
 import Calendar from '../components/Calendar';
@@ -9,14 +8,14 @@ import { IoNotifications } from 'react-icons/io5';
 
 
 function NavBar( ) {
-    const [ token, setToken ] = useState(false)
+    const [ token, setToken ] = useState('')
 
     const saveToken = ( res ) => { 
         setToken( res );
         }
 
     const clearToken = () => {
-        setToken(false)
+        setToken('')
     }
 
 
