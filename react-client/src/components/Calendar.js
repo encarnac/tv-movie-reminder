@@ -1,32 +1,13 @@
 import { React, useState, useEffect } from 'react';
-import Axios from 'axios';
 
-const SERVER_URL = process.env.REACT_APP_URL
-const CLIENT_ID = process.env.REACT_APP_GAPI_KEY
+function Calendar({ token, watchlist}) {
 
-function Calendar({ token }) {
-
-    async function fetchCalendars() {
-        try {
-            const res = await Axios({
-                method: 'get',
-                url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
-                headers: { Authorization: `Bearer ${token}` }
-                })
-            console.log(res)
-            setWaitlist(res)
-        } catch (error) {
-    console.error( error);
-  }}
+    async function fetchCalendars() {}
 
     useEffect( () => {
         fetchCalendars();
     }, [ token ] );
   
-        
-
-    const [ waitlist, setWaitlist] = useState([]) 
-
 
     return (
         <>
@@ -38,7 +19,7 @@ function Calendar({ token }) {
                 </div>
                 <div className='offcanvas-body opacity-75'>
                     { !token ? <p>No Google Calendar found</p> :
-                        <p>{waitlist} </p>
+                        <p>{watchlist} </p>
                     }
                 </div>
             </div>

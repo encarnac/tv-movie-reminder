@@ -7,8 +7,9 @@ import { FaUser } from 'react-icons/fa';
 import { IoNotifications } from 'react-icons/io5';
 
 
-function NavBar( ) {
+function NavBar() {
     const [ token, setToken ] = useState('')
+    const [ watchlist, setWatchlist ]  = useState([])
 
     const saveToken = ( res ) => { 
         setToken( res );
@@ -18,6 +19,10 @@ function NavBar( ) {
         setToken('')
     }
 
+    const handlehWatchlist = (calendars) => {
+        const calendar = false
+        setWatchlist( calendar )
+    }
 
     return (
         <>
@@ -51,11 +56,14 @@ function NavBar( ) {
 
 
         <div className='container'>
-            < Account token={token} saveToken={saveToken} clearToken={clearToken} />
+            < Account token={ token }
+                saveToken={ saveToken } 
+                clearToken={ clearToken } 
+                handlehWatchlist={ handlehWatchlist }/>
         </div>
 
         <div className='container'>
-            < Calendar token={token} />
+            < Calendar token={ token } watchlist={ watchlist } />
         </div>
 
         </>
