@@ -4,10 +4,7 @@ import { useGoogleLogin } from '@react-oauth/google';
 
 function Account({ token, saveToken, clearToken, handleWatchlist }) {
 
-    const handleLogin = useGoogleLogin( {
-        flow: 'implicit',
-        scope: 'https://www.googleapis.com/auth/calendar openid email profile',
-        onSuccess: async tokenResponse => {
+    const loginSuccess = async (tokenResponse) => {
             console.log( tokenResponse.access_token );
             saveToken( tokenResponse.access_token );
             const calendarsList = await Axios({
@@ -17,7 +14,13 @@ function Account({ token, saveToken, clearToken, handleWatchlist }) {
                 })
             console.log('CALENDARS = ' + calendarsList.data.items)
             handleWatchlist(calendarsList.data.item)
-            },
+            }
+    
+
+    const handleLogin = useGoogleLogin( {
+        flow: 'implicit',
+        scope: 'https://www.googleapis.com/auth/calendar openid email profile',
+        onSuccess: tokenResponse => loginSuccess(tokenResponse) ,
         onError: errorResponse => console.log( errorResponse )
     });
 

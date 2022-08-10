@@ -19,14 +19,15 @@ function NavBar() {
         setToken('')
     }
 
-    const handlehWatchlist = async (calendarsList) => {
-        const calendar = await calendarsList.filter(
+    const handleWatchlist = async (calendarsList) => {
+        console.log(calendarsList)
+        const calendar = calendarsList.filter(
             ( cal ) => cal.summary === 'tv-movie');
         setWatchlist(calendar);
         console.log(calendar)
         console.log(watchlist)
-        return calendar
         }
+
 
     return (
         <>
@@ -63,7 +64,7 @@ function NavBar() {
             < Account token={ token }
                 saveToken={ saveToken } 
                 clearToken={ clearToken } 
-                handlehWatchlist={ handlehWatchlist }/>
+                handleWatchlist={ handleWatchlist }/>
         </div>
 
         <div className='container'>
