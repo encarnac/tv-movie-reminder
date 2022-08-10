@@ -11,18 +11,22 @@ function NavBar() {
     const [ token, setToken ] = useState('')
     const [ watchlist, setWatchlist ]  = useState([])
 
-    const saveToken = ( res ) => { 
-        setToken( res );
+    const saveToken = ( tokenRes ) => { 
+        setToken( tokenRes );
         }
 
     const clearToken = () => {
         setToken('')
     }
 
-    const handlehWatchlist = (calendars) => {
-        const calendar = false
-        setWatchlist( calendar )
-    }
+    const handlehWatchlist = async (calendarsList) => {
+        const calendar = await calendarsList.filter(
+            ( cal ) => cal.summary === 'tv-movie');
+        setWatchlist(calendar);
+        console.log(calendar)
+        console.log(watchlist)
+        return calendar
+        }
 
     return (
         <>

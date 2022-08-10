@@ -1,4 +1,4 @@
-import { React, useState, ImgHTMLAttributes } from 'react';
+import { React, useState } from 'react';
 import InfoModal from '../components/InfoModal'
 import fallback from '../photos/NONE.png'
 

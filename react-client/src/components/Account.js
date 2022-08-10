@@ -10,12 +10,13 @@ function Account({ token, saveToken, clearToken, handleWatchlist }) {
         onSuccess: async tokenResponse => {
             console.log( tokenResponse.access_token );
             saveToken( tokenResponse.access_token );
-            const calendarList = await Axios({
+            const calendarsList = await Axios({
                 method: 'get',
                 url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
                 headers: { Authorization: `Bearer ${ tokenResponse.access_token }` }
                 })
-            handleWatchlist(calendarList)
+            console.log('CALENDARS = ' + calendarsList.data.items)
+            handleWatchlist(calendarsList.data.item)
             },
         onError: errorResponse => console.log( errorResponse )
     });
@@ -34,10 +35,10 @@ function Account({ token, saveToken, clearToken, handleWatchlist }) {
                         Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
                     <div className='d-flex justify-content-center'>
                         { token ?
-                            <button className='btn-search-input' onClick={ clearToken }> 
+                            <button className='btn btn-search-input' onClick={ clearToken }> 
                                 Disconnect Your Google Account</button>
                             :
-                            <button className='btn-search-input' onClick={ () => handleLogin() }>
+                            <button className='btn btn-search-input' onClick={ () => handleLogin() }>
                                 Sign In With Google</button>
                             }
                     </div>

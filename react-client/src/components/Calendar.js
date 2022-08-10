@@ -1,18 +1,21 @@
-import { React, useState, useEffect } from 'react';
+import { React, useEffect } from 'react';
 
 function Calendar({ token, watchlist}) {
 
-    async function fetchCalendars() {}
+    async function fetchUpcoming() {}
 
     useEffect( () => {
-        fetchCalendars();
-    }, [ token ] );
-  
+        fetchUpcoming();
+        }, [ watchlist ] );
 
     return (
         <>
             <div className='offcanvas offcanvas-end' id='offcanvasReminders'>
-                <div className='offcanvas-header'>
+                {watchlist.summary}
+                {watchlist.description}
+                {watchlist.id}
+
+                {/* <div className='offcanvas-header'>
                     <h5 className='offcanvas-title' id='offcanvasReminders'>
                         Upcoming Releases</h5>
                     <button type='button' className='btn-close' data-bs-dismiss='offcanvas'></button>
@@ -21,7 +24,7 @@ function Calendar({ token, watchlist}) {
                     { !token ? <p>No Google Calendar found</p> :
                         <p>{watchlist} </p>
                     }
-                </div>
+                </div> */}
             </div>
 
         </>
