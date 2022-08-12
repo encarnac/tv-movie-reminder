@@ -1,11 +1,14 @@
 import { React, useEffect } from 'react';
+import Axios from 'axios';
 
 function Calendar({ token, watchlist}) {
 
-    async function fetchUpcoming() {}
-
+    const fetchEvents = (watchlist) => {
+        console.log('WATCHLIST: ', watchlist);
+    } 
+    
     useEffect( () => {
-        fetchUpcoming();
+        fetchEvents(watchlist);
         }, [ watchlist ] );
 
     return (

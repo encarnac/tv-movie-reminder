@@ -3,28 +3,19 @@ import Axios from 'axios';
 import { useGoogleLogin, GoogleLogin } from '@react-oauth/google';
 import GoogleIcon from '../photos/GoogleIcon';
 
-function Account( { token, saveToken, clearToken, handleWatchlist } ) {
+function Account( { token, saveToken, clearToken, fetchWatchlist } ) {
 
     const loginSuccess = async ( codeResponse ) => {
-        console.log( codeResponse );
         const { code } = codeResponse;
-        Axios.post( '/user/login', { code } )
-            .then( response => {
-                console.log( 'FRONTEND RES:', response.data );
-                saveToken(response.data)
-            } )
-            .catch( error => {
-                console.log( error );
-            } );
-
-        // saveToken( codeResponse.access_token );
-        // const calendarsList = await Axios({
-        //     method: 'get',
-        //     url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
-        //     headers: { Authorization: `Bearer ${ tokenResponse.access_token }` }
-        //     })
-        // console.log('CALENDARS = ' + calendarsList.data.items)
-        // handleWatchlist(calendarsList.data.item)
+        const tokenRes = await Axios.post( '/user/login', { code } );
+        const { data } = tokenRes 
+        saveToken( data ) 
+        const calendarsRes = await Axios({
+            method: 'get',
+            url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
+            headers: { Authorization: `Bearer ${ data }` }
+            })
+        fetchWatchlist(calendarsRes.data.items)
     };
 
 
@@ -34,11 +25,7 @@ function Account( { token, saveToken, clearToken, handleWatchlist } ) {
         onSuccess: codeResponse => loginSuccess( codeResponse ),
         onError: errorResponse => console.log( errorResponse )
     } );
-
-
-
-
-
+    
     return (
         <div className='offcanvas offcanvas-end' id='offcanvasAccount'>
 
