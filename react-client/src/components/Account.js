@@ -1,6 +1,6 @@
 import React from 'react';
 import Axios from 'axios';
-import { useGoogleLogin, GoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
 import GoogleIcon from '../photos/GoogleIcon';
 
 function Account( { token, saveToken, clearToken, fetchWatchlist } ) {
@@ -46,7 +46,7 @@ function Account( { token, saveToken, clearToken, fetchWatchlist } ) {
                             Disconnect Your Google Account</button>
                         :
                         <button id='googleButton' onClick={ () => handleLogin() }>
-                            <GoogleIcon/>Sign In With Google </button>
+                            <GoogleIcon/> Sign In With Google </button>
                     }
                 </div>
 
