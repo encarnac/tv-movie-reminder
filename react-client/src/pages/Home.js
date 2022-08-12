@@ -3,8 +3,6 @@ import Axios from 'axios';
 import Header from '../components/Header';
 import CardsList from '../components/CardsList';
 
-const SERVER_URL = process.env.REACT_APP_URL
-
 function Home( ) {
 
     const [ category, setCategory ] = useState( 'tv' );
@@ -23,10 +21,10 @@ function Home( ) {
         setTitle( e.target.value );
     };
 
-    const [ url, setURL ] = useState( `${ SERVER_URL }/search?title=${ title }&category=${ category }` );
+    const [ url, setURL ] = useState( `/search?title=${ title }&category=${ category }` );
 
     const handleURL = () => {
-        setURL( `${ SERVER_URL }/search?category=${ category }&title=${ title }` );
+        setURL( `/search?category=${ category }&title=${ title }` );
     };
 
     const [ loading, setLoading ] = useState( false );
@@ -36,16 +34,17 @@ function Home( ) {
 
     const handleFetchResults = useCallback( () => {
         setLoading( true );
-        Axios.get( url ).then( response => {
+        Axios.get( url )
+        .then( response => {
             setDisplay( !display );
             setInputState( !inputState );
             setTmdbData( response.data );
             console.log( response.data );
             setLoading( false );
-        } )
-            .catch( error => {
-                console.log( error );
-            } );
+        })
+        .catch( error => {
+            console.log( error );
+        });
     }, [ url ] );
 
     useEffect( () => {
