@@ -10,7 +10,8 @@ function Account( { token, saveToken, clearToken, handleWatchlist } ) {
         const { code } = codeResponse;
         Axios.post( '/user/login', { code } )
             .then( response => {
-                console.log( 'FRONTEND:', response.data );
+                console.log( 'FRONTEND RES:', response.data );
+                saveToken(response.data)
             } )
             .catch( error => {
                 console.log( error );
