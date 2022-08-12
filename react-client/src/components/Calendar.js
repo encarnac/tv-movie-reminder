@@ -1,18 +1,22 @@
-import { React, useEffect } from 'react';
+import { React, useEffect, useState } from 'react';
 import Axios from 'axios';
 
 function Calendar( { token, watchlist } ) {
-    const calendarId = watchlist.id
+    const calendarId = watchlist.id;
+    const [ events, setEvents ] = useState( [] );
 
-    const fetchUpcoming = async () => {
-        console.log( 'CALENDAR_ID: ', calendarId );
-        const events = await Axios.post( '/user/get-upcoming', { calendarId: calendarId } );
-        console.log('RESPONSE: ', events.data)
-        
+    const fetchEvents = async () => {
+        const eventsRes = await Axios.post( '/user/get-upcoming', { 
+            calendarId: calendarId,
+            token: token 
+            }
+        );
+        console.log( 'RESPONSE: ', eventsRes);
+        // setEvents( eventsRes.data );
     };
 
     useEffect( () => {
-        fetchUpcoming();
+        fetchEvents();
     }, [ watchlist ] );
 
     return (
@@ -26,12 +30,15 @@ function Calendar( { token, watchlist } ) {
                 <div className='offcanvas-body opacity-75'>
                     { !token
                         ? <p>No Google Calendar found</p>
-                        : (<div className='container'>
-                            <p>{ watchlist.summary }</p>
-                            <p>{ watchlist.description }</p>
-                            <p>{ watchlist.id }</p>
-                        </div>)
-
+                        :
+                        events.map(( event ) => (
+                            <div className='container'>
+                                <p>{event.summary}</p>
+                                <p>{event.id}</p>
+                                <p>{event.description}</p>
+                                <p>{event.description}</p>
+                            </div>
+                        ))
                     }
                 </div>
             </div>

@@ -1,6 +1,7 @@
 const express = require( 'express' );
 const router = express.Router();
 const { google } = require( 'googleapis' );
+const axios = require('axios');
 const calendar = google.calendar( 'v3' );
 
 const CLIENT_ID = '439274580520-psn6jfl8i303hv6f86nuul7kk9c3ddhc.apps.googleusercontent.com';
@@ -26,13 +27,26 @@ router.post( '/login', async ( req, res, next ) => {
 
 router.post( '/get-upcoming', async ( req, res, next ) => {
     try {
-        const { calendarId } = req.body
-        console.log( 'RES = ', calendarId );
-        const eventsURL = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`
-        res.send( eventsURL );
+        const { calendarId } = req.body;
+        const { token } = req.body;
+        if (!calendarId || !token) {
+            res.send()
+        } else {
+            console.log('BACKEND ID ==', calendarId)
+
+            const eventsUrl = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`
+            console.log('BACKEND URL ==', eventsUrl)
+            // const events = await axios.get(eventsUrl)
+            const events = await axios({
+                method: 'get',
+                url: eventsUrl,
+                headers: { Authorization: `Bearer ${ token }` }
+                })
+            console.log(events)
+            res.send(events.data.items) }
     } catch ( error ) {
         next( error );
     };
-} );
+});
 
 module.exports = router;
