@@ -53,7 +53,6 @@ function Account( { token, saveToken, clearToken, handleWatchlist } ) {
                 <p className='mx-2'>
                     Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
                 <div className='d-flex justify-content-center'>
-
                     { token ?
                         <button id='googleButton' onClick={ clearToken }>
                             Disconnect Your Google Account</button>

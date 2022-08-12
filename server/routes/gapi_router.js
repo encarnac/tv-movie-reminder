@@ -15,8 +15,9 @@ const oauth2Client = new google.auth.OAuth2(
 router.post('/login', async(req, res, next) => {
     try {
         const { code } = req.body;
-        const response = await oauth2Client.getToken(code)
-        res.send(response)
+        const token = await oauth2Client.getToken(code)
+        res.cookie('token', token.refresh_token, { httpOnly: true });
+        res.send(token)
     } catch (error) {
         next(error);
     };
