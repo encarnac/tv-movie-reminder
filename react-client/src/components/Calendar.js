@@ -5,9 +5,9 @@ function Calendar( { token, watchlist } ) {
     const calendarId = watchlist.id
 
     const fetchUpcoming = async () => {
-        console.log( 'CALENDARID: ', calendarId );
+        console.log( 'CALENDAR_ID: ', calendarId );
         const events = await Axios.post( '/user/get-upcoming', { calendarId: calendarId } );
-        console.log('RESULTS: ', events.data)
+        console.log('RESPONSE: ', events.data)
         
     };
 
