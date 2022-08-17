@@ -30,7 +30,7 @@ router.post( '/get-upcoming', async ( req, res, next ) => {
         const { calendarId } = req.body;
         const { token } = req.body;
         if (!calendarId || !token) {
-            res.send()
+            res.send('')
         } else {
             console.log('BACKEND ID ==', calendarId)
 
@@ -42,7 +42,7 @@ router.post( '/get-upcoming', async ( req, res, next ) => {
                 url: eventsUrl,
                 headers: { Authorization: `Bearer ${ token }` }
                 })
-            console.log(events)
+            console.log('BACKEND EVENTS: ', events.data.items)
             res.send(events.data.items) }
     } catch ( error ) {
         next( error );
