@@ -6,18 +6,21 @@ import GoogleIcon from '../photos/GoogleIcon';
 function Account( { token, saveToken, clearToken, fetchWatchlist } ) {
 
     const loginSuccess = async ( codeResponse ) => {
-        const { code } = codeResponse;
-        const tokenRes = await Axios.post( '/user/login', { code } );
-        const { data } = tokenRes 
-        saveToken( data ) 
-        const calendarsRes = await Axios({
-            method: 'get',
-            url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
-            headers: { Authorization: `Bearer ${ data }` }
-            })
-        fetchWatchlist(calendarsRes.data.items)
+        try {
+            const { code } = codeResponse;
+            const tokenRes = await Axios.post( '/user/login', { code } );
+            const { data } = tokenRes 
+            saveToken( data ) 
+            const calendarsRes = await Axios({
+                method: 'get',
+                url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
+                headers: { Authorization: `Bearer ${ data }` }
+                })
+            fetchWatchlist(calendarsRes.data.items)
+        } catch (error) {
+            console.error(error)
+        }
     };
-
 
     const handleLogin = useGoogleLogin( {
         flow: 'auth-code',
@@ -25,6 +28,7 @@ function Account( { token, saveToken, clearToken, fetchWatchlist } ) {
         onSuccess: codeResponse => loginSuccess( codeResponse ),
         onError: errorResponse => console.log( errorResponse )
     } );
+    
     
     return (
         <div className='offcanvas offcanvas-end' id='offcanvasAccount'>

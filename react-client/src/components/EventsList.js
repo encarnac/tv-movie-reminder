@@ -2,16 +2,20 @@ import { React } from 'react';
 import Axios from 'axios';
 import { BiLinkExternal, BiTrash } from "react-icons/bi";
 
-function EventsList( { calendarId, events, token } ) {
+function EventsList( { calendarId, events, token, fetchEvents } ) {
 
     const deleteEvent = async(eventId) => {
-        console.log(eventId)
-       const delReq = await Axios.post( '/user/delete-event', {
+        try {
+           await Axios.post( '/user/delete-event', {
             calendarId: calendarId,
             eventId: eventId,
             token: token
-        });
-        console.log('DELETE RESPONSE: ', delReq);
+        }); 
+        } catch (error) {
+            console.error(error)
+        } finally {
+            fetchEvents()
+        }
     }
 
 
