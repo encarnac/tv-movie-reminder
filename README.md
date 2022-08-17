@@ -136,9 +136,10 @@ It integrates OAuth2.0 for testing and development, but has not been verified by
 - [x] Display list of results as cards
 - [x] Toggle modal with selected card's details
 - [x] Authenticate the Google Oauth2 Client
-- [ ] Display user's Google Calendar events
+- [x] Display user's Google Calendar events
+- [ ] Create 'tv-movie' calendar if none exists
 - [ ] Add a show/movie to the user's calendar
-- [ ] Delete a reminder from the user's calendar
+- [x] Delete a reminder from the user's calendar
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
