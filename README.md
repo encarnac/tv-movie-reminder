@@ -62,7 +62,7 @@
 Here is a working live demo: [TBA](#)
 
 ### Searching The Movie Database
-![](https://github.com/encarnac/tv-movie-reminder/raw/main/watch-soon-tv.gif)
+![](https://github.com/encarnac/tv-movie-reminder/raw/main/watch-soon-demo.gif)
 
 ### Using Google Calendar   
 &nbsp;&nbsp;&nbsp;&nbsp; Full implementation still in progress... stay tuned!
