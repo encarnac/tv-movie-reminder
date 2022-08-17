@@ -138,7 +138,8 @@ It integrates OAuth2.0 for testing and development, but has not been verified by
 - [x] Authenticate the Google Oauth2 Client
 - [x] Display user's Google Calendar events
 - [ ] Create 'tv-movie' calendar if none exists
-- [ ] Add a show/movie to the user's calendar
+- [x] Add a movie to the user's calendar
+- [ ] Add a show to the user's calendar
 - [x] Delete a reminder from the user's calendar
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
