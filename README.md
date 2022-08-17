@@ -3,7 +3,11 @@
 # tv-movie-reminder (aka watch-soon)
 [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 [![React][React.js]][React-url]
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
 [![MIT License][license-shield]][license-url]
+
 
 
 <!-- TABLE OF CONTENTS -->
@@ -44,7 +48,7 @@
 <tr>
 <td>
   A webapp using The Movie Database API and Google Calendar API. 
-  </br> Use it to search for tv shows or movies by titland get reminders on their releases on your Google Calendar. 
+  </br> Use it to search for tv shows or movies by title and get reminders on their releases on your Google Calendar. 
 </td>
 </table>
 
