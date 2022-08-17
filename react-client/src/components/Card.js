@@ -10,6 +10,8 @@ function Card( { content, token, calendarId, fetchEvents } ) {
 
     function handleClose(){            
         document.getElementById("infoModal").classList.remove("show", "d-block");
+        document.querySelectorAll(".modal-backdrop")
+                .forEach(el => el.classList.remove("modal-backdrop"));
 }
 
     const handleOpen = ( e ) => {

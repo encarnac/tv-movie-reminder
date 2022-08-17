@@ -97,7 +97,7 @@ router.post('/add-reminder', async (req, res, next) => {
         const { event } = req.body 
         console.log('ADD EVENT: ', event)
         if (!calendarId || !event ) {
-            res.sendStatus(300)
+            res.send('')
         }
         else {
             console.log(JSON.stringify(event))
