@@ -23,6 +23,13 @@
         <li><a href="#using-google-calendar">Using Google Calendar</a></li>
       </ul>
     </li>
+    <li>      
+        <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#setup">Setup</a></li>
+      </ul>
+    </li>
     <li><a href="#feature-roadmap">Roadmap</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -66,6 +73,54 @@ Here is a working live demo: [TBA](#)
 
 ### Using Google Calendar   
 &nbsp;&nbsp;&nbsp;&nbsp; Full implementation still in progress... stay tuned!
+
+<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
+
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+This repository is meant to be ran locally on your personal machine until further notice. 
+
+It integrates OAuth2.0 for testing and development, but has not been verified by Google for production. The Google accounts able to use its OAuth2 capabilities depends on your Google Cloud Console project and local environment variables setup. 
+
+
+### Prerequisites
+- Get an API KEY from The Movie Database [here](https://www.themoviedb.org/settings/api)  
+  - Create `services/config.py` 
+        
+        api_key=<YOUR_API_KEY_HERE>
+        
+- You must get an OAuth2.0 <b>client_id</b> and <b>client_secret</b> for a Google Cloud project by following [this guide](https://support.google.com/googleapi/answer/6158849)
+     1. Create `react-client/.env`
+        ```
+        REACT_APP_CLIENT_ID=<YOUR_CLIENT_ID_HERE>
+        ```
+    1. Create `server/.env`
+        ```
+        PORT=5000
+        CLIENT_ID=<YOUR_CLIENT_ID_HERE>
+        CLIENT_SECRET=<YOUR_CLIENT_SECRET_HERE>
+        
+        ```
+
+
+### Setup
+1. Clone the repository and go to its root directory in your terminal
+2. Install packages and run the frontend in `/react-client` and backend in `/server`
+
+    ```
+    npm install
+    npm start
+    ```
+3. Run the following commands to create a virtual environment, install packages, and run the API service in `/services`   
+    ```
+    python3 -m venv venv
+    venv\Scripts\Activate.ps1
+    pip3 install -r requirements.txt 
+    py tmdb_handler.py 
+    ```
+4. You can now view a live local copy in http://localhost:3000
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 

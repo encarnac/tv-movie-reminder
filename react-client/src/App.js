@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
 
-const CLIENT_ID = process.env.REACT_APP_GAPI_KEY
+const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 
 function App() {
     
