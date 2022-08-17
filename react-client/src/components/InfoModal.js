@@ -1,10 +1,12 @@
 import { React } from 'react';
 import Axios from 'axios';
+// import $ from "jquery";
 
 function InfoModal( { modalState,
     handleClose,
     calendarId,
     token,
+    fetchEvents,
     id,
     category,
     title,
@@ -49,6 +51,31 @@ function InfoModal( { modalState,
         }
     };
 
+    // const tvEvent = {
+    //     'end': {
+    //         'date': 'datehere'
+    //     },
+    //     'start': {
+    //         'date': 'datehere'
+    //     },
+    //     'summary': title,
+    //     'description': overview,
+    //     'colorId': 1,
+    //     'reminders': {
+    //         'useDefault': false,
+    //         'overrides': [
+    //             {
+    //                 'method': 'email',
+    //                 'minutes': 0
+    //             },
+    //             {
+    //                 'method': 'popup',
+    //                 'minutes': 0
+    //             }
+    //         ]
+    //     }
+    // };
+
 
 
     const handleReminder = async () => {
@@ -60,6 +87,8 @@ function InfoModal( { modalState,
             }
             );
             console.log( 'ADD RESPONSE: ', addRes );
+            fetchEvents()
+            handleClose()
         } catch ( error ) {
             console.log( error );
         }

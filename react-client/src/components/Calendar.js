@@ -2,26 +2,7 @@ import { React, useEffect, useState } from 'react';
 import Axios from 'axios';
 import EventsList from './EventsList';
 
-function Calendar( { token, calendarId } ) {
-    const [ events, setEvents ] = useState( [] );
-
-    const fetchEvents = async () => {
-        try {
-            const eventsRes = await Axios.post( '/user/get-upcoming', {
-                calendarId: calendarId,
-                token: token
-                }
-            );
-            console.log( 'EVENTS RESPONSE: ', eventsRes.data );
-            setEvents( eventsRes.data );
-        } catch(error) {
-            console.log(error)
-        }
-    };
-
-    useEffect( () => {
-        fetchEvents();
-    }, [ calendarId ] );
+function Calendar( { token, calendarId, events, fetchEvents } ) {
 
 
     return (

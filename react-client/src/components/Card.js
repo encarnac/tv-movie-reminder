@@ -3,10 +3,14 @@ import InfoModal from '../components/InfoModal'
 import fallback from '../photos/NONE.png'
 
 
-function Card( { content, token, calendarId } ) {
+function Card( { content, token, calendarId, fetchEvents } ) {
     const [ modalState, setModalState ] = useState( false );
 
-    const handleClose = () => setModalState( false );
+    // const handleClose = () => setModalState( false );
+
+    function handleClose(){            
+        document.getElementById("infoModal").classList.remove("show", "d-block");
+}
 
     const handleOpen = ( e ) => {
         setModalState( true );
@@ -39,6 +43,7 @@ function Card( { content, token, calendarId } ) {
                     handleClose={ handleClose }
                     token={ token }
                     calendarId={ calendarId }
+                    fetchEvents={ fetchEvents }
                     poster={ imgSrc }
                     id={ content.id }
                     category={ content.category }

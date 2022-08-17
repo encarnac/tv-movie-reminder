@@ -49,7 +49,10 @@ function NavBar( props ) {
         </div>
 
         <div className='container'>
-            < Calendar token={ props.token } calendarId={ props.calendarId } />
+            < Calendar token={ props.token } 
+                calendarId={ props.calendarId } 
+                events={props.events} 
+                fetchEvents={props.fetchEvents} />
         </div>
 
         </>

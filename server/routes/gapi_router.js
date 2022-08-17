@@ -33,16 +33,39 @@ router.post( '/get-upcoming', async ( req, res, next ) => {
             res.send('')
         } else {
             const eventsUrl = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`
-            const events = await axios({
+            const eventsRes = await axios({
                 method: 'get',
                 url: eventsUrl,
                 headers: { Authorization: `Bearer ${ token }` }
                 })
-            res.send(events.data.items) }
+            res.send(eventsRes.data.items) }
     } catch ( error ) {
         next( error );
     };
 });
+
+
+// router.post('/get-episodes', async (req, res, next) => {
+//     try {
+//         console.log('REQ TO GET EPISODES')
+//         const { token } = req.body;
+//         const { calendarId } = req.body;
+//         const { eventId } = req.body;
+//         if (!calendarId || !eventId) {
+//             res.send('')
+//         } else {
+//             const instancesUrl = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events/${eventId}/instances`
+//             const instancesRes =  await axios({
+//                 method: 'get',
+//                 url: instancesUrl,
+//                 headers: { Authorization: `Bearer ${ token }` }
+//                 })
+//             res.send(instancesRes.data.items)
+//         }
+//     } catch( error ) {
+//         next( error )
+//     }
+// })
 
 router.post('/delete-event', async (req, res, next) => {
     try {
