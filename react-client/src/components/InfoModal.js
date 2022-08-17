@@ -26,69 +26,76 @@ function InfoModal( { modalState,
     const endDate = new Date(release)
     endDate.setDate(startDate.getDate()+1)
 
-    const movieEvent = {
-        'end': {
-            'date': endDate.toISOString().split('T')[0]
-        },
-        'start': {
-            'date': startDate.toISOString().split('T')[0]
-        },
-        'summary': title,
-        'description': overview,
-        'colorId': 2,
-        'reminders': {
-            'useDefault': false,
-            'overrides': [
-                {
-                    'method': 'email',
-                    'minutes': 0
+    const event = () => {
+        if (category === 'movie') {
+            const movieEvent = {
+                'end': {
+                    'date': endDate.toISOString().split('T')[0]
                 },
-                {
-                    'method': 'popup',
-                    'minutes': 0
+                'start': {
+                    'date': startDate.toISOString().split('T')[0]
+                },
+                'summary': title,
+                'description': overview,
+                'colorId': 2,
+                'reminders': {
+                    'useDefault': false,
+                    'overrides': [
+                        {
+                            'method': 'email',
+                            'minutes': 0
+                        },
+                        {
+                            'method': 'popup',
+                            'minutes': 0
+                        }
+                    ]
                 }
-            ]
+            };
+            return movieEvent
+        } else {
+            const tvEvent = {
+                'end': {
+                    'date': 'datehere'
+                },
+                'start': {
+                    'date': 'datehere'
+                },
+                'summary': title,
+                'description': overview,
+                'colorId': 1,
+                'reminders': {
+                    'useDefault': false,
+                    'overrides': [
+                        {
+                            'method': 'email',
+                            'minutes': 0
+                        },
+                        {
+                            'method': 'popup',
+                            'minutes': 0
+                        }
+                    ]
+                }
+            };
+            return tvEvent
         }
-    };
-
-    // const tvEvent = {
-    //     'end': {
-    //         'date': 'datehere'
-    //     },
-    //     'start': {
-    //         'date': 'datehere'
-    //     },
-    //     'summary': title,
-    //     'description': overview,
-    //     'colorId': 1,
-    //     'reminders': {
-    //         'useDefault': false,
-    //         'overrides': [
-    //             {
-    //                 'method': 'email',
-    //                 'minutes': 0
-    //             },
-    //             {
-    //                 'method': 'popup',
-    //                 'minutes': 0
-    //             }
-    //         ]
-    //     }
-    // };
+    }
 
 
 
     const handleReminder = async () => {
         try {
+            console.log('NEW EVENT(front): ', event() )
             const addRes = await Axios.post( '/user/add-reminder', {
                 token: token,
                 calendarId: calendarId,
-                event: movieEvent
+                event: event()
             }
             );
             console.log( 'ADD RESPONSE: ', addRes );
-            fetchEvents()
             handleClose()
+            fetchEvents()
         } catch ( error ) {
             console.log( error );
         }

@@ -92,21 +92,25 @@ router.post('/delete-event', async (req, res, next) => {
 
 router.post('/add-reminder', async (req, res, next) => {
     try {
-        console.log('RECEIVED REQ FOR ADD')
         const { token } = req.body
         const { calendarId } = req.body
         const { event } = req.body 
-        
-        console.log(JSON.stringify(event))
-        const addUrl = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`
-        const addRes = await axios({
-                method: 'post',
-                url: addUrl,
-                headers: { Authorization: `Bearer ${ token }` },
-                data: JSON.stringify(event)
-                })
-        console.log(addRes.status)
-        res.sendStatus(addRes.status)
+        console.log('ADD EVENT: ', event)
+        if (!calendarId || !event ) {
+            res.sendStatus(300)
+        }
+        else {
+            console.log(JSON.stringify(event))
+            const addUrl = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`
+            const addRes = await axios({
+                    method: 'post',
+                    url: addUrl,
+                    headers: { Authorization: `Bearer ${ token }` },
+                    data: JSON.stringify(event)
+                    })
+            console.log(addRes.status)
+            res.sendStatus(addRes.status)
+        }
     } catch(error) {
         next(error)
     }
