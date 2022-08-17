@@ -3,7 +3,7 @@ import InfoModal from '../components/InfoModal'
 import fallback from '../photos/NONE.png'
 
 
-function Card( { content } ) {
+function Card( { content, token, calendarId } ) {
     const [ modalState, setModalState ] = useState( false );
 
     const handleClose = () => setModalState( false );
@@ -37,6 +37,9 @@ function Card( { content } ) {
                 < InfoModal
                     modalState={ modalState }
                     handleClose={ handleClose }
+                    token={ token }
+                    calendarId={ calendarId }
+                    poster={ imgSrc }
                     id={ content.id }
                     category={ content.category }
                     title={ content.title }
@@ -50,7 +53,7 @@ function Card( { content } ) {
                     seasonCount={ content.season_count }
                     seasonEpisodes={ content.season_episodes }
                     status={ content.status }
-                    poster={ imgSrc }
+                    
                 />
             </div>
 

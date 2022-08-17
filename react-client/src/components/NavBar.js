@@ -7,25 +7,7 @@ import { FaUser } from 'react-icons/fa';
 import { IoNotifications } from 'react-icons/io5';
 
 
-function NavBar() {
-    const [ token, setToken ] = useState('')
-    const [ calendarId, setCalendarId ]  = useState('')
-
-    const saveToken = ( tokenRes ) => { 
-        setToken( tokenRes );
-        }
-
-    const clearToken = () => {
-        setToken('')
-    }
-
-    const handleCalendars = async (calendarsList) => {
-        console.log('FILTER LIST: ', calendarsList)
-        const calendar = await calendarsList.filter(
-            ( cal ) => cal.summary === 'tv-movie');
-        setCalendarId(calendar[0].id);
-        console.log('CALENDAR: ', calendar)
-    }
+function NavBar( props ) {
 
 
     return (
@@ -60,14 +42,14 @@ function NavBar() {
 
 
         <div className='container'>
-            < Account token={ token }
-                saveToken={ saveToken } 
-                clearToken={ clearToken } 
-                handleCalendars={ handleCalendars }/>
+            < Account token={ props.token }
+                saveToken={ props.saveToken } 
+                clearToken={ props.clearToken } 
+                handleCalendars={ props.handleCalendars }/>
         </div>
 
         <div className='container'>
-            < Calendar token={ token } calendarId={ calendarId } />
+            < Calendar token={ props.token } calendarId={ props.calendarId } />
         </div>
 
         </>

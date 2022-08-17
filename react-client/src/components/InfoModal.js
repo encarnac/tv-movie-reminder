@@ -1,8 +1,10 @@
 import { React } from 'react';
+import Axios from 'axios';
 
 function InfoModal( { modalState,
     handleClose,
-    handleReminder,
+    calendarId,
+    token,
     id,
     category,
     title,
@@ -17,6 +19,51 @@ function InfoModal( { modalState,
     seasonEpisodes,
     status,
     poster } ) {
+    
+    const startDate = new Date(release)
+    const endDate = new Date(release)
+    endDate.setDate(startDate.getDate()+1)
+
+    const movieEvent = {
+        'end': {
+            'date': endDate.toISOString().split('T')[0]
+        },
+        'start': {
+            'date': startDate.toISOString().split('T')[0]
+        },
+        'summary': title,
+        'description': overview,
+        'colorId': 2,
+        'reminders': {
+            'useDefault': false,
+            'overrides': [
+                {
+                    'method': 'email',
+                    'minutes': 0
+                },
+                {
+                    'method': 'popup',
+                    'minutes': 0
+                }
+            ]
+        }
+    };
+
+
+
+    const handleReminder = async () => {
+        try {
+            const addRes = await Axios.post( '/user/add-reminder', {
+                token: token,
+                calendarId: calendarId,
+                event: movieEvent
+            }
+            );
+            console.log( 'ADD RESPONSE: ', addRes );
+        } catch ( error ) {
+            console.log( error );
+        }
+    };
 
 
     return (
@@ -134,11 +181,11 @@ function InfoModal( { modalState,
 
                                                     <div className='row'>
                                                         <div className='col'>
-                                                            <a className='btn-sm text-dark text-decoration-none'  data-bs-toggle='collapse' href='#episodeDetails' role='button'>
+                                                            <a className='btn-sm text-dark text-decoration-none' data-bs-toggle='collapse' href='#episodeDetails' role='button'>
                                                                 <span className='fw-semibold'>View Season { seasonCount } Episodes &nbsp; ▼ </span>
                                                             </a>
-                                                        
-    
+
+
                                                             <div className='collapse' id='episodeDetails'>
                                                                 <table className='table table-hover'>
                                                                     <thead>
@@ -161,7 +208,7 @@ function InfoModal( { modalState,
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </>}
+                                                </> }
                                         </div>
 
                                     </div>
@@ -172,7 +219,7 @@ function InfoModal( { modalState,
                                 <button type='button' className='btn btn-secondary rounded-edge' data-bs-dismiss='modal' onClick={ handleClose }>Close</button>
                                 <button type='button' className='btn btn-search-input' onClick={ handleReminder }>Get Reminders</button>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
