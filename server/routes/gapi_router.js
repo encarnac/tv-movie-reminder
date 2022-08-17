@@ -32,21 +32,39 @@ router.post( '/get-upcoming', async ( req, res, next ) => {
         if (!calendarId || !token) {
             res.send('')
         } else {
-            console.log('BACKEND ID ==', calendarId)
-
             const eventsUrl = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`
-            console.log('BACKEND URL ==', eventsUrl)
-            // const events = await axios.get(eventsUrl)
             const events = await axios({
                 method: 'get',
                 url: eventsUrl,
                 headers: { Authorization: `Bearer ${ token }` }
                 })
-            console.log('BACKEND EVENTS: ', events.data.items)
             res.send(events.data.items) }
     } catch ( error ) {
         next( error );
     };
 });
+
+router.post('/delete-event', async (req, res, next) => {
+    try {
+        const { calendarId } = req.body;
+        const { eventId } = req.body;
+        const { token } = req.body;
+        if (!calendarId || !eventId) {
+            res.send('')
+        } else {
+            console.log('DEL PARAMS: ', calendarId, eventId, token)
+            const delUrl = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events/${eventId}`
+            const delRes = await axios({
+                method: 'delete',
+                url: delUrl,
+                headers: { Authorization: `Bearer ${ token }` }
+                })
+            res.send(delRes.status)
+        }
+
+    } catch (error) {
+        next(error)
+    }
+})
 
 module.exports = router;

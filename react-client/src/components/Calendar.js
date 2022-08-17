@@ -7,19 +7,18 @@ function Calendar( { token, watchlist } ) {
     const [ events, setEvents ] = useState( [] );
 
     const fetchEvents = async () => {
-        console.log( 'TOKEN: ', token );
         const eventsRes = await Axios.post( '/user/get-upcoming', {
             calendarId: calendarId,
             token: token
         }
         );
-        console.log( 'EVENTS: ', eventsRes.data );
+        console.log( 'EVENTS RESPONSE: ', eventsRes.data );
         setEvents( eventsRes.data );
     };
 
     useEffect( () => {
         fetchEvents();
-    }, [ watchlist ] );
+    }, [ watchlist, events ] );
 
     return (
         <>
@@ -31,7 +30,7 @@ function Calendar( { token, watchlist } ) {
                 </div>
                 <div className='offcanvas-body opacity-75 px-4'>
                     {token && Array.isArray(events) 
-                    ? < EventsList events={events} />
+                    ? < EventsList calendarId={ calendarId } events={ events } token={ token } />
                     : <p>No upcoming releases found. <br /> You must link a Google Account.</p>
                     }
                 </div>
