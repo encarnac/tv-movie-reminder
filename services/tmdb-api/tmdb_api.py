@@ -1,5 +1,8 @@
 import requests
+import config
 from datetime import date
+
+API_KEY = config.api_key
 
 
 class tmdb_api:
@@ -29,7 +32,7 @@ class tmdb_api:
     def __init__(self, category, title):
         ''' Initializes a tmdb_api object.'''
         self.URL = 'https://api.themoviedb.org/3/'
-        self.api_key =  'c81e0496efc2e52533b8d931d70ee535'
+        self.api_key =  API_KEY
         self.category = category
         self.query = title
         self.year = date.today().year

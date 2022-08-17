@@ -16,6 +16,7 @@ venv/
 .venv
 env/
 venv/
+config.py
 
 # misc
 .DS_Store
