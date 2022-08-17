@@ -15,23 +15,18 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
-         <li>
-      <a href="#sample-use">Sample Use</a>
+    <li>
+      <a href="#demo">Demo</a>
       <ul>
+        <li><a href="#site">Site</a></li>
         <li><a href="#searching-the-movie-database">Searching the Movie Database</a></li>
         <li><a href="#using-google-calendar">Using Google Calendar</a></li>
       </ul>
     </li>
-    <li>
-    <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#feature-roadmap">Roadmap</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#acknowledgements">Acknowledgments</a></li>
   </ol>
 
 
@@ -61,68 +56,16 @@
 
 
 <!-- SITE -->
-## Sample Use
+## Demo
+
+### Site
+Here is a working live demo: [TBA](#)
 
 ### Searching The Movie Database
 ![](https://github.com/encarnac/tv-movie-reminder/raw/main/watch-soon-tv.gif)
 
 ### Using Google Calendar   
 &nbsp;&nbsp;&nbsp;&nbsp; Full implementation still in progress... stay tuned!
-
-<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
-
-
-<!-- GETTING STARTED -->
-## Getting Started
-
-This repository is meant to be ran locally as a development build on your local machine until further notice. You are expected to alter environment variables beforehand. 
-
-### Installation
-
-Express.js Backend (`/server`)
-
-1. Inside `/server`, create a .env file in the root folder 
-   
-    ```sh
-    PORT = <fourdigits>
-    ```
-
-2. Install packages in the `/server` directory, then run
-   ```sh
-   npm install
-   npm start
-   ```
-<br />
-React JS Frontend (`/react-client`)
-
-1. Install packages in the `/react-client` directory, then run
-   ```sh
-   npm install
-   npm start 
-   ```
-
-<br />
-Python ( `/services `)
-
-1. Create a virtual environment in the `/services` directory
-   ```
-   python3 -m venv venv
-   ```
-
-2. Activate your Python venv
-   ```
-   venv\Scripts\Activate.ps1
-   ```
-
-3. Install the Python packages
-    ```
-    pip3 install -r requirements.txt 
-    ```
-
-4. Run the Python microservice at `/services/tmdb-api`
-    ``` 
-    py tmdb_handler.py
-    ```
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
@@ -137,13 +80,6 @@ Python ( `/services `)
 - [ ] Display user's Google Calendar events
 - [ ] Add a show/movie to the user's calendar
 - [ ] Delete a reminder from the user's calendar
-
-<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-Google Button CSS from [google-react-login](https://github.com/anthonyjgrove/react-google-login)
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
@@ -165,6 +101,17 @@ Email: [coleneencarnado@gmail.com](coleneencarnado@gmail.com
 <!-- LICENSE -->
 ## License
 Distributed under the MIT ©  License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
+
+
+<!-- ACKNOWLEDGEMENTS -->
+## Acknowledgements
+Google Button CSS from [@google-react-login](https://github.com/anthonyjgrove/react-google-login)
+
+Loading spinner from [Contact Mentor](https://contactmentor.com/how-to-add-loading-spinner-react-js/)
+
+Animated scroll icon from [Unused CSS](https://unused-css.com/blog/animated-down-arrow/)
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
