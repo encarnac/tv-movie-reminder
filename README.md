@@ -24,7 +24,8 @@
       <ul>
         <li><a href="#site">Site</a></li>
         <li><a href="#searching-the-movie-database">Searching the Movie Database</a></li>
-        <li><a href="#using-google-calendar">Using Google Calendar</a></li>
+        <li><a href="#connecting-your-google-calendar">Connecting Your Google Calendar</a></li>
+        <li><a href="#adding-and-deleting-reminders">Adding and Deleting Reminders</a></li>
       </ul>
     </li>
     <li>      
@@ -73,9 +74,12 @@
 Here is a working live demo: [TBA](#)
 
 ### Searching The Movie Database
-![](https://github.com/encarnac/tv-movie-reminder/raw/main/watch-soon-demo.gif)
+![](https://github.com/encarnac/tv-movie-reminder/blob/main/search-demo.gif)
 
-### Using Google Calendar   
+### Connecting Your Google Calendar   
+![](https://github.com/encarnac/tv-movie-reminder/blob/main/google-login-demo.gif)
+
+### Adding and Deleting Reminders
 &nbsp;&nbsp;&nbsp;&nbsp; Full implementation still in progress... stay tuned!
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
