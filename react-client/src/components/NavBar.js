@@ -9,7 +9,7 @@ import { IoNotifications } from 'react-icons/io5';
 
 function NavBar() {
     const [ token, setToken ] = useState('')
-    const [ watchlist, setWatchlist ]  = useState('')
+    const [ calendarId, setCalendarId ]  = useState('')
 
     const saveToken = ( tokenRes ) => { 
         setToken( tokenRes );
@@ -19,13 +19,13 @@ function NavBar() {
         setToken('')
     }
 
-    const handleWatchlist = async (calendarsList) => {
+    const handleCalendars = async (calendarsList) => {
         console.log('FILTER LIST: ', calendarsList)
         const calendar = await calendarsList.filter(
             ( cal ) => cal.summary === 'tv-movie');
-        setWatchlist(calendar[0]);
+        setCalendarId(calendar[0].id);
         console.log('CALENDAR: ', calendar)
-        }
+    }
 
 
     return (
@@ -63,11 +63,11 @@ function NavBar() {
             < Account token={ token }
                 saveToken={ saveToken } 
                 clearToken={ clearToken } 
-                fetchWatchlist={ handleWatchlist }/>
+                handleCalendars={ handleCalendars }/>
         </div>
 
         <div className='container'>
-            < Calendar token={ token } watchlist={ watchlist } />
+            < Calendar token={ token } calendarId={ calendarId } />
         </div>
 
         </>

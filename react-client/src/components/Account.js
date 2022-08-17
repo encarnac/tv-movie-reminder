@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { useGoogleLogin } from '@react-oauth/google';
 import GoogleIcon from '../photos/GoogleIcon';
 
-function Account( { token, saveToken, clearToken, fetchWatchlist } ) {
+function Account( { token, saveToken, clearToken, handleCalendars } ) {
 
     const loginSuccess = async ( codeResponse ) => {
         try {
@@ -16,7 +16,7 @@ function Account( { token, saveToken, clearToken, fetchWatchlist } ) {
                 url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
                 headers: { Authorization: `Bearer ${ data }` }
                 })
-            fetchWatchlist(calendarsRes.data.items)
+            handleCalendars(calendarsRes.data.items)
         } catch (error) {
             console.error(error)
         }
@@ -29,7 +29,7 @@ function Account( { token, saveToken, clearToken, fetchWatchlist } ) {
         onError: errorResponse => console.log( errorResponse )
     } );
     
-    
+
     return (
         <div className='offcanvas offcanvas-end' id='offcanvasAccount'>
 
@@ -45,11 +45,10 @@ function Account( { token, saveToken, clearToken, fetchWatchlist } ) {
                 <p className='mx-2'>
                     Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
                 <div className='d-flex justify-content-center'>
-                    { token ?
-                        <button id='googleButton' onClick={ clearToken }>
-                            Disconnect Your Google Account</button>
-                        :
-                        <button id='googleButton' onClick={ () => handleLogin() }>
+                    { token 
+                        ? <button id='googleButton' onClick={ clearToken }>
+                            <GoogleIcon/> Disconnect Your Google Account</button>
+                        : <button id='googleButton' onClick={ () => handleLogin() }>
                             <GoogleIcon/> Sign In With Google </button>
                     }
                 </div>

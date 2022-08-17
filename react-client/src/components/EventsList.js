@@ -30,8 +30,8 @@ function EventsList( { calendarId, events, token, fetchEvents } ) {
                 </tr>
             </thead>
             <tbody>
-                { events.map( ( event ) => (
-                    <tr>
+                { events.map( ( event, i ) => (
+                    <tr key={i}>
                         <td>{ event.start.date}</td>
                         <td>{ event.summary }</td>
                         <td><BiLinkExternal 

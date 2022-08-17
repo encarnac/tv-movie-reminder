@@ -2,8 +2,7 @@ import { React, useEffect, useState } from 'react';
 import Axios from 'axios';
 import EventsList from './EventsList';
 
-function Calendar( { token, watchlist } ) {
-    const calendarId = watchlist.id;
+function Calendar( { token, calendarId } ) {
     const [ events, setEvents ] = useState( [] );
 
     const fetchEvents = async () => {
@@ -22,7 +21,7 @@ function Calendar( { token, watchlist } ) {
 
     useEffect( () => {
         fetchEvents();
-    }, [ watchlist ] );
+    }, [ calendarId ] );
 
 
     return (
@@ -35,8 +34,11 @@ function Calendar( { token, watchlist } ) {
                 </div>
                 <div className='offcanvas-body opacity-75 px-4'>
                     {token && Array.isArray(events) 
-                    ? < EventsList calendarId={ calendarId } events={ events } token={ token } fetchEvents={fetchEvents} />
-                    : <p>No upcoming releases found. <br /> You must link a Google Account.</p>
+                        ? < EventsList calendarId={ calendarId } 
+                            events={ events } 
+                            token={ token } 
+                            fetchEvents={ fetchEvents } />
+                        : <p>No upcoming releases found. <br /> You must link a Google Account.</p>
                     }
                 </div>
             </div>
