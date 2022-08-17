@@ -82,26 +82,22 @@ function InfoModal( { modalState,
         }
     }
 
-
-
-    const handleReminder = async () => {
-        try {
-            console.log('NEW EVENT(front): ', event() )
-            const addRes = await Axios.post( '/user/add-reminder', {
-                token: token,
-                calendarId: calendarId,
-                event: event()
-            }
-            );
-            console.log( 'ADD RESPONSE: ', addRes );
-            handleClose()
+    const handleReminder = () => {
+        Axios.post( '/user/add-reminder', {
+            token: token,
+            calendarId: calendarId,
+            event: event()
+        }) 
+        .then(response => {
+            console.log(response.data);
             fetchEvents()
-        } catch ( error ) {
+            handleClose()
+        })
+        .catch( error => {
             console.log( error );
-        }
-    };
-
-
+        });
+    }
+    
     return (
         <div className='h-50 d-inline-block'>
             { modalState && (
