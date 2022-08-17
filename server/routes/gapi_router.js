@@ -4,8 +4,8 @@ const { google } = require( 'googleapis' );
 const axios = require('axios');
 const calendar = google.calendar( 'v3' );
 
-const CLIENT_ID = '439274580520-psn6jfl8i303hv6f86nuul7kk9c3ddhc.apps.googleusercontent.com';
-const CLIENT_SECRET = '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';
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
 
 const oauth2Client = new google.auth.OAuth2(
     CLIENT_ID,
