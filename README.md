@@ -141,10 +141,17 @@ It integrates OAuth2.0 for testing and development, but has not been verified by
 - [x] Toggle modal with selected card's details
 - [x] Authenticate the Google Oauth2 Client
 - [x] Display user's Google Calendar events
-- [ ] Create 'tv-movie' calendar if none exists
+- [x] Delete a reminder from the user's calendar
 - [x] Add a movie to the user's calendar
 - [ ] Add a show to the user's calendar
-- [x] Delete a reminder from the user's calendar
+- [ ] Create 'tv-movie' calendar if none exists
+- [ ] Implement proper React Router 6
+- [ ] Sort list of events by most recent
+- [ ] Autodelete past events from showing on list on render
+- [ ] Create a database to store calendar offline
+- [ ] Add additional animations for cohesiveness
+- [ ] Deploy a live demo
+
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
