@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
-const tmdbInput = '../services/tmdb-api/tmdb_input.txt';
-const tmdbOutput = '../services/tmdb-api/tmdb_output.json';
+const tmdbInput = '../services/tmdb_input.txt';
+const tmdbOutput = '../services/tmdb_output.json';
 
 // Handle request for the communication pipeline with the TMDB scraper
 router.get('/', tmdbReq, tmdbRes);
