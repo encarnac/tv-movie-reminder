@@ -8,8 +8,8 @@ const addMovieEvent = async (req, res, next) => {
         const { calendarId } = req.body
         const { content } = req.body 
         
-        console.log('CATEGORY = ', content.category)
         if (content.category === 'movie') {
+            console.log('addMovieEvent')
             const event = JSON.stringify(new Event(content))
             const addRes = await axios({
                 method: 'POST',

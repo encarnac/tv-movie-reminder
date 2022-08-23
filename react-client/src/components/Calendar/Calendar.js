@@ -1,5 +1,4 @@
-import { React, useEffect, useState } from 'react';
-import Axios from 'axios';
+import { React } from 'react';
 import EventsList from './EventsList';
 
 function Calendar( { token, calendarId, events, fetchEvents } ) {

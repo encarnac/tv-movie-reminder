@@ -1,7 +1,7 @@
 import React from 'react';
 import Axios from 'axios';
 import { useGoogleLogin } from '@react-oauth/google';
-import GoogleIcon from '../photos/GoogleIcon';
+import GoogleLogo from '../assets/GoogleLogo';
 
 function Account( { token, saveToken, clearToken, handleCalendars } ) {
 
@@ -47,9 +47,9 @@ function Account( { token, saveToken, clearToken, handleCalendars } ) {
                 <div className='d-flex justify-content-center'>
                     { token 
                         ? <button id='googleButton' onClick={ clearToken }>
-                            <GoogleIcon/> Disconnect Your Google Account</button>
+                            <GoogleLogo/> Disconnect Your Google Account</button>
                         : <button id='googleButton' onClick={ () => handleLogin() }>
-                            <GoogleIcon/> Sign In With Google </button>
+                            <GoogleLogo/> Sign In With Google </button>
                     }
                 </div>
 

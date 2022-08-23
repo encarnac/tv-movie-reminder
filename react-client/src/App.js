@@ -1,13 +1,11 @@
 import './App.css';
 import { React, useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Axios from 'axios';
-
-import NavBar from './components/NavBar';
-import Footer from './components/Footer';
-import Home from './pages/Home';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-
+import Axios from 'axios';
+import NavBar from './layout/NavBar';
+import Footer from './layout/Footer';
+import Dashboard from './views/Dashboard';
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 
@@ -61,7 +59,7 @@ function App() {
 
                 <BrowserRouter>
                     <Routes>
-                        <Route path='/' element={ < Home {...{ token, calendarId, fetchEvents }} /> } />
+                        <Route path='/' element={ < Dashboard {...{ token, calendarId, fetchEvents }} /> } />
                     </Routes>
                 </BrowserRouter>
 

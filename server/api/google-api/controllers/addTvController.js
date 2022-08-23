@@ -1,7 +1,10 @@
 const axios = require('axios');
+const Event = require('../models/Event');
+
 
 const addTvEvent = async (req, res, next) => {
     try {
+        console.log('addTvEvent')
         const { token } = req.body
         const { calendarId } = req.body
         const { content } = req.body 

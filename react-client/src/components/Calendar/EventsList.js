@@ -1,6 +1,6 @@
 import { React } from 'react';
 import Axios from 'axios';
-import { BiLinkExternal, BiTrash } from "react-icons/bi";
+import { BiLinkExternal, BiTrash } from 'react-icons/bi';
 
 function EventsList( { calendarId, events, token, fetchEvents } ) {
 
