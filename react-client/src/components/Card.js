@@ -47,6 +47,7 @@ function Card( { content, token, calendarId, fetchEvents } ) {
                     calendarId={ calendarId }
                     fetchEvents={ fetchEvents }
                     poster={ imgSrc }
+                    content={ content }
                     id={ content.id }
                     category={ content.category }
                     title={ content.title }
