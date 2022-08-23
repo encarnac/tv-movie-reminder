@@ -80,7 +80,7 @@ Here is a working live demo: [TBA](#)
 ![](https://github.com/encarnac/tv-movie-reminder/blob/main/google-login-demo.gif)
 
 ### Adding and Deleting Reminders
-&nbsp;&nbsp;&nbsp;&nbsp; Full implementation still in progress... stay tuned!
+![](https://github.com/encarnac/tv-movie-reminder/blob/main/add-delete-demo.gif)
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
