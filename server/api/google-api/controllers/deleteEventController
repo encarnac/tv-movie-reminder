@@ -1,0 +1,26 @@
+const axios = require('axios');
+
+const deleteEvent = async (req, res, next) => {
+    try {
+        const { token } = req.body;
+        const { calendarId } = req.body;
+        const { eventId } = req.body;
+        if (!calendarId || !eventId) {
+            res.send('')
+        } else {
+            console.log('DEL PARAMS: ', calendarId, eventId, token)
+            const delUrl = `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events/${eventId}`
+            const delRes = await axios({
+                method: 'delete',
+                url: delUrl,
+                headers: { Authorization: `Bearer ${ token }` }
+                })
+            res.sendStatus(delRes.status)
+        }
+        
+    } catch (error) {
+        next(error)
+    }
+}
+
+module.exports = deleteEvent

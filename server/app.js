@@ -6,8 +6,8 @@ const logger = require('morgan');
 const cors = require("cors");
 
 // Paths to middleware controllers
-const tmdbRouter = require('./routes/tmdb_router');
-const googleRouter = require('./routes/google_router')
+const tmdbRouter = require('./api/tmdb-api/tmdb_router');
+const googleRouter = require('./api/google-api/google_router')
 
 // Express configuration
 const app = express();
@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Mounts middleware at given paths
 app.use('/search', tmdbRouter);
-app.use('/user', googleRouter);
+app.use('/calendar', googleRouter);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {

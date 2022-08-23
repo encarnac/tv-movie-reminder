@@ -6,7 +6,7 @@ function EventsList( { calendarId, events, token, fetchEvents } ) {
 
     const deleteEvent = async(eventId) => {
         try {
-           await Axios.post( '/user/delete-event', {
+           await Axios.post( '/calendar/delete-event', {
             calendarId: calendarId,
             eventId: eventId,
             token: token

@@ -8,7 +8,7 @@ function Account( { token, saveToken, clearToken, handleCalendars } ) {
     const loginSuccess = async ( codeResponse ) => {
         try {
             const { code } = codeResponse;
-            const tokenRes = await Axios.post( '/user/login', { code } );
+            const tokenRes = await Axios.post( '/calendar/login', { code } );
             const { data } = tokenRes 
             saveToken( data ) 
             const calendarsRes = await Axios({

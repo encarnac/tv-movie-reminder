@@ -36,7 +36,7 @@ function App() {
 
     const fetchEvents = async () => {
         try {
-            const eventsRes = await Axios.post( '/user/get-upcoming', {
+            const eventsRes = await Axios.post( '/calendar/get-events', {
                 token: token,
                 calendarId: calendarId
                 }
