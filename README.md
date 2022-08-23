@@ -136,15 +136,30 @@ It integrates OAuth2.0 for testing and development, but has not been verified by
 
 <!-- ROADMAP -->
 ## Feature Roadmap
+### v1.0.0
 - [x] Configure server to call TMDB for titles
 - [x] Display list of results as cards
 - [x] Toggle modal with selected card's details
 - [x] Authenticate the Google Oauth2 Client
 - [x] Display user's Google Calendar events
-- [ ] Create 'tv-movie' calendar if none exists
+- [x] Delete a reminder from the user's calendar
 - [x] Add a movie to the user's calendar
 - [ ] Add a show to the user's calendar
-- [x] Delete a reminder from the user's calendar
+- [ ] Create 'tv-movie' calendar if none exists
+### v1.1.0
+- [ ] Implement useReducer 
+- [ ] Implement useContext
+- [ ] Optimize rendering and remove unnecessary useEffect
+- [ ] Implement proper React Router 6
+- [ ] Handle refresh tokens
+### v2.0.0
+- [ ] Sort list of events by most recent
+- [ ] Autodelete past events from showing on list on render
+- [ ] Add additional animations for cohesiveness
+### Other
+- [ ] Create a database to store calendar offline
+- [ ] Deploy a live demo
+
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
