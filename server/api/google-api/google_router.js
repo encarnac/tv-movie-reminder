@@ -1,8 +1,10 @@
 const express = require( 'express' );
 const router = express.Router();
 
+const checkAuthMiddleware = require('./middleware/checkAuthMiddleware')
+
 const getLoginToken = require('./controllers/loginController');
-router.post( '/login', getLoginToken );
+router.post( '/login', checkAuthMiddleware, getLoginToken );
 
 const getEvents = require('./controllers/getEventsController');
 router.post( '/get-events', getEvents );
