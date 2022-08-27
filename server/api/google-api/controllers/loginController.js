@@ -10,11 +10,15 @@ const oauth2Client = new google.auth.OAuth2(
 
 const getLoginToken = async (req, res, next) => {
     try {
+        if (Object.keys(oauth2Client.credentials).length === 0) {
+            console.log('EMPTY CREDS')
+        }
         const { code } = req.body;
         const { tokens } = await oauth2Client.getToken( code );
+        oauth2Client.setCredentials(tokens);
         res.cookie( 'token', tokens.refresh_token, { httpOnly: true, secure: true, sameSite: true } );
         res.send( tokens.access_token );
-        
+
     } catch ( error ) {
         next( error );
     };

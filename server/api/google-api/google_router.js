@@ -1,10 +1,8 @@
 const express = require( 'express' );
 const router = express.Router();
 
-
 const getLoginToken = require('./controllers/loginController');
 router.post( '/login', getLoginToken );
-
 
 const getEvents = require('./controllers/getEventsController');
 router.post( '/get-events', getEvents );

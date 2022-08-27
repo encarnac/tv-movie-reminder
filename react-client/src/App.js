@@ -26,8 +26,12 @@ function App() {
         console.log('FILTER LIST: ', calendarsList)
         const calendar = await calendarsList.filter(
             ( cal ) => cal.summary === 'tv-movie');
-        setCalendarId(calendar[0].id);
-        console.log('CALENDAR: ', calendar)
+        if (!calendar?.length) {
+            console.log('CALENDAR NOT FOUND')
+        } else {
+            setCalendarId(calendar[0].id);
+            console.log('CALENDAR: ', calendar)
+        }
     }
 
     const [ events, setEvents ] = useState( [] );
