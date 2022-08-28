@@ -1,15 +1,25 @@
-const axios = require('axios');
 const Event = require('../models/Event');
+const { google } = require('googleapis');
+const calendar = google.calendar('v3');
 
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
 
-const addTvEvent = async (req, res, next) => {
+const oauth2Client = new google.auth.OAuth2(
+    CLIENT_ID,
+    CLIENT_SECRET,
+    'http://localhost:3000'
+);
+
+const insertTvEvent = async (req, res, next) => {
     try {
         console.log('addTvEvent')
-        const { token } = req.body
         const { calendarId } = req.body
         const { content } = req.body 
-        const { title } = content
+        const { creds } = req;
+        oauth2Client.setCredentials(creds)
         
+        const { title } = content
         let promises = []
         for ( const episode of content.season_episodes) {
             if (new Date(episode.air_date) < new Date()) continue
@@ -17,13 +27,12 @@ const addTvEvent = async (req, res, next) => {
                 content.release = episode.air_date;
                 content.title = `${ title } (S${ content.season_count }x${ episode.episode_number })`;
                 const event = JSON.stringify(new Event(content))
-                const addRes = await axios({
-                    method: 'POST',
-                    url: `https://www.googleapis.com/calendar/v3/calendars/${calendarId}/events`,
-                    headers: { Authorization: `Bearer ${ token }` },
-                    data: event
+                const response = await calendar.events.insert({
+                    auth: oauth2Client,
+                    calendarId: calendarId,
+                    requestBody: event
                 })
-                promises.push(addRes.data)
+                promises.push(response.data)
             }
         }
         const data = await Promise.all(promises);
@@ -33,4 +42,4 @@ const addTvEvent = async (req, res, next) => {
     }
 }
 
-module.exports = addTvEvent
+module.exports = insertTvEvent

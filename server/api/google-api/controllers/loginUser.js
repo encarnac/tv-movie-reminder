@@ -10,7 +10,7 @@ const oauth2Client = new google.auth.OAuth2(
     'http://localhost:3000'
 );
 
-const getLoginToken = async (req, res, next) => {
+const loginUser = async (req, res, next) => {
     try {
         session = req.session;
         if (!session.userId) {
@@ -32,7 +32,7 @@ const getLoginToken = async (req, res, next) => {
                 credentials: tokens
             }
             const user = await User.create(newUser)
-            console.log('----- CREATED NEW USER: ', user.displayName)
+            console.log('----- CREATED NEW USER: ', user.email)
             session.userId = user.googleId;
             req.creds = user.credentials
             next()
@@ -43,4 +43,4 @@ const getLoginToken = async (req, res, next) => {
     };
 }
 
-module.exports = getLoginToken
+module.exports = loginUser

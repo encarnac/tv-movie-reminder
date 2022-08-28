@@ -1,24 +1,21 @@
 const express = require( 'express' );
 const router = express.Router();
 
-const checkAuthMiddleware = require('./middleware/checkAuthMiddleware')
-const getLoginToken = require('./controllers/loginController');
-const getCalendarId = require('./controllers/getCalendarIdController')
+const verifySession = require('./middleware/verifySession');
+const loginUser = require('./controllers/loginUser');
+const getCalendarId = require('./controllers/getCalendarId.js');
+const insertCalendar = require('./controllers/insertCalendar');
+router.post( '/login', verifySession, getCalendarId, insertCalendar);
+router.post( '/login', loginUser, getCalendarId, insertCalendar);
 
+const getEvents = require('./controllers/getEvents.js');
+router.post( '/get-events', verifySession, getEvents );
 
-router.post( '/login', checkAuthMiddleware, getCalendarId );
+const deleteEvent = require('./controllers/deleteEvent.js');
+router.post('/delete-event', verifySession, deleteEvent )
 
-router.post( '/login', getLoginToken, getCalendarId );
-
-const getEvents = require('./controllers/getEventsController');
-router.post( '/get-events', checkAuthMiddleware, getEvents );
-
-const deleteEvent = require('./controllers/deleteEventController');
-router.post('/delete-event', checkAuthMiddleware, deleteEvent )
-
-
-const addMovieEvent = require('./controllers/addMovieController');
-const addTvEvent = require('./controllers/addTvController')
-router.post('/add-event', addMovieEvent, addTvEvent);
+const insertMovieEvent = require('./controllers/insertMovieEvent');
+const insertTvEvent = require('./controllers/insertTvEvent')
+router.post('/add-event', verifySession, insertMovieEvent, insertTvEvent);
 
 module.exports = router;

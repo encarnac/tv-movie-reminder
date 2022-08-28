@@ -3,7 +3,7 @@ import Modal from './Modal';
 import FallbackImage from '../../assets/FallbackImage.png';
 
 
-function Card( { content, token, calendarId, fetchEvents } ) {
+function Card( { content, calendarId, fetchEvents } ) {
     const [ modalState, setModalState ] = useState( false );
 
     // const handleClose = () => setModalState( false );
@@ -43,26 +43,10 @@ function Card( { content, token, calendarId, fetchEvents } ) {
                 < Modal
                     modalState={ modalState }
                     handleClose={ handleClose }
-                    token={ token }
                     calendarId={ calendarId }
                     fetchEvents={ fetchEvents }
                     poster={ imgSrc }
-                    content={ content }
-                    id={ content.id }
-                    category={ content.category }
-                    title={ content.title }
-                    overview={ content.overview }
-                    genres={ content.genres }
-                    popularity={ content.popularity }
-                    release={ content.release }
-                    firstRelease={ content.first_release }
-                    latestRelease={ content.latest_release }
-                    episodeCount={ content.episode_count }
-                    seasonCount={ content.season_count }
-                    seasonEpisodes={ content.season_episodes }
-                    status={ content.status }
-                    
-                />
+                    content={ content }  />
             </div>
 
         </>

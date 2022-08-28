@@ -1,6 +1,6 @@
 const User = require('../models/User')
 
-const checkAuthMiddleware = async (req, res, next) => {
+const verifySession = async (req, res, next) => {
     try {
         session = req.session;
         if (session.userId) {
@@ -16,4 +16,4 @@ const checkAuthMiddleware = async (req, res, next) => {
     };
 }
 
-module.exports = checkAuthMiddleware
+module.exports = verifySession

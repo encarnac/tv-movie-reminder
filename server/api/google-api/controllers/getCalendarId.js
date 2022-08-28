@@ -18,9 +18,9 @@ const getCalendarId = async (req, res, next) => {
             auth: oauth2Client
         })
         const calendarsList = response.data.items
-
         const calendarId = await calendarsList.filter(
             ( cal ) => cal.summary === 'tv-movie');
+            
         if (!calendarId?.length) {
             next()
         } else {

@@ -4,14 +4,12 @@ import Axios from 'axios';
 function Modal( { modalState,
                     handleClose,
                     calendarId,
-                    token,
                     fetchEvents,
                     poster,
                     content } ) {
 
     const handleReminder = () => {
         Axios.post( '/calendar/add-event', {
-            token: token,
             calendarId: calendarId,
             content: content
         }) 

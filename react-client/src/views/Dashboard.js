@@ -73,7 +73,6 @@ function Dashboard( props ) {
                             </svg>
                             <DisplayResults 
                                 tmdbData={ tmdbData } 
-                                token={ props.token } 
                                 calendarId={ props.calendarId }
                                 fetchEvents={ props.fetchEvents }
                                 />
