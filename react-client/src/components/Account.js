@@ -3,9 +3,10 @@ import Axios from 'axios';
 import { useGoogleLogin } from '@react-oauth/google';
 import GoogleLogo from '../assets/GoogleLogo';
 
-function Account( { calendarId, 
+function Account( { user,
+                    handleUserData,
+                    calendarId, 
                     handleCalendarId, 
-                    removeCalendarId,
                     handleCalendarCookie, 
                     removeCalendarCookie } ) {
 
@@ -30,8 +31,9 @@ function Account( { calendarId,
 
     const handleLogout = async () => {
         try {
-            removeCalendarId()
+            handleCalendarId(null)
             removeCalendarCookie()
+            handleUserData({})
             const logoutRes = await Axios.post( '/logout' )
         } catch( error ) {
             console.log( error )
@@ -43,22 +45,34 @@ function Account( { calendarId,
         <div className='offcanvas offcanvas-end' id='offcanvasAccount'>
 
             <div className='offcanvas-header'>
-                <h5 className='offcanvas-title' id='offcanvasAccountLabel'>
-                    Account Settings</h5>
+                { calendarId 
+                ? <h5 className='offcanvas-title' id='offcanvasAccountLabel'>
+                   Signed in as </h5>
+                : <h5 className='offcanvas-title' id='offcanvasAccountLabel'>
+                    No Account Found </h5>
+                }
                 <button type='button' className='btn-close' data-bs-dismiss='offcanvas'></button>
-
-
             </div>
-
-            <div className='offcanvas-body '>
-                <p className='mx-2'>
-                    Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
+            <div className='offcanvas-body '>         
                 <div className='d-flex justify-content-center'>
                     { calendarId
-                        ? <button id='googleButton' onClick={ () => handleLogout() }>
-                            <GoogleLogo/> Disconnect Your Google Account</button>
-                        : <button id='googleButton' onClick={ () => handleLogin() }>
-                            <GoogleLogo/> Sign In With Google </button>
+                        ?   <div>
+                                <img src={user?.image} className='round-edge img-thumbnail' alt='google-prof-pic'/>
+                                <h4>{user?.displayName}</h4>
+                                <p class="fs-5">{user?.email}</p>
+                                
+                                <div className='m-4'>
+                                    <button id='googleButton' onClick={ () => handleLogout() }>
+                                        <GoogleLogo/> Disconnect Your Google Account
+                                    </button>
+                                </div>
+                            </div>
+                        :   <div>
+                                <p className='mx-2'>
+                                Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
+                                <button id='googleButton' onClick={ () => handleLogin() }>
+                                    <GoogleLogo/> Sign In With Google </button>
+                            </div>
                     }
                 </div>
 

@@ -20,6 +20,11 @@ const verifySession = async (req, res, next) => {
             oauth2Client.setCredentials(user.credentials)
             req.oauth2Client = oauth2Client;
             req.calendar = calendar;
+            req.authUser = { 
+                displayName: user.displayName,
+                email: user.email,
+                image: user.image
+            }
             next()
         } else {
             next('route')

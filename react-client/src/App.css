@@ -86,6 +86,11 @@
     color: rgb(99, 127, 178);
 }
 
+.round-edge {
+  border-radius: 100px;
+  box-shadow:  0 .5rem 1rem rgba(0,0,0, .03);
+}
+
 /* Loading spinner */
 @keyframes spinner {
   0% {

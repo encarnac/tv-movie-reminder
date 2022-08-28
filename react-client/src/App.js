@@ -11,7 +11,12 @@ import Dashboard from './views/Dashboard';
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 
 function App() {
-    const [cookies, setCookie, removeCookie] = useCookies();
+    const [ user, setUser ] = useState('')
+    const handleUserData = ( data ) => {
+        setUser( data )
+    }
+
+    const [ cookies, setCookie, removeCookie ] = useCookies();
     const handleCalendarCookie = (calCookie) => {
         setCookie('calendarId', calCookie, { 
             path: '/',
@@ -26,21 +31,20 @@ function App() {
     const handleCalendarId = (calId) => {
         setCalendarId(calId)
     };
-    const removeCalendarId = () => {
-        setCalendarId(null)
-    };
 
     const [ events, setEvents ] = useState( [] );
     const fetchEvents = async () => {
         try {
             console.log('CALENDERID = ', calendarId)
-            const eventsRes = await Axios.get('/get-events', {
+            const eventsRes = await Axios.get('/get-calendar', {
                 params: {
                     calendarId: calendarId
                 }
             })
             console.log( 'EVENTS RESPONSE: ', eventsRes.data );
-            setEvents( eventsRes.data );
+            setEvents( eventsRes.data.events );
+            setUser(eventsRes.data.authUser);
+            console.log('USER = ', eventsRes.data.authUser)
         } catch(error) {
             console.log(error)
         }
@@ -54,7 +58,15 @@ function App() {
         <> <GoogleOAuthProvider clientId={CLIENT_ID}>
             <div className='App'>
                 <div class='row fixed-top'>
-                    < NavBar {...{ calendarId, handleCalendarId, removeCalendarId, handleCalendarCookie, removeCalendarCookie, events, fetchEvents }} />
+                    < NavBar {
+                        ...{ user, 
+                            handleUserData, 
+                            calendarId, 
+                            handleCalendarId, 
+                            handleCalendarCookie, 
+                            removeCalendarCookie, 
+                            events, 
+                            fetchEvents }} />
                 </div>
 
                 <BrowserRouter>
