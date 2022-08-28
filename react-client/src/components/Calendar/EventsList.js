@@ -9,7 +9,6 @@ function EventsList( { calendarId, events, token, fetchEvents } ) {
            await Axios.post( '/calendar/delete-event', {
             calendarId: calendarId,
             eventId: eventId,
-            token: token
         }); 
         } catch (error) {
             console.error(error)

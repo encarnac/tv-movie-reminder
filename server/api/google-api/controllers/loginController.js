@@ -13,8 +13,7 @@ const oauth2Client = new google.auth.OAuth2(
 const getLoginToken = async (req, res, next) => {
     try {
         session = req.session;
-        // if (!session.userId) {
-            console.log('NO USER ID')
+        if (!session.userId) {
             const { code } = req.body;
             const { tokens } = await oauth2Client.getToken( code );
             oauth2Client.setCredentials(tokens);
@@ -30,15 +29,15 @@ const getLoginToken = async (req, res, next) => {
                 displayName: data.name,
                 image: data.picture,
                 email: data.email,
-                accessToken: tokens.access_token,
-                refreshToken: tokens.refresh_token,
-                expiryDate: tokens.expiry_date
+                credentials: tokens
             }
-            session.userId = data.id;
             const user = await User.create(newUser)
-            console.log(user)
-            res.send( tokens.access_token ); 
-        // } 
+            console.log('----- CREATED NEW USER: ', user.displayName)
+            session.userId = user.googleId;
+            req.creds = user.credentials
+            next()
+        } else next('route');
+
     } catch ( error ) {
         next( error );
     };

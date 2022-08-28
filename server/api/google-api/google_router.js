@@ -2,16 +2,19 @@ const express = require( 'express' );
 const router = express.Router();
 
 const checkAuthMiddleware = require('./middleware/checkAuthMiddleware')
-
 const getLoginToken = require('./controllers/loginController');
-router.post( '/login', checkAuthMiddleware, getLoginToken );
+const getCalendarId = require('./controllers/getCalendarIdController')
+
+
+router.post( '/login', checkAuthMiddleware, getCalendarId );
+
+router.post( '/login', getLoginToken, getCalendarId );
 
 const getEvents = require('./controllers/getEventsController');
-router.post( '/get-events', getEvents );
-
+router.post( '/get-events', checkAuthMiddleware, getEvents );
 
 const deleteEvent = require('./controllers/deleteEventController');
-router.post('/delete-event', deleteEvent )
+router.post('/delete-event', checkAuthMiddleware, deleteEvent )
 
 
 const addMovieEvent = require('./controllers/addMovieController');

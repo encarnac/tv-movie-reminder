@@ -42,14 +42,13 @@ function NavBar( props ) {
 
 
         <div className='container'>
-            < Account token={ props.token }
-                saveToken={ props.saveToken } 
-                clearToken={ props.clearToken } 
-                handleCalendars={ props.handleCalendars }/>
+            < Account 
+                calendarId={ props.calendarId }
+                handleCalendarId = { props.handleCalendarId } />
         </div>
 
         <div className='container'>
-            < Calendar token={ props.token } 
+            < Calendar 
                 calendarId={ props.calendarId } 
                 events={props.events} 
                 fetchEvents={props.fetchEvents} />

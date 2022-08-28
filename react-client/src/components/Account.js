@@ -3,20 +3,15 @@ import Axios from 'axios';
 import { useGoogleLogin } from '@react-oauth/google';
 import GoogleLogo from '../assets/GoogleLogo';
 
-function Account( { token, saveToken, clearToken, handleCalendars } ) {
+function Account( { calendarId, handleCalendarId } ) {
 
     const loginSuccess = async ( codeResponse ) => {
         try {
             const { code } = codeResponse;
-            const tokenRes = await Axios.post( '/calendar/login', { code } );
-            const { data } = tokenRes 
-            saveToken( data ) 
-            const calendarsRes = await Axios({
-                method: 'get',
-                url: 'https://www.googleapis.com/calendar/v3/users/me/calendarList',
-                headers: { Authorization: `Bearer ${ data }` }
-                })
-            handleCalendars(calendarsRes.data.items)
+            const loginRes = await Axios.post( '/calendar/login', { code } );
+            const { data } = loginRes 
+            console.log('---- FOUND CALENDAR ID = ', data )
+            handleCalendarId( data )
         } catch (error) {
             console.error(error)
         }
@@ -45,8 +40,8 @@ function Account( { token, saveToken, clearToken, handleCalendars } ) {
                 <p className='mx-2'>
                     Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
                 <div className='d-flex justify-content-center'>
-                    { token 
-                        ? <button id='googleButton' onClick={ clearToken }>
+                    { calendarId 
+                        ? <button id='googleButton' >
                             <GoogleLogo/> Disconnect Your Google Account</button>
                         : <button id='googleButton' onClick={ () => handleLogin() }>
                             <GoogleLogo/> Sign In With Google </button>

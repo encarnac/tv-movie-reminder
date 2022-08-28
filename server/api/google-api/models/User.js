@@ -16,18 +16,22 @@ const UserSchema = new mongoose.Schema( {
         type: String,
         required: true,
     },
-    accessToken: {
-        type: String,
-        required: true,
-    },
-    refreshToken: {
-        type: String,
-        required: false,
-    },
-    expiryDate: {
-        type: String,
+    credentials: {
+        type: Object,
         required: true
     },
+    // accessToken: {
+    //     type: String,
+    //     required: true,
+    // },
+    // refreshToken: {
+    //     type: String,
+    //     required: false,
+    // },
+    // expiryDate: {
+    //     type: String,
+    //     required: true
+    // },
     createdAt: {
         type: Date,
         default: Date.now,

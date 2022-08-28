@@ -11,35 +11,18 @@ const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 
 function App() {
 
-    const [ token, setToken ] = useState('')
     const [ calendarId, setCalendarId ]  = useState('')
 
-    const saveToken = ( tokenRes ) => { 
-        setToken( tokenRes );
-        }
-
-    const clearToken = () => {
-        setToken('')
-    }
-
-    const handleCalendars = async (calendarsList) => {
-        console.log('FILTER LIST: ', calendarsList)
-        const calendar = await calendarsList.filter(
-            ( cal ) => cal.summary === 'tv-movie');
-        if (!calendar?.length) {
-            console.log('CALENDAR NOT FOUND')
-        } else {
-            setCalendarId(calendar[0].id);
-            console.log('CALENDAR: ', calendar)
-        }
+    const handleCalendarId = (calId) => {
+        setCalendarId(calId)
     }
 
     const [ events, setEvents ] = useState( [] );
 
     const fetchEvents = async () => {
         try {
+            console.log('CALENDAR ID WAS UPDATED', calendarId)
             const eventsRes = await Axios.post( '/calendar/get-events', {
-                token: token,
                 calendarId: calendarId
                 }
             );
@@ -58,12 +41,12 @@ function App() {
         <> <GoogleOAuthProvider clientId={CLIENT_ID}>
             <div className='App'>
                 <div class='row fixed-top'>
-                    < NavBar {...{ token, saveToken, clearToken, calendarId, handleCalendars, events, fetchEvents }} />
+                    < NavBar {...{ calendarId, handleCalendarId, events, fetchEvents }} />
                 </div>
 
                 <BrowserRouter>
                     <Routes>
-                        <Route path='/' element={ < Dashboard {...{ token, calendarId, fetchEvents }} /> } />
+                        <Route path='/' element={ < Dashboard {...{ calendarId, fetchEvents }} /> } />
                     </Routes>
                 </BrowserRouter>
 
