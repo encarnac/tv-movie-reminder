@@ -11,8 +11,20 @@ const getCalendar = async (req, res, next) => {
                 auth: oauth2Client,
                 calendarId: calendarId
             })
+            let events = []
+            response.data.items.map( ( item ) =>  {
+                const event = {
+                    id: item.id,
+                    title: item.summary, 
+                    start: item.start.date,
+                    allDay: true,
+                    url: item.htmlLink,
+                    overview: item.overview
+                }
+                events.push(event)
+            })
             res.send({
-                events: response.data.items,
+                events: events,
                 authUser: req.authUser
             })
         }

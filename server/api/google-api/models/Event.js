@@ -3,7 +3,7 @@ class Event {
         this.endDate = content.release;
         this.startDate = content.release;
         this.summary = content.title;
-        this.description = 'content.overvie';
+        this.description = 'content.overview';
         this.typeColor = content.category;
         this.reminders = this.constructor.reminders
     }

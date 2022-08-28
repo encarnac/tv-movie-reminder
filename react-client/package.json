@@ -4,6 +4,10 @@
   "private": true,
   "proxy": "http://localhost:5000",
   "dependencies": {
+    "@fullcalendar/bootstrap5": "^5.11.3",
+    "@fullcalendar/interaction": "^5.11.3",
+    "@fullcalendar/list": "^5.11.3",
+    "@fullcalendar/react": "^5.11.2",
     "@react-oauth/google": "^0.2.6",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
