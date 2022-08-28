@@ -1,3 +1,4 @@
+const User = require('../models/User')
 const { google } = require('googleapis')
 const calendar = google.calendar('v3');
 
@@ -12,12 +13,18 @@ const oauth2Client = new google.auth.OAuth2(
 
 const insertCalendar = async (req, res, next) => {
     try {
-        const { creds } = req;
-        oauth2Client.setCredentials(creds)
+        const { user } = req;
+        oauth2Client.setCredentials(user.credentials)
         const response = await calendar.calendars.insert({
             auth: oauth2Client,
             requestBody: {'summary':'tv-movie'}
         })
+        const updateUser = await User.updateOne(
+            { _id: user._id }, 
+            { $set:
+                { calendarId: response.data.id}
+            }
+        );
         console.log('INSERTED CALENDAR = ', response.data.id)
         res.send(response.data.id)
         

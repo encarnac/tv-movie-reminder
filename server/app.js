@@ -27,6 +27,7 @@ mongoose.connect( process.env.MONGO_URI, {
     useUnifiedTopology: true
 } );
 const database = mongoose.connection;
+
 database.on( 'error', ( error ) => {
     console.log( error );
 });

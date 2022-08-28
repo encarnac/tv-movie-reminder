@@ -3,15 +3,19 @@ import Axios from 'axios';
 import { useGoogleLogin } from '@react-oauth/google';
 import GoogleLogo from '../assets/GoogleLogo';
 
-function Account( { calendarId, handleCalendarId } ) {
+function Account( { calendarId, 
+                    handleCalendarId, 
+                    removeCalenderId,
+                    handleCalendarCookie, 
+                    removeCalendarCookie } ) {
 
     const loginSuccess = async ( codeResponse ) => {
         try {
             const { code } = codeResponse;
             const loginRes = await Axios.post( '/calendar/login', { code } );
-            const { data } = loginRes 
-            console.log('---- FOUND CALENDAR ID = ', data )
-            handleCalendarId( data )
+            const calId = loginRes.data
+            handleCalendarCookie( calId )
+            handleCalendarId( calId )
         } catch (error) {
             console.error(error)
         }
@@ -23,6 +27,16 @@ function Account( { calendarId, handleCalendarId } ) {
         onSuccess: codeResponse => loginSuccess( codeResponse ),
         onError: errorResponse => console.log( errorResponse )
     } );
+
+    const handleLogout = async () => {
+        try {
+            const logoutRes = await Axios.post( '/calendar/logout' )
+            removeCalenderId()
+            removeCalendarCookie()
+        } catch( error ) {
+            console.log( error )
+        }
+    }
     
 
     return (
@@ -40,8 +54,8 @@ function Account( { calendarId, handleCalendarId } ) {
                 <p className='mx-2'>
                     Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
                 <div className='d-flex justify-content-center'>
-                    { calendarId 
-                        ? <button id='googleButton' >
+                    { calendarId
+                        ? <button id='googleButton' onClick={ () => handleLogout() }>
                             <GoogleLogo/> Disconnect Your Google Account</button>
                         : <button id='googleButton' onClick={ () => handleLogin() }>
                             <GoogleLogo/> Sign In With Google </button>

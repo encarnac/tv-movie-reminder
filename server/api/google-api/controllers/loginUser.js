@@ -29,12 +29,13 @@ const loginUser = async (req, res, next) => {
                 displayName: data.name,
                 image: data.picture,
                 email: data.email,
-                credentials: tokens
+                credentials: tokens,
+                calendarId: ''
             }
             const user = await User.create(newUser)
             console.log('----- CREATED NEW USER: ', user.email)
             session.userId = user.googleId;
-            req.creds = user.credentials
+            req.user = user
             next()
         } else next('route');
 

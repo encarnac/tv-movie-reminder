@@ -1,3 +1,4 @@
+const User = require('../models/User')
 const { google } = require('googleapis')
 const calendar = google.calendar('v3');
 
@@ -12,11 +13,12 @@ const oauth2Client = new google.auth.OAuth2(
 
 const getCalendarId = async (req, res, next) => {
     try {
-        const { creds } = req;
-        oauth2Client.setCredentials(creds)
+        const { user } = req;
+        oauth2Client.setCredentials(user.credentials)
         const response = await calendar.calendarList.list({
             auth: oauth2Client
         })
+
         const calendarsList = response.data.items
         const calendarId = await calendarsList.filter(
             ( cal ) => cal.summary === 'tv-movie');
@@ -24,6 +26,13 @@ const getCalendarId = async (req, res, next) => {
         if (!calendarId?.length) {
             next()
         } else {
+            console.log('NEED TO ADD CAL ID')
+            const updateUser = await User.updateOne(
+                { _id: user._id }, 
+                { $set:
+                    { calendarId: calendarId[0].id}
+                }
+            );
             console.log('----- CALENDAR ID = ', calendarId[0].id)
             res.send(calendarId[0].id); 
         }

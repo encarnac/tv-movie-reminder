@@ -20,18 +20,10 @@ const UserSchema = new mongoose.Schema( {
         type: Object,
         required: true
     },
-    // accessToken: {
-    //     type: String,
-    //     required: true,
-    // },
-    // refreshToken: {
-    //     type: String,
-    //     required: false,
-    // },
-    // expiryDate: {
-    //     type: String,
-    //     required: true
-    // },
+    calendarId: {
+        type: String,
+        required: false
+    },
     createdAt: {
         type: Date,
         default: Date.now,

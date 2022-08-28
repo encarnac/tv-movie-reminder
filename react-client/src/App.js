@@ -1,6 +1,7 @@
 import './App.css';
 import { React, useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import Axios from 'axios';
 import NavBar from './layout/NavBar';
@@ -10,18 +11,33 @@ import Dashboard from './views/Dashboard';
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 
 function App() {
+    const [cookies, setCookie, removeCookie] = useCookies();
+    const handleCalendarCookie = (calCookie) => {
+        setCookie('calendarId', calCookie, { 
+            path: '/',
+            maxAge: 86400000,
+        });
+    }
+    const removeCalendarCookie = () => {
+        removeCookie('calendarId', { 
+            path: '/',
+            maxAge: 86400000,
+        })
+    }
 
-    const [ calendarId, setCalendarId ]  = useState('')
-
+    const [ calendarId, setCalendarId ]  = useState(cookies['calendarId'])
     const handleCalendarId = (calId) => {
         setCalendarId(calId)
+    }
+    const removeCalenderId = () => {
+        setCalendarId(null)
     }
 
     const [ events, setEvents ] = useState( [] );
 
     const fetchEvents = async () => {
         try {
-            console.log('CALENDAR ID WAS UPDATED', calendarId)
+            console.log('CALENDERID = ', calendarId)
             const eventsRes = await Axios.post( '/calendar/get-events', {
                 calendarId: calendarId
                 }
@@ -41,7 +57,7 @@ function App() {
         <> <GoogleOAuthProvider clientId={CLIENT_ID}>
             <div className='App'>
                 <div class='row fixed-top'>
-                    < NavBar {...{ calendarId, handleCalendarId, events, fetchEvents }} />
+                    < NavBar {...{ calendarId, handleCalendarId, removeCalenderId, handleCalendarCookie, removeCalendarCookie, events, fetchEvents }} />
                 </div>
 
                 <BrowserRouter>
