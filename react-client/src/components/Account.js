@@ -5,7 +5,7 @@ import GoogleLogo from '../assets/GoogleLogo';
 
 function Account( { calendarId, 
                     handleCalendarId, 
-                    removeCalenderId,
+                    removeCalendarId,
                     handleCalendarCookie, 
                     removeCalendarCookie } ) {
 
@@ -30,9 +30,9 @@ function Account( { calendarId,
 
     const handleLogout = async () => {
         try {
-            const logoutRes = await Axios.post( '/calendar/logout' )
-            removeCalenderId()
+            removeCalendarId()
             removeCalendarCookie()
+            const logoutRes = await Axios.post( '/calendar/logout' )
         } catch( error ) {
             console.log( error )
         }

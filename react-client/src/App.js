@@ -12,26 +12,27 @@ const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 
 function App() {
     const [cookies, setCookie, removeCookie] = useCookies();
+
     const handleCalendarCookie = (calCookie) => {
         setCookie('calendarId', calCookie, { 
             path: '/',
             maxAge: 86400000,
         });
-    }
-    const removeCalendarCookie = () => {
-        removeCookie('calendarId', { 
-            path: '/',
-            maxAge: 86400000,
-        })
-    }
+    };
 
-    const [ calendarId, setCalendarId ]  = useState(cookies['calendarId'])
+    const removeCalendarCookie = () => {
+        removeCookie('calendarId', { path: '/' });
+    };
+
+    const [ calendarId, setCalendarId ]  = useState(cookies['calendarId']);
+
     const handleCalendarId = (calId) => {
         setCalendarId(calId)
-    }
-    const removeCalenderId = () => {
+    };
+
+    const removeCalendarId = () => {
         setCalendarId(null)
-    }
+    };
 
     const [ events, setEvents ] = useState( [] );
 
@@ -57,7 +58,7 @@ function App() {
         <> <GoogleOAuthProvider clientId={CLIENT_ID}>
             <div className='App'>
                 <div class='row fixed-top'>
-                    < NavBar {...{ calendarId, handleCalendarId, removeCalenderId, handleCalendarCookie, removeCalendarCookie, events, fetchEvents }} />
+                    < NavBar {...{ calendarId, handleCalendarId, removeCalendarId, handleCalendarCookie, removeCalendarCookie, events, fetchEvents }} />
                 </div>
 
                 <BrowserRouter>

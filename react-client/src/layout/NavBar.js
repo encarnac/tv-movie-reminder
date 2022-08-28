@@ -45,7 +45,7 @@ function NavBar( props ) {
             < Account 
                 calendarId={ props.calendarId }
                 handleCalendarId = { props.handleCalendarId } 
-                removeCalendarId = { props.removeCalenderId }
+                removeCalendarId = { props.removeCalendarId }
                 handleCalendarCookie = { props.handleCalendarCookie }
                 removeCalendarCookie = { props.removeCalendarCookie } />
         </div>
