@@ -12,37 +12,33 @@ const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 
 function App() {
     const [cookies, setCookie, removeCookie] = useCookies();
-
     const handleCalendarCookie = (calCookie) => {
         setCookie('calendarId', calCookie, { 
             path: '/',
             maxAge: 86400000,
         });
     };
-
     const removeCalendarCookie = () => {
         removeCookie('calendarId', { path: '/' });
     };
 
     const [ calendarId, setCalendarId ]  = useState(cookies['calendarId']);
-
     const handleCalendarId = (calId) => {
         setCalendarId(calId)
     };
-
     const removeCalendarId = () => {
         setCalendarId(null)
     };
 
     const [ events, setEvents ] = useState( [] );
-
     const fetchEvents = async () => {
         try {
             console.log('CALENDERID = ', calendarId)
-            const eventsRes = await Axios.post( '/get-events', {
-                calendarId: calendarId
+            const eventsRes = await Axios.get('/get-events', {
+                params: {
+                    calendarId: calendarId
                 }
-            );
+            })
             console.log( 'EVENTS RESPONSE: ', eventsRes.data );
             setEvents( eventsRes.data );
         } catch(error) {

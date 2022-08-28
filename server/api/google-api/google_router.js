@@ -12,18 +12,25 @@ const insertTvEvent = require('./controllers/insertTvEvent');
 const logoutUser = require('./controllers/logoutUser');
 const revokeAuth = require('./controllers/revokeAuth');
 
+// Middleware function to check for user ID in session
 router.use(verifySession)
 
+// Login to Google and saves the user and 'tv-movie' calendar ID to DB
 router.post( '/login', loginUser, getCalendarId, insertCalendar);
 
-router.post( '/get-events', getEvents );
+// Fetches release dates (events) in the 'tv-movie' calendar
+router.get( '/get-events', getEvents );
 
-router.post('/delete-event', deleteEvent );
+// Deletes a release date (event) from the linked calendar
+router.delete('/delete-event', deleteEvent );
 
+// Adds release event to linked calendar depending on content type
 router.post('/add-event', insertMovieEvent, insertTvEvent);
 
+// Removes user data from the session 
 router.post('/logout', logoutUser);
 
+// Revokes the access tokens linked to the user
 router.post('/revoke', revokeAuth);
 
 module.exports = router;

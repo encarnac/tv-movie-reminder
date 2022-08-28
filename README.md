@@ -89,9 +89,10 @@ Here is a working live demo: [TBA](#)
 - [x] Display user's Google Calendar events
 - [x] Delete a reminder from the user's calendar
 - [x] Add a movie to the user's calendar
-- [ ] Add a show to the user's calendar
-- [ ] Create 'tv-movie' calendar if none exists
+- [x] Add a show to the user's calendar
+- [x] Create 'tv-movie' calendar if none exists
 - [ ] Display user’s info in offcanvas
+- [x] Create a database to store calendar offline
 ### v1.1.0
 - [ ] Implement useReducer 
 - [ ] Implement useContext
@@ -103,7 +104,6 @@ Here is a working live demo: [TBA](#)
 - [ ] Autohide past events from rendering
 - [ ] Mass delete content from watchlist
 - [ ] Selectively add episode reminders
-- [ ] Create a database to store calendar offline
 - [ ] Handle refresh tokens
 ### Other
 - [ ] Deploy a live demo
