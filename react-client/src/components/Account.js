@@ -12,7 +12,7 @@ function Account( { calendarId,
     const loginSuccess = async ( codeResponse ) => {
         try {
             const { code } = codeResponse;
-            const loginRes = await Axios.post( '/calendar/login', { code } );
+            const loginRes = await Axios.post( '/login', { code } );
             const calId = loginRes.data
             handleCalendarCookie( calId )
             handleCalendarId( calId )
@@ -32,7 +32,7 @@ function Account( { calendarId,
         try {
             removeCalendarId()
             removeCalendarCookie()
-            const logoutRes = await Axios.post( '/calendar/logout' )
+            const logoutRes = await Axios.post( '/logout' )
         } catch( error ) {
             console.log( error )
         }

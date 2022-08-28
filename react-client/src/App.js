@@ -39,7 +39,7 @@ function App() {
     const fetchEvents = async () => {
         try {
             console.log('CALENDERID = ', calendarId)
-            const eventsRes = await Axios.post( '/calendar/get-events', {
+            const eventsRes = await Axios.post( '/get-events', {
                 calendarId: calendarId
                 }
             );

@@ -9,7 +9,7 @@ function Modal( { modalState,
                     content } ) {
 
     const handleReminder = () => {
-        Axios.post( '/calendar/add-event', {
+        Axios.post( '/add-event', {
             calendarId: calendarId,
             content: content
         }) 

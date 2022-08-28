@@ -33,11 +33,12 @@ const loginUser = async (req, res, next) => {
                 calendarId: ''
             }
             const user = await User.create(newUser)
-            console.log('----- CREATED NEW USER: ', user.email)
-            session.userId = user.googleId;
-            req.user = user
+            console.log(' Added new Google account: ', user.email)
+            session.userId = user._id;
+            req.oauth2Client = oauth2Client;
+            req.calendar = google.calendar('v3');
             next()
-        } else next('route');
+        } else next();
 
     } catch ( error ) {
         next( error );

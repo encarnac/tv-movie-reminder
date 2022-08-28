@@ -49,8 +49,9 @@ app.use(
 );
 
 // Mounts middleware at given paths
+app.use( '/', googleRouter );
 app.use( '/search', tmdbRouter );
-app.use( '/calendar', googleRouter );
+
 
 // Catch 404 and forward to error handler
 app.use( function ( req, res, next ) {

@@ -1,23 +1,12 @@
 const Event = require('../models/Event');
-const { google } = require('googleapis');
-const calendar = google.calendar('v3');
-
-const CLIENT_ID = process.env.CLIENT_ID;
-const CLIENT_SECRET = process.env.CLIENT_SECRET;
-
-const oauth2Client = new google.auth.OAuth2(
-    CLIENT_ID,
-    CLIENT_SECRET,
-    'http://localhost:3000'
-);
 
 const insertTvEvent = async (req, res, next) => {
     try {
         console.log('addTvEvent')
         const { calendarId } = req.body
         const { content } = req.body 
-        const { creds } = req;
-        oauth2Client.setCredentials(creds)
+        const { oauth2Client } = req;
+        const { calendar } = req;
         
         const { title } = content
         let promises = []

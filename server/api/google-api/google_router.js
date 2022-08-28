@@ -5,22 +5,25 @@ const verifySession = require('./middleware/verifySession');
 const loginUser = require('./controllers/loginUser');
 const getCalendarId = require('./controllers/getCalendarId.js');
 const insertCalendar = require('./controllers/insertCalendar');
-// router.post( '/login', verifySession, getCalendarId, insertCalendar);
+const getEvents = require('./controllers/getEvents.js');
+const deleteEvent = require('./controllers/deleteEvent.js');
+const insertMovieEvent = require('./controllers/insertMovieEvent');
+const insertTvEvent = require('./controllers/insertTvEvent');
+const logoutUser = require('./controllers/logoutUser');
+const revokeAuth = require('./controllers/revokeAuth');
 
-// Login user, find/save calendarId to user document, save user to DB, returnCalendarId 
+router.use(verifySession)
+
 router.post( '/login', loginUser, getCalendarId, insertCalendar);
 
-const getEvents = require('./controllers/getEvents.js');
-router.post( '/get-events', verifySession, getEvents );
+router.post( '/get-events', getEvents );
 
-const deleteEvent = require('./controllers/deleteEvent.js');
-router.post('/delete-event', verifySession, deleteEvent )
+router.post('/delete-event', deleteEvent );
 
-const insertMovieEvent = require('./controllers/insertMovieEvent');
-const insertTvEvent = require('./controllers/insertTvEvent')
-router.post('/add-event', verifySession, insertMovieEvent, insertTvEvent);
+router.post('/add-event', insertMovieEvent, insertTvEvent);
 
-const logoutUser = require('./controllers/logoutUser')
-router.post('/logout', logoutUser)
+router.post('/logout', logoutUser);
+
+router.post('/revoke', revokeAuth);
 
 module.exports = router;
