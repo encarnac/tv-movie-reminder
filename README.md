@@ -91,7 +91,7 @@ Here is a working live demo: [TBA](#)
 - [x] Add a movie to the user's calendar
 - [x] Add a show to the user's calendar
 - [x] Create 'tv-movie' calendar if none exists
-- [ ] Display user’s info in offcanvas
+- [x] Display user’s info in offcanvas
 - [x] Create a database to store calendar offline
 ### v1.1.0
 - [ ] Implement useReducer 
