@@ -8,35 +8,40 @@ import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 
 function Calendar( { calendarId, events, fetchEvents } ) {
 
-    const [ selection, setSelected ] = useState([])
+    const [ selectedEvents, setSelectedEvents ] = useState([])
 
-
-    // Create CSS style and setstate toggle for select/unselect
     const selectEvent = (e) => {
         e.jsEvent.preventDefault();
-        setSelected(list => [...list, e.event])
-        e.el.style.backgroundColor = '#F1F1F1';
-        console.log(selection)
+        const find = selectedEvents.some(selection => selection.id === e.event.id)
+        console.log(find)
+        if (find) {
+            e.el.style.backgroundColor = '#F8F8F8';
+            e.el.style.fontWeight = '400';
+            const unselect = selectedEvents.filter(selection => selection.id !== e.event.id)
+            setSelectedEvents(unselect)
+        } else {
+            e.el.style.backgroundColor = '#F1F1F1';
+            e.el.style.fontWeight = '600';
+            setSelectedEvents(list => [...list, e.event])
+        }
     }
     
     const deleteEvents = async() => {
         try {
-            for (const event of selection) {
+            for (const event of selectedEvents) {
                 const eventId = event.id
-                const delRes = await Axios.delete( '/delete-event', { 
+                const deleteRes = await Axios.delete( '/delete-event', { 
                     data: {   
                         calendarId: calendarId,
                         eventId: eventId
                     }
                 }); 
-                event.remove()
-                setSelected([])
+                event.remove() 
             }
+            setSelectedEvents([])
         } catch (error) {
             console.error(error)
-        } finally {
-            fetchEvents()
-        }
+        } 
     }
 
 
