@@ -13,36 +13,39 @@ function Calendar( { calendarId, events, fetchEvents } ) {
 
     const selectEvent = async (e) => {
         e.jsEvent.preventDefault();
-        const find = selectedEvents.some(selection => selection.id === e.event.id)
+        const find = selectedEvents.some(selection => selection.event.id === e.event.id)
+        console.log('PREV SELECTION = ', selectedEvents)
         console.log(find)
         if (find) {
             e.el.style.backgroundColor = '#F8F8F8';
             e.el.style.fontWeight = '400';
             e.el.style.color='rgb(33,37,41)'
-            const unselect = selectedEvents.filter(selection => selection.id !== e.event.id)
+            const filteredEvents = selectedEvents.filter(selection => selection.event.id !== e.event.id)
             setSelectedCount(selectedCount-1)
-            setSelectedEvents(unselect)
-            
+            setSelectedEvents(filteredEvents)
         } else {
-            e.el.style.backgroundColor = '#G1G1G1';
-            e.el.style.fontWeight = '600';
+            e.el.style.backgroundColor = '#dedee1';
+            e.el.style.fontWeight = '500';
             e.el.style.color='#69A6E2';
-            const update = await setSelectedEvents(list => [...list, e.event])
+            const update = await setSelectedEvents(list => [...list, e])
             setSelectedCount(selectedCount+1)
         }
+       
     }
     
     const deleteEvents = async() => {
         try {
-            for (const event of selectedEvents) {
-                const eventId = event.id
+            console.log('TO DELETE = ', selectedEvents)
+            for (const selection of selectedEvents) {
+                const eventId = selection.event.id
+                console.log(eventId)
                 const deleteRes = await Axios.delete( '/delete-event', { 
                     data: {   
                         calendarId: calendarId,
                         eventId: eventId
                     }
                 }); 
-                event.remove() 
+                selection.event.remove() 
             }
             setSelectedCount(0)
             setSelectedEvents([])
@@ -52,9 +55,8 @@ function Calendar( { calendarId, events, fetchEvents } ) {
     }
 
     const clearSelection = () => {
-        setSelectedCount(0)
+        selectedEvents.map((event => selectEvent(event)))
         setSelectedEvents([])
-        fetchEvents()
     }
 
 
@@ -71,11 +73,11 @@ function Calendar( { calendarId, events, fetchEvents } ) {
                         ?   <div className='container'>
                                 <FullCalendar
                                     plugins={[ listPlugin, bootstrap5Plugin, interactionPlugin ]}
-                                    initialView="listMonth"
+                                    initialView='listMonth'
                                     themeSystem= 'bootstrap5'
-                                    aspectRatio='0.68'
+                                    aspectRatio='0.65'
                                     titleFormat= {{ 
-                                        year: '2-digit', 
+                                        year: 'numeric', 
                                         month: 'short', 
                                         day: '2-digit' 
                                     }}
@@ -88,6 +90,7 @@ function Calendar( { calendarId, events, fetchEvents } ) {
                                         prev: 'arrow-left-short', 
                                         next: 'arrow-right-short'
                                     }}
+                                    stickyHeaderDates={false}
                                     displayEventTime={false}
                                     eventInteractive={true}
                                     selectable={true}
@@ -95,14 +98,13 @@ function Calendar( { calendarId, events, fetchEvents } ) {
                                     eventClick={(e) => selectEvent(e)}
                                     />
                                 <div className='row mt-3'>
-                                    <div className='col-4 my-2 ps-3'>
-                                        <h6>Selected:</h6>
+                                    <div className='col-4 col-sm-4 my-2 px-1'>
+                                        <h5>selected: <small className='text-muted'>
+                                            {selectedCount}</small>
+                                        </h5>
                                     </div>
-                                    <div className='col-1 my-2 pe-2'>
-                                        <span>{selectedCount}</span>
-                                    </div>
-                                    <div className='col-7 pe-3'>
-                                        <button className='btn btn-clear-input ms-3' onClick={ ()=> clearSelection() }>
+                                    <div className='col-8 col-sm-8 ps-5 pe-1 px-sm-1'>
+                                        <button className='btn btn-secondary rounded-edge ms-1' onClick={ ()=> clearSelection() }>
                                             clear</button>
                                         <button className='btn btn-delete-input ms-2' onClick={ ()=>deleteEvents() }>
                                             delete all</button>

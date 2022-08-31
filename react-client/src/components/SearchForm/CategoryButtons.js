@@ -1,6 +1,11 @@
 import { React } from 'react';
 
-function CategoryButtons( { category, selectMovie, selectSeries } ) {
+function CategoryButtons( { props } ) {
+    const category = props.category
+    const selectMovie = props.selectMovie
+    const selectSeries = props.selectSeries
+    const display = props.display
+    const loading = props.loading
 
     return (
         <>
@@ -10,32 +15,53 @@ function CategoryButtons( { category, selectMovie, selectSeries } ) {
                     { category === 'tv' && (
                         <ul className='nav nav-pills gap-2'>
                             <li className='nav-item pill-1 '>
-                                <button className='nav-link px-5 py-2 active' onClick={ selectSeries }>
-                                    tv
-                                </button>
+                                { display && !loading 
+                                ?   <button className='nav-link px-5 py-2 active opacity-25' onClick={ selectSeries } disabled >
+                                        tv
+                                    </button>
+                                :   <button className='nav-link px-5 py-2 active' onClick={ selectSeries }>
+                                        tv
+                                    </button>
+                                }
                             </li>
                             <li className='nav-item pill-1'>
-                                <button className='nav-link px-4 py-2' onClick={ selectMovie }>
-                                    movie
-                                </button>
+                                { display && !loading 
+                                ?   <button className='nav-link px-4 py-2 opacity-25' onClick={ selectMovie } disabled>
+                                        movie
+                                    </button>
+                                :   <button className='nav-link px-4 py-2' onClick={ selectMovie }>
+                                        movie
+                                    </button>
+                                }
                             </li>
                         </ul>
-                        )}
+
+                    ) }
 
                     { category === 'movie' && (
                         <ul className='nav nav-pills gap-2'>
                             <li className='nav-item pill-1'>
-                                <button className='nav-link px-5 py-2' onClick={ selectSeries }>
-                                    tv
-                                </button>
+                                { display && !loading 
+                                ?   <button className='nav-link px-5 py-2 opacity-25' onClick={ selectSeries } disabled>
+                                        tv
+                                    </button>
+                                :   <button className='nav-link px-5 py-2' onClick={ selectSeries }>
+                                        tv
+                                    </button>
+                                }                            
                             </li>
                             <li className='nav-item pill-1'>
-                                <button className='nav-link px-4 py-2 active' onClick={ selectMovie }>
-                                    movie
-                                </button>
+                                { display && !loading 
+                                ?   <button className='nav-link px-4 py-2 active opacity-25' onClick={ selectMovie } disabled>
+                                        movie
+                                    </button>
+                                :   <button className='nav-link px-4 py-2 active' onClick={ selectMovie }>
+                                        movie
+                                    </button>
+                                }   
                             </li>
                         </ul>
-                        )}
+                    ) }
 
                 </div>
 

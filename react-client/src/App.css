@@ -37,14 +37,20 @@
   }
 }
 
-/* ---------------------- */
 
-/* CUSTOM CSS STYLESHEET */
 
-/* ---------------------- */
-/* not active */
+
+/* ==========================================================================
+   CUSTOM CSS STYLESHEET
+   ========================================================================== */
+
+
+/* Buttons: categories and next page
+/* inactive */
 .nav-pills .pill-1 .nav-link:not(.active),
-.btn-delete-input:hover {
+.fc-today-button.btn:is(:hover, :focus),
+.fc-prev-button:is(:hover, :focus),
+.fc-next-button:is(:hover, :focus) {
   background-color: rgba(165, 201, 195, 0.5);
   border-color: rgba(165, 201, 195, 0.5);
   border-radius: 30px;
@@ -52,18 +58,23 @@
   color: white;
 }
 
-
 /* active */
-.nav-pills .pill-1 .nav-link,
-.btn-delete-input {
+.nav-pills .pill-1 .nav-link ,
+.fc-today-button.btn, 
+.fc-prev-button, 
+.fc-next-button {
   background-color: rgba(165,217,208, 1);
+  border-color: rgba(165,217,208, 1);
   border-radius: 30px;
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
   color: white;
 }
 
-/* not active */
-.btn-search-input {
+
+/* Buttons: submit & delete
+/* default */
+.btn-search-input,
+.btn-delete-input {
   background-color: #b7cbf2;
   border-color: #b7cbf2;
   color: white;
@@ -73,7 +84,9 @@
   padding-right: 20px;
 }
 
-.btn-search-input:is(:hover, :disabled) {
+/* hover */
+.btn-search-input:is(:hover, :disabled),
+.btn-delete-input:is(:hover, :disabled) {
   background-color: #C8D5EF;
   border-color: #b7cbf2;
   color: white;
@@ -81,18 +94,18 @@
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
 }
 
-.btn-clear-input {
-  border-color: rgba(165,217,208, 1);
-  color: (165,217,208, 1);
-  border-radius: 30px;
-  box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
+/* Close button icon */
+.btn-exit-close {
+  border:0;
+  background: transparent;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  padding:0px;
+
 }
 
-.btn-clear-input:is(:hover, :focus) {
-    color: rgba(165,217,208, 1);
-}
-
-
+/* Thumbnail image styles */
 .rounded-edge {
   border-radius: 30px;
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
@@ -103,11 +116,40 @@
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .03);
 }
 
-.text-highlight {
-    color: rgb(99, 127, 178);
+
+/* FullCalendar title */
+h2#fc-dom-2.fc-toolbar-title {
+    font-size: 1.3rem;
 }
 
-/* Loading spinner */
+
+
+/* Google sign in buttons by anthonyjgrove@github 
+   ========================================================================== */
+#googleButton {
+    background-color:  #fff;
+    display: inline-flex;
+    align-items: center;
+    color: rgba(0, 0, 0, .54);
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 0 1px 0 rgba(0, 0, 0, .14);
+    padding: 2px 15px 2px 5px;
+    border-color: #DADCE0;
+    border-radius: 25px;
+    border: 1px solid transparent;
+    font-weight: 500;
+    font-family: "Google Sans", arial, sans-serif
+}
+
+#googleButton:hover {
+    background-color:#F8FAFF;
+    border-color:#D2E3FC;
+    
+}
+
+
+
+/* Loading spinner from https://contactmentor.com/how-to-add-loading-spinner-react-js/
+   ========================================================================== */
 @keyframes spinner {
   0% {
     transform: rotate(0deg);
@@ -125,7 +167,10 @@
   animation: spinner 1.5s linear infinite;
 }
 
-/* Animated scroll arrow */
+
+
+/* Animated scroll arrow animation from https://unused-css.com/blog/animated-down-arrow/
+   ========================================================================== */
 .scroll-down {
   position: absolute;
   left: 50%;
@@ -150,8 +195,6 @@
   animation:         fade_move_down 4s ease-in-out infinite;
 }
 
-
-/*Animated scroll arrow animation*/
 @-webkit-keyframes fade_move_down {
   0%   { -webkit-transform:translate(0,-10px) rotate(45deg); opacity: 0;  }
   50%  { opacity: 1;  }
@@ -167,66 +210,3 @@
   50%  { opacity: 1;  }
   100% { transform:translate(0,10px) rotate(45deg); opacity: 0; }
 }
-
-
-#googleButton {
-    background-color:  #fff;
-    display: inline-flex;
-    align-items: center;
-    color: rgba(0, 0, 0, .54);
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 0 1px 0 rgba(0, 0, 0, .14);
-    padding: 2px 14px 2px 5px;
-    border-color: #DADCE0;
-    border-radius: 25px;
-    border: 1px solid transparent;
-    font-weight: 500;
-    font-family: "Google Sans", arial, sans-serif
-}
-
-
-#googleButton:hover {
-    background-color:#F8FAFF;
-    border-color:#D2E3FC;
-    
-}
-
-/* FullCalendar */
-h2#fc-dom-2.fc-toolbar-title {
-    font-size: 1.5rem;
-}
-
-.fc-today-button.btn, .fc-prev-button, .fc-next-button{
-  background-color: #b7cbf2;
-  border-color: #b7cbf2;
-  color: white;
-  border-radius: 30px;
-  box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
-}
-
-.fc-today-button.btn:is(:hover, :focus),
-.fc-prev-button:is(:hover, :focus),
-.fc-next-button:is(:hover, :focus) {
-    background-color: #C8D5EF;
-    border-color: #C8D5EF;
-    color: white;
-    border-radius: 30px;
-    box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
-}
-
-.fc-deleteButton-button {
-  background-color: #A5D9D0;
-  border-color: #A5D9D0;
-  color: #fff;
-  border-radius: 30px;
-  box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
-}
-
-.fc-deleteButton-button:is(:hover, :focus) {
-  background-color: #c7e0dd;
-  border-color: #c7e0dd;
-  border-radius: 30px;
-  box-shadow:  0 .5rem 1rem rgba(0,0,0, .07);
-  color: #fff;
-}
-
-

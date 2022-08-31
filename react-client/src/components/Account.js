@@ -2,6 +2,8 @@ import React from 'react';
 import Axios from 'axios';
 import { useGoogleLogin } from '@react-oauth/google';
 import GoogleLogo from '../assets/GoogleLogo';
+import ProfileIcon from '../assets/ProfileIcon.png'
+
 
 function Account( { user,
                     handleUserData,
@@ -45,39 +47,39 @@ function Account( { user,
         <div className='offcanvas offcanvas-end' id='offcanvasAccount'>
 
             <div className='offcanvas-header'>
-                { calendarId 
-                ? <h5 className='offcanvas-title' id='offcanvasAccountLabel'>
-                   Signed in as </h5>
-                : <h5 className='offcanvas-title' id='offcanvasAccountLabel'>
-                    No Account Found </h5>
-                }
+                 <h5 className='offcanvas-title' id='offcanvasAccountLabel'>
+                   Your Account </h5>
                 <button type='button' className='btn-close' data-bs-dismiss='offcanvas'></button>
             </div>
-            <div className='offcanvas-body '>         
-                <div className='d-flex justify-content-center'>
-                    { calendarId
-                        ?   <div>
-                                <img src={user?.image} className='round-edge img-thumbnail' alt='google-prof-pic'/>
+        
+            { calendarId
+                ?   <div className='offcanvas-body container position-absolute top-50 start-50 translate-middle px-5 pb-5'>         
+                        <div className='row d-flex justify-content-center'>
+                            <div className='col-12 flex-fill'>
+                                <img src={user?.image} className='round-edge img-thumbnail mb-2' alt='google-prof-pic'/>
                                 <h4>{user?.displayName}</h4>
-                                <p class="fs-5">{user?.email}</p>
+                                <p className='fs-5'>{user?.email}</p>
                                 
-                                <div className='m-4'>
+                                <div className='flex-fill'>
                                     <button id='googleButton' onClick={ () => handleLogout() }>
                                         <GoogleLogo/> Disconnect Your Google Account
                                     </button>
                                 </div>
                             </div>
-                        :   <div>
-                                <p className='mx-2'>
-                                Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
+                        </div>
+                    </div>
+                :   <div className='offcanvas-body d-flex align-items-center pb-5'>         
+                        <div className='row d-flex justify-content-center'>
+                            <div className='col-12 flex-fill mb-4'>
+                            {/* <h1 className='bi bi-person-circle'></> */}
+                                <img src={ProfileIcon} className='round-edge img-thumbnail mb-3' style={{width:50, height:50, 'border-color':'black'}}  alt='user-prof-pic'/>
+                                <p>Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
                                 <button id='googleButton' onClick={ () => handleLogin() }>
                                     <GoogleLogo/> Sign In With Google </button>
                             </div>
-                    }
-                </div>
-
-            </div>
-
+                        </div>
+                    </div>
+            }
         </div>
     );
 }
