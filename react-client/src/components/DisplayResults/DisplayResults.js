@@ -6,7 +6,7 @@ function DisplayResults({ tmdbData, calendarId, fetchEvents }) {
   return (
     <>
         {tmdbData?.map((content, i) =>
-          <div key={i} className='col col-xs-12 col-md-4 col-lg-3'>
+          <div key={i} className='col col-12 col-md-4 col-lg-3'>
             <Card content={content} calendarId={ calendarId } fetchEvents={ fetchEvents } />
           </div>
         )}

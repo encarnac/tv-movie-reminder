@@ -98,16 +98,16 @@ function Calendar( { calendarId, events, fetchEvents } ) {
                                     events={ events }
                                     eventClick={(e) => selectEvent(e)}
                                     />
-                                <div className='row mt-3'>
-                                    <div className='col-4 col-sm-4 my-2 px-1'>
-                                        <h5>selected: <small className='text-muted'>
-                                            {selectedCount}</small>
+                                <div className='row'>
+                                    <div className='col-6 col-sm-4 mt-3 px-1'>
+                                        <h5>Selected: <small className='text-muted'>
+                                                {selectedCount}</small>
                                         </h5>
                                     </div>
-                                    <div className='col-8 col-sm-8 ps-5 pe-1 px-sm-1'>
-                                        <button className='btn btn-secondary rounded-edge ms-1' onClick={ ()=> clearSelection() }>
+                                    <div className='col-5 col-sm-8 mt-3  d-flex flex-column flex-sm-row justify-content-end gap-1'>
+                                        <button className='btn btn-secondary rounded-edge px-sm-4 px-2' onClick={ ()=> clearSelection() }>
                                             clear</button>
-                                        <button className='btn btn-delete-input ms-2' onClick={ ()=>deleteEvents() }>
+                                        <button className='btn btn-delete-input px-3' onClick={ ()=>deleteEvents() }>
                                             delete all</button>
                                     </div>
                                 </div>

@@ -83,7 +83,7 @@ function Dashboard( props ) {
                 { !loading && display && (
 
                     <div className='container mt-4 pt-5'>
-                        <div className='row no-gutters d-flex gap-4 justify-content-center' >
+                        <div className='row d-flex justify-content-center no-gutters gap-4' >
                             <DisplayResults
                                 tmdbData={ tmdbData }
                                 calendarId={ props.calendarId }

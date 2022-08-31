@@ -43,14 +43,22 @@
 /* ==========================================================================
    CUSTOM CSS STYLESHEET
    ========================================================================== */
+.landing-header {
+  background-image: url('./assets/HeaderImage.svg');
+  background-repeat: no-repeat;
+  background-position: 100% 90%;
+  background-size: auto 60%;
+  background-attachment: inherit;
+}
+
 
 /* Buttons: categories and next page (inactive) */
 .nav-pills .pill-1 .nav-link:not(.active),
 .fc-today-button.btn:is(:hover, :focus),
 .fc-prev-button:is(:hover, :focus),
 .fc-next-button:is(:hover, :focus) {
-  background-color: rgba(165, 201, 195, 0.5);
-  border-color: rgba(165, 201, 195, 0.5);
+  background-color: #D2E4E1;
+  border-color: #D2E4E1;
   border-radius: 30px;
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
   color: white;

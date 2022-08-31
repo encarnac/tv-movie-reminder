@@ -8,12 +8,8 @@ function SearchForm( { props } ) {
 
     return (
         <>
-            <div className='row px-5 mx-5'>
-                <CategoryButtons 
-                    // category={ props.category } 
-                    // selectMovie={ props.selectMovie } 
-                    // selectSeries={ props.selectSeries }
-                    {...{props}} />
+            <div className='row px-0 mx-0 px-md-5 mx-md-5'>
+                <CategoryButtons {...{props}} />
             </div>
 
             <div className='input-group my-2'>
@@ -23,7 +19,7 @@ function SearchForm( { props } ) {
                 { !props.display && props.loading &&
                     <button className='btn btn-outline-secondary btn-search-input' type='button' id='button-addon2'> <LoadingSpinner /> </button> }
                 { props.display && !props.loading &&
-                    <button className='btn btn-outline-secondary btn-search-input opacity-50' type='button' id='button-addon2' disabled  >search</button> }
+                    <button className='btn btn-outline-secondary btn-search-input opacity-50' type='button' id='button-addon2'disabled  >search</button> }
             </div>
         </>
 

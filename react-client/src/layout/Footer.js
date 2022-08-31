@@ -5,10 +5,11 @@ function Footer( props ) {
 
     return (
         <>
-            <footer className='bg-light text-start px-3'>
-                <div className='container my-4 me-5' >
+            <footer className='bg-light text-start'>
+                <div className='container my-4 mx-auto ' >
                     <div className='row d-flex justify-content-between mx-3'>
-                        <div className='col-3 pe-5 me-5'>
+
+                        <div className='col-12 col-md-3 col-xl-3 ps-xl-5 text-center text-md-start'>
                             <h6 className='text-uppercase'>Contact</h6>
                             <ul className='list-unstyled'>
                                 <li><a href='https://github.com/encarnac' className='text-decoration-none text-dark '>
@@ -20,7 +21,7 @@ function Footer( props ) {
                             </ul>
                         </div>
 
-                        <div className='col-6 px-2 mx-1'>
+                        <div className='col-12 col-md-5 col-xl-5 text-center text-md-start '>
                             <h6 className='text-uppercase'>About</h6>
                             <p> Search for tv shows or movies by title using
                                 the <a href='https://www.themoviedb.org/' className='text-decoration-none text-dark fw-semibold'>The Movie Database API</a>,
@@ -28,7 +29,7 @@ function Footer( props ) {
                                 on your linked Google Calendar.</p>
                         </div>
 
-                        <div className='col-2 px-1 mx-2 text-end'>
+                        <div className='col-12 col-md-3 col-xl-3 text-center text-md-end '>
                             <h6 className='text-uppercase'>
                                 <span className='bi bi-alarm-fill'>  watch-soon</span>
                                 <span className='text-lowercase'>

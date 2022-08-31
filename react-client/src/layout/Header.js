@@ -5,11 +5,7 @@ import HeaderImage from '../assets/HeaderImage.svg'
 function Header( props ) {
 
     return (
-            <div style={ {
-                backgroundImage: `url(${ HeaderImage })`,
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'right',
-                backgroundSize: '50vw'}}>
+            <div className='landing-header'>
 
                     <div className='container 
                         d-flex 
@@ -17,7 +13,7 @@ function Header( props ) {
                         align-items-center 
                         vh-100' >
 
-                        <div className='row text-center'>
+                        <div className='row text-center ms-lg-4 mx-auto'>
                             <div className='col'>
                                 <h1 className='display-3'>
                                     watch-soon</h1>
