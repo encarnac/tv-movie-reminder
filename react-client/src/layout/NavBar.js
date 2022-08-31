@@ -21,10 +21,10 @@ function NavBar( props ) {
                         watch-soon
                     </a>
 
-                    <ul className='navbar-nav gap-2'>
+                    <ul className='navbar-nav gap-3'>
                             <li className='nav-item'> {/* // Reminders Button // */ }
                                 <a className='nav-link' data-bs-toggle='offcanvas' href='#offcanvasReminders' role='button'>
-                                    <IoNotifications />
+                                    <h5 class="bi bi-calendar-heart-fill"></h5>
                                 </a>
                             </li>
 

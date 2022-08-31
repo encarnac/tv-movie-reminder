@@ -1,21 +1,20 @@
 import React from 'react';
 import SearchForm from '../components/SearchForm/SearchForm';
-import HeaderImage from '../assets/HeaderImage.jpg';
+import HeaderImage from '../assets/HeaderImage.svg'
 
 function Header( props ) {
 
     return (
             <div style={ {
-                backgroundImage: `linear-gradient(rgba(255,255,255,.4), rgba(255,255,255,.4)), url(${ HeaderImage })`,
+                backgroundImage: `url(${ HeaderImage })`,
                 backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center',
-                backgroundSize: 'cover'}}>
+                backgroundPosition: 'right',
+                backgroundSize: '50vw'}}>
 
                     <div className='container 
                         d-flex 
                         justify-content-start 
                         align-items-center 
-                        mx-5 
                         vh-100' >
 
                         <div className='row text-center'>
@@ -25,7 +24,10 @@ function Header( props ) {
                                 <p className='lead'>
                                     Get reminders about upcoming tv or movie releases</p>
                                 <SearchForm props={props}/>
-                                { props.display && !props.loading && <div className='scroll-down'></div> }
+                                {   props.display 
+                                    && !props.loading 
+                                    && <div className='scroll-down'></div> 
+                                }
                             </div>
                         </div>
 

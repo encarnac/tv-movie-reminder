@@ -44,9 +44,7 @@
    CUSTOM CSS STYLESHEET
    ========================================================================== */
 
-
-/* Buttons: categories and next page
-/* inactive */
+/* Buttons: categories and next page (inactive) */
 .nav-pills .pill-1 .nav-link:not(.active),
 .fc-today-button.btn:is(:hover, :focus),
 .fc-prev-button:is(:hover, :focus),
@@ -58,7 +56,7 @@
   color: white;
 }
 
-/* active */
+/* Buttons: categories and next page (active) */
 .nav-pills .pill-1 .nav-link,
 .nav-pills .pill-1 .nav-link:hover,
 .fc-today-button.btn, 
@@ -71,9 +69,7 @@
   color: white;
 }
 
-
-/* Buttons: submit & delete
-/* default */
+/* Buttons: submit & delete (default) */
 .btn-search-input,
 .btn-delete-input {
   background-color: #b7cbf2;
@@ -85,7 +81,7 @@
   padding-right: 20px;
 }
 
-/* hover */
+/* Buttons: submit & delete (hover/disabled) */
 .btn-search-input:is(:hover, :disabled),
 .btn-delete-input:is(:hover, :disabled) {
   background-color: #C8D5EF;
@@ -95,7 +91,26 @@
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
 }
 
-/* Close button icon */
+/* Buttons: clear results (default) */
+.btn-clear-results {
+  background-color: rgba(165,217,208, .7);
+  border-color: rgba(165,217,208, .9);
+  border-radius: 0px 30px 30px 0px;
+  box-shadow:  0 .5rem 1rem rgba(0,0,0, .08);
+  color: white;
+  padding: 10px 17px 10px 30px;
+  letter-spacing: 1px;
+  
+}
+
+/* Buttons: clear results (hover/focus) */
+.btn-clear-results:is(:hover,:focus) {
+  background-color: rgba(165,217,208, 1);
+  border-color: rgba(165,217,208, 1);
+  color: white;
+}
+
+/* Icon for: clear button */
 .btn-exit-close {
   border:0;
   background: transparent;
@@ -106,25 +121,10 @@
 
 }
 
-.btn-clear-results {
-  background-color: rgba(165,217,208, .8);
-  border-color: rgba(165,217,208, 1);
-  border-radius: 0px 30px 30px 0px;
-  box-shadow:  0 .5rem 1rem rgba(0,0,0, .08);
-  color: white;
-  padding: 10px 20px 10px 30px;
-}
-
-.btn-clear-results:is(:hover,:focus) {
-  background-color: rgba(165,217,208, 1);
-  border-color: rgba(165,217,208, 1);
-  color: white;
-}
-
 /* Button borders */
 .rounded-edge {
-  border-radius: 30px;
-  box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
+  border-radius: 22px;
+  box-shadow:  0 .7rem 2rem rgba(0,0,0, .09);
 }
 
 /* Thumbnail image style */
@@ -133,12 +133,15 @@
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .03);
 }
 
-
 /* FullCalendar title */
+h2#fc-dom-44.fc-toolbar-title, 
 h2#fc-dom-2.fc-toolbar-title {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
 }
 
+.offcanvas-title {
+    letter-spacing: 2px;
+}
 
 
 /* Google sign in buttons by anthonyjgrove@github 
@@ -154,7 +157,8 @@ h2#fc-dom-2.fc-toolbar-title {
     border-radius: 25px;
     border: 1px solid transparent;
     font-weight: 500;
-    font-family: "Google Sans", arial, sans-serif
+    font-family: "Google Sans", arial, sans-serif;
+    font-size:.8rem;
 }
 
 #googleButton:hover {
@@ -191,25 +195,25 @@ h2#fc-dom-2.fc-toolbar-title {
 .scroll-down {
   position: absolute;
   left: 50%;
-  bottom: 10px;
+  bottom: 15px;
   display: block;
   text-align: center;
   font-size: 20px;
   z-index: 100;
   text-decoration: none;
   text-shadow: 0;
-  width: 13px;
-  height: 13px;
-  border-bottom: 2px solid #000;
-  border-right: 2px solid #000;
+  width: 14px;
+  height: 14px;
+  border-bottom: 3px solid #46455B;
+  border-right: 3px solid #46455B;
   z-index: 9;
   left: 50%;
   -webkit-transform: translate(-50%, 0%) rotate(45deg);
   -moz-transform: translate(-50%, 0%) rotate(45deg);
   transform: translate(-50%, 0%) rotate(45deg);
-  -webkit-animation: fade_move_down 4s ease-in-out infinite;
-  -moz-animation:    fade_move_down 4s ease-in-out infinite;
-  animation:         fade_move_down 4s ease-in-out infinite;
+  -webkit-animation: fade_move_down 1.2s ease-in-out infinite;
+  -moz-animation:    fade_move_down 1.2s ease-in-out infinite;
+  animation:         fade_move_down 1.2s ease-in-out infinite;
 }
 
 @-webkit-keyframes fade_move_down {

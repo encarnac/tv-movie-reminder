@@ -57,6 +57,7 @@ function Calendar( { calendarId, events, fetchEvents } ) {
     const clearSelection = () => {
         selectedEvents.map((event => selectEvent(event)))
         setSelectedEvents([])
+        setSelectedCount(0)
     }
 
 

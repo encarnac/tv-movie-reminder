@@ -24,7 +24,7 @@ function Card( { content, calendarId, fetchEvents } ) {
 
     return (
         <>
-            <div className='card bg-light-gradient shadow-sm mb-5 rounded-4' style={ { 'width': '18rem;', 'background-image': 'linear-gradient(to left, #607076, #253B40);' } }>
+            <div className='card bg-light-gradient mb-5 rounded-edge' style={ { 'width': '20rem;', 'background-image': 'linear-gradient(to left, #607076, #253B40);' } }>
                 <img src={ imgSrc ? imgSrc : FallbackImage } className='card-img-top img-fluid p-3 rounded-5' onError={onError} alt='...' />
                 <div className='card-body '>
                     <h5 className='card-title'>{ content.title }</h5>

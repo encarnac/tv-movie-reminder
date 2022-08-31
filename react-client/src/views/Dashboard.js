@@ -2,7 +2,6 @@ import { React, useState, useCallback, useEffect } from 'react';
 import Axios from 'axios';
 import Header from '../layout/Header';
 import DisplayResults from '../components/DisplayResults/DisplayResults';
-import CloseIcon from 'assets/CloseIcon';
 
 function Dashboard( props ) {
 
@@ -56,7 +55,7 @@ function Dashboard( props ) {
 
     useEffect( () => {
         window.addEventListener( 'scroll', () => {
-            if ( window.scrollY > 150 ) {
+            if ( window.scrollY > 60 ) {
                 setClearButtonState( true );
             } else {
                 setClearButtonState( false );
@@ -84,7 +83,7 @@ function Dashboard( props ) {
                 { !loading && display && (
 
                     <div className='container mt-4 pt-5'>
-                        <div className='row no-gutters d-flex gap-2 justify-content-center' >
+                        <div className='row no-gutters d-flex gap-4 justify-content-center' >
                             <DisplayResults
                                 tmdbData={ tmdbData }
                                 calendarId={ props.calendarId }
@@ -93,7 +92,7 @@ function Dashboard( props ) {
 
                         { clearButtonState && (
                             <div className='fixed-bottom no-gutters'>
-                                <button className='btn btn-clear-results fw-semibold position-absolute bottom-0 start-0 mb-5'
+                                <button className='btn btn-clear-results position-absolute bottom-0 start-0 mb-5'
                                     onClick={ clearResults }>
                                         clear search &nbsp;&nbsp;&nbsp;&nbsp;
                                         <span className='bi bi-x-lg'></span>
