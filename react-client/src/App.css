@@ -43,25 +43,29 @@
 
 /* ---------------------- */
 /* not active */
-.nav-pills .pill-1 .nav-link:not(.active) {
-  background-color: rgba(165,217,208,0.30);
+.nav-pills .pill-1 .nav-link:not(.active),
+.btn-delete-input:hover {
+  background-color: rgba(165, 201, 195, 0.5);
+  border-color: rgba(165, 201, 195, 0.5);
   border-radius: 30px;
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
+  color: white;
 }
 
 
-/* active (faded) */
-.nav-pills .pill-1 .nav-link {
+/* active */
+.nav-pills .pill-1 .nav-link,
+.btn-delete-input {
   background-color: rgba(165,217,208, 1);
-  color: white;
   border-radius: 30px;
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
+  color: white;
 }
 
 /* not active */
 .btn-search-input {
-  background-color: rgb(181,199,233);
-  border-color: rgb(181,199,233);
+  background-color: #b7cbf2;
+  border-color: #b7cbf2;
   color: white;
   border-radius: 30px;
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
@@ -69,26 +73,38 @@
   padding-right: 20px;
 }
 
-.btn-search-input:disabled {
-  background-color: rgb(181,199,233);
-  border-color: rgb(181,199,233);
-  color: black;
+.btn-search-input:is(:hover, :disabled) {
+  background-color: #C8D5EF;
+  border-color: #b7cbf2;
+  color: white;
   border-radius: 30px;
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
 }
+
+.btn-clear-input {
+  border-color: rgba(165,217,208, 1);
+  color: (165,217,208, 1);
+  border-radius: 30px;
+  box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
+}
+
+.btn-clear-input:is(:hover, :focus) {
+    color: rgba(165,217,208, 1);
+}
+
 
 .rounded-edge {
   border-radius: 30px;
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
 }
 
-.text-highlight {
-    color: rgb(99, 127, 178);
-}
-
 .round-edge {
   border-radius: 100px;
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .03);
+}
+
+.text-highlight {
+    color: rgb(99, 127, 178);
 }
 
 /* Loading spinner */
@@ -174,18 +190,43 @@
     
 }
 
-.fc-today-button.btn.btn-primary, .fc-prev-button, .fc-next-button{
-  background-color: rgb(181,199,233);
-  border-color: rgb(181,199,233);
-  color: black;
+/* FullCalendar */
+h2#fc-dom-2.fc-toolbar-title {
+    font-size: 1.5rem;
+}
+
+.fc-today-button.btn, .fc-prev-button, .fc-next-button{
+  background-color: #b7cbf2;
+  border-color: #b7cbf2;
+  color: white;
   border-radius: 30px;
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
+}
+
+.fc-today-button.btn:is(:hover, :focus),
+.fc-prev-button:is(:hover, :focus),
+.fc-next-button:is(:hover, :focus) {
+    background-color: #C8D5EF;
+    border-color: #C8D5EF;
+    color: white;
+    border-radius: 30px;
+    box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
 }
 
 .fc-deleteButton-button {
   background-color: #A5D9D0;
   border-color: #A5D9D0;
-  color: black;
+  color: #fff;
   border-radius: 30px;
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
 }
+
+.fc-deleteButton-button:is(:hover, :focus) {
+  background-color: #c7e0dd;
+  border-color: #c7e0dd;
+  border-radius: 30px;
+  box-shadow:  0 .5rem 1rem rgba(0,0,0, .07);
+  color: #fff;
+}
+
+
