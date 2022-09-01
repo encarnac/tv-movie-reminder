@@ -1,6 +1,6 @@
-import { React, useState, useMemo, useEffect } from 'react';
+import { React, useState } from 'react';
 import Axios from 'axios';
-// import EventsList from './EventsList';
+import Alert from './Alert';
 import FullCalendar from '@fullcalendar/react'
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -38,7 +38,6 @@ function Calendar( { calendarId, events, fetchEvents } ) {
             console.log('TO DELETE = ', selectedEvents)
             for (const selection of selectedEvents) {
                 const eventId = selection.event.id
-                console.log(eventId)
                 const deleteRes = await Axios.delete( '/delete-event', { 
                     data: {   
                         calendarId: calendarId,
@@ -48,7 +47,9 @@ function Calendar( { calendarId, events, fetchEvents } ) {
                 selection.event.remove() 
             }
             setSelectedCount(0)
+            setAlertState(true)
             setSelectedEvents([])
+            console.log('ALERT STATE = ', alertState)
         } catch (error) {
             console.error(error)
         } 
@@ -60,9 +61,18 @@ function Calendar( { calendarId, events, fetchEvents } ) {
         setSelectedCount(0)
     }
 
+    const [ alertState , setAlertState ] = useState(false);
 
-    return (
-        <>
+    const closeAlert = () => {
+        setAlertState(false)
+    }
+
+
+    return (   
+        <>  <div className='container'>
+                <Alert alertState={alertState} closeAlert={ closeAlert } />
+            </div>
+
             <div className='offcanvas offcanvas-end' id='offcanvasReminders'>
                 <div className='offcanvas-header'>
                     <h5 className='offcanvas-title' id='offcanvasReminders'>

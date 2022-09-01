@@ -1,6 +1,5 @@
 import React from 'react';
 import SearchForm from '../components/SearchForm/SearchForm';
-import HeaderImage from '../assets/HeaderImage.svg'
 
 function Header( props ) {
 
