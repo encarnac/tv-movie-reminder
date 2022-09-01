@@ -92,10 +92,9 @@ function Dashboard( props ) {
 
                         { clearButtonState && (
                             <div className='fixed-bottom no-gutters'>
-                                <button className='btn btn-clear-results position-absolute bottom-0 start-0 mb-5'
+                                <button className='btn btn-clear-results position-absolute bottom-0 end-0 mb-5'
                                     onClick={ clearResults }>
-                                        clear search &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <span className='bi bi-x-lg'></span>
+                                        <span className='bi bi-x-lg'></span>&nbsp; clear 
                                 </button>
                             </div>
                         ) }

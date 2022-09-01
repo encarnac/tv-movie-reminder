@@ -11,7 +11,7 @@ function NavBar( props ) {
 
     return (
         <>
-            <nav className='navbar navbar-expand navbar-light bg-light p-3' >
+            <nav className='navbar navbar-expand bg-light px-2 fixed-top' >
                 <div className='container-fluid'>
 
                     <a className='navbar-brand h1' href='/'>

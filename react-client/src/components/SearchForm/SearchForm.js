@@ -8,7 +8,7 @@ function SearchForm( { props } ) {
 
     return (
         <>
-            <div className='row px-0 mx-0 px-md-5 mx-md-5'>
+            <div className='row px-0 px-md-5 mx-0 mx-md-5'>
                 <CategoryButtons {...{props}} />
             </div>
 

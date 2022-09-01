@@ -39,11 +39,11 @@ function Modal( { modalState,
                                 <div className='container text-start'>
                                     <div className='row'>
 
-                                        <div className='col-5 my-2'>
+                                        <div className='col-6 col-md-5 mx-auto my-2 pb-2 '>
                                             <img src={ poster } className='img-fluid rounded img-thumbnail rounded-4' alt='' />
                                         </div>
 
-                                        <div className='col-7'>
+                                        <div className='col-12 col-md-7'>
                                             <div className='row'>
                                                 <div className='col-4'>
                                                     <h6 className='fw-semibold'>Overview:</h6>
@@ -137,7 +137,7 @@ function Modal( { modalState,
 
 
                                                     <div className='row'>
-                                                        <div className='col'>
+                                                        <div className='col-md-12 px-1'>
                                                             <a className='btn-sm text-dark text-decoration-none' data-bs-toggle='collapse' href='#episodeDetails' role='button'>
                                                                 <span className='fw-semibold'>View Season { content.season_count } Episodes &nbsp; ▼ </span>
                                                             </a>

@@ -57,7 +57,7 @@ function App() {
     return (
         <> <GoogleOAuthProvider clientId={CLIENT_ID}>
             <div className='App'>
-                <div class='row fixed-top'>
+                <div class='row'>
                     < NavBar {
                         ...{ user, 
                             handleUserData, 

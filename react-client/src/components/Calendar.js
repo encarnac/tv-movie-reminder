@@ -105,9 +105,9 @@ function Calendar( { calendarId, events, fetchEvents } ) {
                                         </h5>
                                     </div>
                                     <div className='col-5 col-sm-8 mt-3  d-flex flex-column flex-sm-row justify-content-end gap-1'>
-                                        <button className='btn btn-secondary rounded-edge px-sm-4 px-2' onClick={ ()=> clearSelection() }>
+                                        <button className='btn btn-secondary rounded-edge px-2 px-sm-4' onClick={ ()=> clearSelection() }>
                                             clear</button>
-                                        <button className='btn btn-delete-input px-3' onClick={ ()=>deleteEvents() }>
+                                        <button className='btn btn-delete-input px-2' onClick={ ()=>deleteEvents() }>
                                             delete all</button>
                                     </div>
                                 </div>
