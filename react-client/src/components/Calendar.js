@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 import Axios from 'axios';
-import Alert from './Alert';
+import LoadingSpinner from 'assets/LoadingSpinner';
 import FullCalendar from '@fullcalendar/react';
 import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -33,9 +33,12 @@ function Calendar( { calendarId, events, handleAlert } ) {
 
     };
 
+    const [ loading, setLoading ] = useState( false );
+
     const deleteEvents = async () => {
         try {
             console.log( 'TO DELETE = ', selectedEvents );
+            setLoading( true )
             for ( const selection of selectedEvents ) {
                 const eventId = selection.event.id;
                 const deleteRes = await Axios.delete( '/delete-event', {
@@ -49,6 +52,7 @@ function Calendar( { calendarId, events, handleAlert } ) {
             setSelectedCount( 0 );
             setSelectedEvents( [] );
             handleAlert(deleteConfirm)
+            setLoading( false )
         } catch ( error ) {
             console.error( error );
         }
@@ -108,7 +112,8 @@ return (
                                 <button className='btn btn-secondary rounded-edge px-2 px-sm-4' onClick={ () => clearSelection() }>
                                     clear</button>
                                 <button className='btn btn-delete-input px-2' onClick={ () => deleteEvents() }>
-                                    delete all</button>
+                                   { loading ? <LoadingSpinner/> : 'delete all'}
+                                </button>
                             </div>
                         </div>
                     </div>

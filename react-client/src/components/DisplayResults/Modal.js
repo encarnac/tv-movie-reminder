@@ -1,5 +1,6 @@
-import { React } from 'react';
+import { React, useState } from 'react';
 import Axios from 'axios';
+import LoadingSpinner from 'assets/LoadingSpinner';
 
 function Modal( { modalState,
                     handleClose,
@@ -9,8 +10,11 @@ function Modal( { modalState,
                     poster,
                     content } ) {
     
+    const [ loading, setLoading ] = useState( false );
+    
     const addConfirm =  'Successfully added reminders!'
     const handleReminder = () => {
+        setLoading(true)
         Axios.post( '/add-event', {
             calendarId: calendarId,
             content: content
@@ -18,8 +22,9 @@ function Modal( { modalState,
         .then(response => {
             console.log(response.data);
             fetchEvents()
-            handleClose()
+            setLoading(false)
             handleAlert(addConfirm)
+            handleClose()
         })
         .catch( error => {
             console.log( error );
@@ -177,7 +182,9 @@ function Modal( { modalState,
 
                             <div className='modal-footer'>
                                 <button type='button' className='btn btn-secondary rounded-edge' data-bs-dismiss='modal' onClick={ handleClose }>Close</button>
-                                <button type='button' className='btn btn-search-input' onClick={ handleReminder }>Get Reminders</button>
+                                <button type='button' className='btn btn-search-input' onClick={ handleReminder }>
+                                    { loading ? <LoadingSpinner/> : 'Get Reminders'}
+                                </button>
                             </div>
 
                         </div>
