@@ -185,6 +185,25 @@ h2#fc-dom-2.fc-toolbar-title {
   z-index: 99999; 
 }
 
+.form-control {
+    border-right-width:0px;
+}
+
+#clear-input {
+  border-style: solid;
+  border-width: 0.994009px 0px 0.994009px 0px;
+  border-top-color: rgb(206, 212, 218);
+  border-bottom-color: rgb(206, 212, 218);
+  background-color: #fff;
+}
+
+#clear-input.disable {
+ background-color: #f4f6f7 !important;
+ border-top-color: rgba(206, 212, 218, 0.5);
+ border-bottom-color: rgba(206, 212, 218, 0.5);
+}
+
+
 /* Google sign in buttons by anthonyjgrove@github 
    ========================================================================== */
 #googleButton {

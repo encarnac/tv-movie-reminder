@@ -82,7 +82,7 @@ function Dashboard( props ) {
     return (
         <>
             <section className='header'>
-                < Header { ...{ category, selectMovie, selectSeries, inputState, handleTitle, display, loading, handleURL } } />
+                < Header { ...{ category, selectMovie, selectSeries, inputState, handleTitle, display, loading, handleURL, clearResults } } />
             </section>
 
             <section className='results'>
