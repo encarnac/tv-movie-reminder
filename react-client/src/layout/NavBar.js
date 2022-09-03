@@ -54,7 +54,9 @@ function NavBar( props ) {
             < Calendar 
                 calendarId={ props.calendarId } 
                 events={props.events} 
-                fetchEvents={props.fetchEvents} />
+                handleAlert={ props.handleAlert }
+                
+                 />
         </div>
 
         </>

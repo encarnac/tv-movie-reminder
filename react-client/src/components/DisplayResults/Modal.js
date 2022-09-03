@@ -5,9 +5,11 @@ function Modal( { modalState,
                     handleClose,
                     calendarId,
                     fetchEvents,
+                    handleAlert,
                     poster,
                     content } ) {
-
+    
+    const addConfirm =  'Successfully added reminders!'
     const handleReminder = () => {
         Axios.post( '/add-event', {
             calendarId: calendarId,
@@ -17,6 +19,7 @@ function Modal( { modalState,
             console.log(response.data);
             fetchEvents()
             handleClose()
+            handleAlert(addConfirm)
         })
         .catch( error => {
             console.log( error );

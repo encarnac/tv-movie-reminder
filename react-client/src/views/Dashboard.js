@@ -21,11 +21,15 @@ function Dashboard( props ) {
         setTitle( e.target.value );
     };
 
+
+
     const [ url, setURL ] = useState( `/search?title=${ title }&category=${ category }` );
 
     const handleURL = () => {
         setURL( `/search?category=${ category }&title=${ title }` );
     };
+
+
 
     const [ loading, setLoading ] = useState( false );
     const [ display, setDisplay ] = useState( true );
@@ -50,6 +54,8 @@ function Dashboard( props ) {
     useEffect( () => {
         handleFetchResults();
     }, [ handleFetchResults ] );
+
+
 
     const [ clearButtonState, setClearButtonState ] = useState( false );
 
@@ -87,7 +93,8 @@ function Dashboard( props ) {
                             <DisplayResults
                                 tmdbData={ tmdbData }
                                 calendarId={ props.calendarId }
-                                fetchEvents={ props.fetchEvents } />
+                                fetchEvents={ props.fetchEvents }
+                                handleAlert={ props.handleAlert } />
                         </div>
 
                         { clearButtonState && (

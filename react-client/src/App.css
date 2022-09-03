@@ -179,6 +179,11 @@ h2#fc-dom-2.fc-toolbar-title {
     letter-spacing: 2px;
 }
 
+#top-alert {
+  position: fixed;
+  top: 0px;
+  z-index: 99999; 
+}
 
 /* Google sign in buttons by anthonyjgrove@github 
    ========================================================================== */
