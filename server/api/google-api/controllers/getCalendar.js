@@ -9,7 +9,9 @@ const getCalendar = async (req, res, next) => {
             const { calendar } = req;
             const response = await calendar.events.list({
                 auth: oauth2Client,
-                calendarId: calendarId
+                calendarId: calendarId,
+                maxResults: 2500,
+                showDeleted: false
             })
             let events = []
             response.data.items.map( ( item ) =>  {
@@ -23,6 +25,7 @@ const getCalendar = async (req, res, next) => {
                 }
                 events.push(event)
             })
+            console.log('BACKEND EVENTS = ', events)
             res.send({
                 events: events,
                 authUser: req.authUser

@@ -6,26 +6,24 @@ import FallbackImage from '../../assets/FallbackImage.png';
 function Card( { content, calendarId, fetchEvents, handleAlert } ) {
     const [ modalState, setModalState ] = useState( false );
 
-    // const handleClose = () => setModalState( false );
-
     function handleClose(){            
         document.getElementById('infoModal').classList.remove('show', 'd-block');
         document.querySelectorAll('.modal-backdrop')
                 .forEach(el => el.classList.remove('modal-backdrop'));
-}
+    };
 
     const handleOpen = ( e ) => {
         setModalState( true );
     };
 
-    const [imgSrc, setImgSrc] = useState(content.poster)
+    const [imgSrc, setImgSrc] = useState(content.poster);
     
-    const onError = () => setImgSrc(FallbackImage)
+    const onError = () => setImgSrc(FallbackImage);
 
     return (
         <>
             <div className='card bg-light-gradient mb-5 rounded-edge' style={ { 'width': '20rem;', 'background-image': 'linear-gradient(to left, #607076, #253B40);' } }>
-                <img src={ imgSrc ? imgSrc : FallbackImage } className='card-img-top img-fluid p-3 rounded-5' onError={onError} alt='...' />
+                <img src={ imgSrc ? imgSrc : FallbackImage } className='card-img-top img-fluid p-3 rounded-5' onError={ onError } alt='...' />
                 <div className='card-body '>
                     <h5 className='card-title'>{ content.title }</h5>
                     { content.category === 'movie' ?
@@ -53,6 +51,6 @@ function Card( { content, calendarId, fetchEvents, handleAlert } ) {
         </>
 
     );
-}
+};
 
 export default Card;

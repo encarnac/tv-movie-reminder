@@ -3,34 +3,34 @@ import Axios from 'axios';
 import LoadingSpinner from 'assets/LoadingSpinner';
 
 function Modal( { modalState,
-                    handleClose,
-                    calendarId,
-                    fetchEvents,
-                    handleAlert,
-                    poster,
-                    content } ) {
-    
+    handleClose,
+    calendarId,
+    fetchEvents,
+    handleAlert,
+    poster,
+    content } ) {
+
     const [ loading, setLoading ] = useState( false );
-    
-    const addConfirm =  'Successfully added reminders!'
+
+    const addConfirm = 'Successfully added reminders!';
     const handleReminder = () => {
-        setLoading(true)
+        setLoading( true );
         Axios.post( '/add-event', {
             calendarId: calendarId,
             content: content
-        }) 
-        .then(response => {
-            console.log(response.data);
-            fetchEvents()
-            setLoading(false)
-            handleAlert(addConfirm)
-            handleClose()
-        })
-        .catch( error => {
-            console.log( error );
-        });
-    }
-    
+        } )
+            .then( response => {
+                console.log( response.data );
+                fetchEvents();
+                setLoading( false );
+                handleAlert( addConfirm );
+                handleClose();
+            } )
+            .catch( error => {
+                console.log( error );
+            } );
+    };
+
     return (
         <div className='h-50 d-inline-block'>
             { modalState && (
@@ -183,7 +183,7 @@ function Modal( { modalState,
                             <div className='modal-footer'>
                                 <button type='button' className='btn btn-secondary rounded-edge' data-bs-dismiss='modal' onClick={ handleClose }>Close</button>
                                 <button type='button' className='btn btn-search-input' onClick={ handleReminder }>
-                                    { loading ? <LoadingSpinner/> : 'Get Reminders'}
+                                    { loading ? <LoadingSpinner /> : 'Get Reminders' }
                                 </button>
                             </div>
 
@@ -193,6 +193,6 @@ function Modal( { modalState,
             ) }
         </div>
     );
-}
+};
 
 export default Modal;

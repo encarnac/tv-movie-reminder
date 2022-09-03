@@ -1,5 +1,6 @@
 import { React, useState, useCallback, useEffect } from 'react';
 import Axios from 'axios';
+
 import Header from '../layout/Header';
 import DisplayResults from '../components/DisplayResults/DisplayResults';
 
@@ -80,35 +81,35 @@ function Dashboard( props ) {
     };
 
     return (
-        <>
-            <section className='header'>
-                < Header { ...{ category, selectMovie, selectSeries, inputState, handleTitle, display, loading, handleURL, clearResults } } />
-            </section>
+            <>
+                <section className='header'>
+                    < Header { ...{ category, selectMovie, selectSeries, inputState, handleTitle, display, loading, handleURL, clearResults } } />
+                </section>
 
-            <section className='results'>
-                { !loading && display && (
-
-                    <div className='container mt-4 pt-5'>
-                        <div className='row d-flex justify-content-center no-gutters gap-4' >
-                            <DisplayResults
-                                tmdbData={ tmdbData }
-                                calendarId={ props.calendarId }
-                                fetchEvents={ props.fetchEvents }
-                                handleAlert={ props.handleAlert } />
-                        </div>
-
-                        { clearButtonState && (
-                            <div className='fixed-bottom no-gutters'>
-                                <button className='btn btn-clear-results position-absolute bottom-0 end-0 mb-5'
-                                    onClick={ clearResults }>
-                                        <span className='bi bi-x-lg'></span>&nbsp; clear 
-                                </button>
+                <section className='results'>
+                    { !loading && display && (
+                        <div className='container mt-4 pt-5'>
+                            <div className='row d-flex justify-content-center no-gutters gap-4' >
+                                <DisplayResults
+                                    tmdbData={ tmdbData }
+                                    calendarId={ props.calendarId }
+                                    fetchEvents={ props.fetchEvents }
+                                    handleAlert={ props.handleAlert } />
                             </div>
-                        ) }
-                    </div>
-                ) }
-            </section>
-        </> );
-}
+
+                            { clearButtonState && (
+                                <div className='fixed-bottom no-gutters'>
+                                    <button className='btn btn-clear-results position-absolute bottom-0 end-0 mb-5'
+                                        onClick={ clearResults }>
+                                            <span className='bi bi-x-lg'></span>&nbsp; clear 
+                                    </button>
+                                </div>
+                            ) }
+                        </div>
+                    ) }
+                </section>
+            </> 
+    );
+};
 
 export default Dashboard;

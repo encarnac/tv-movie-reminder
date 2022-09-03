@@ -13,9 +13,7 @@ function Header( props ) {
                         align-items-end
                         align-items-lg-center 
                         vh-100
-                        pb-4
-                    
-                        ' >
+                        pb-4' >
 
                         <div className='row text-center mx-auto ms-lg-4 m-5 mb-md-1 pb-md-1 '>
                             <div className='col mx-1'>
@@ -34,6 +32,6 @@ function Header( props ) {
                     </div>
             </div>
     );
-}
+};
 
 export default Header;

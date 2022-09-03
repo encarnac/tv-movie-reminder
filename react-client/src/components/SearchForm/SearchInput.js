@@ -1,18 +1,19 @@
 import { React, useState } from 'react';
-import { MdClose } from "react-icons/md";
+import { MdClose } from 'react-icons/md';
 
 function SearchInput({ inputState, handleTitle, clearResults }) {
-    const [ inputValue , setInputValue ] = useState('')
+    const [ inputValue , setInputValue ] = useState('');
 
     const handleInputValue = (e) => {
         setInputValue(e.target.value);
-        handleTitle(e)
-    }
+        handleTitle(e);
+    };
 
     const resetInputValue = () => {
-        clearResults()
-        setInputValue('')
-    }
+        clearResults();
+        setInputValue('');
+    };
+
   return (
     <>
         { inputState 
@@ -27,7 +28,7 @@ function SearchInput({ inputState, handleTitle, clearResults }) {
         }
     </>
   );
-}
+};
 
 export default SearchInput;
 

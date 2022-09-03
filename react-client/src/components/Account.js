@@ -16,11 +16,11 @@ function Account( { user,
         try {
             const { code } = codeResponse;
             const loginRes = await Axios.post( '/login', { code } );
-            const calId = loginRes.data
-            handleCalendarCookie( calId )
-            handleCalendarId( calId )
+            const calId = loginRes.data;
+            handleCalendarCookie( calId );
+            handleCalendarId( calId );
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
     };
 
@@ -33,16 +33,15 @@ function Account( { user,
 
     const handleLogout = async () => {
         try {
-            handleCalendarId(null)
-            removeCalendarCookie()
-            handleUserData({})
-            const logoutRes = await Axios.post( '/logout' )
+            handleCalendarId(null);
+            removeCalendarCookie();
+            handleUserData({});
+            const logoutRes = await Axios.post( '/logout' );
         } catch( error ) {
-            console.log( error )
+            console.log( error );
         }
-    }
+    };
     
-
     return (
         <div className='offcanvas offcanvas-end' id='offcanvasAccount'>
 
@@ -68,21 +67,24 @@ function Account( { user,
                             </div>
                         </div>
                     </div>
+
                 :   <div className='offcanvas-body d-flex align-items-center pb-5'>         
                         <div className='row d-flex justify-content-center'>
                             <div className='col-12 flex-fill mb-4'>
-                            {/* <h1 className='bi bi-person-circle'></> */}
                                 <img src={ProfileIcon} className='round-edge img-thumbnail mb-3' style={{width:50, height:50, 'border-color':'black'}}  alt='user-prof-pic'/>
                                 <p>Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
                                 <button id='googleButton' onClick={ () => handleLogin() }>
-                                    <GoogleLogo/> Sign In With Google </button>
+                                    <GoogleLogo/> Sign In With Google 
+                                </button>
                             </div>
                         </div>
                     </div>
             }
+
         </div>
     );
-}
+};
+
 export default Account;
 
 

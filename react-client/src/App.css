@@ -52,14 +52,14 @@
 /* Header background image */
 @media (min-width: 992px) {
     .landing-header {
-    background-position: 100% 90%;
+    background-position: 100% 70%;
     background-size: auto 70%;
     }
 }
 
 @media (min-width: 769px) and (max-width: 992px) {
     .landing-header {
-        background-position: 50% 20%;
+        background-position: 50% 25%;
         background-size: auto 55%;
         
     }
@@ -160,7 +160,7 @@
 /* Button borders */
 .rounded-edge {
   border-radius: 22px;
-  box-shadow:  0 .7rem 2rem rgba(0,0,0, .09);
+  box-shadow:  0 .7rem 2rem rgba(0,0,0, .04);
 }
 
 /* Thumbnail image style */

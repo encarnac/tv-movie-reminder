@@ -1,12 +1,12 @@
 import { React } from 'react';
 
 function CategoryButtons( { props } ) {
-    const category = props.category
-    const selectMovie = props.selectMovie
-    const selectSeries = props.selectSeries
-    const display = props.display
-    const loading = props.loading
-
+    const category = props.category;
+    const selectMovie = props.selectMovie;
+    const selectSeries = props.selectSeries;
+    const display = props.display;
+    const loading = props.loading;
+    
     return (
         <>
             <nav className='navbar d-flex justify-content-evenly' >

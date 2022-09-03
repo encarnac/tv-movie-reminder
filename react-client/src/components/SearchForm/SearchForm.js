@@ -3,13 +3,12 @@ import SearchInput from './SearchInput';
 import CategoryButtons from './CategoryButtons';
 import LoadingSpinner from '../../assets/LoadingSpinner';
 
-
 function SearchForm( { props } ) {
 
     return (
         <>
             <div className='row px-0 px-md-5 mx-0 mx-md-5'>
-                <CategoryButtons {...{props}} />
+                <CategoryButtons {...{ props }} />
             </div>
 
             <div className='input-group my-2'>
@@ -24,7 +23,7 @@ function SearchForm( { props } ) {
         </>
 
     );
-}
+};
 
 export default SearchForm;
 
