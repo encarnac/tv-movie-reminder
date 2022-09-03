@@ -13,7 +13,7 @@ const logoutUser = require('./controllers/logoutUser');
 const revokeAuth = require('./controllers/revokeAuth');
 
 // Middleware function to check for user ID in session
-router.use(verifySession)
+router.use(verifySession);
 
 // Login to Google and saves the user and 'tv-movie' calendar ID to DB
 router.post( '/login', loginUser, getCalendarId, insertCalendar);

@@ -14,6 +14,6 @@ function tmdbReq(req, res, next) {
       else next();
     })
   } else res.send('');
-}
+};
 
 module.exports = tmdbReq

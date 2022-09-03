@@ -3,7 +3,7 @@ const getCalendar = async (req, res, next) => {
     try {
         const { calendarId } = req.query;
         if (!calendarId) {
-            res.end()
+            res.end();
         } else {
             const { oauth2Client } = req;
             const { calendar } = req;
@@ -12,8 +12,8 @@ const getCalendar = async (req, res, next) => {
                 calendarId: calendarId,
                 maxResults: 2500,
                 showDeleted: false
-            })
-            let events = []
+            });
+            let events = [];
             response.data.items.map( ( item ) =>  {
                 const event = {
                     id: item.id,
@@ -24,16 +24,17 @@ const getCalendar = async (req, res, next) => {
                     overview: item.overview
                 }
                 events.push(event)
-            })
-            console.log('BACKEND EVENTS = ', events)
+            });
+            console.log('BACKEND EVENTS = ', events);
             res.send({
                 events: events,
                 authUser: req.authUser
-            })
+            });
         }
+        
     } catch ( error ) {
         next( error );
     };
-}
+};
 
 module.exports = getCalendar

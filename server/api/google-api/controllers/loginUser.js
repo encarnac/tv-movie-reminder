@@ -1,5 +1,5 @@
-const User = require('../models/User')
-const { google } = require('googleapis')
+const User = require('../models/User');
+const { google } = require('googleapis');
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
@@ -31,18 +31,18 @@ const loginUser = async (req, res, next) => {
                 email: data.email,
                 credentials: tokens,
                 calendarId: ''
-            }
-            const user = await User.create(newUser)
-            console.log(' Added new Google account: ', user.email)
+            };
+            const user = await User.create(newUser);
+            console.log(' Added new Google account: ', user.email);
             session.userId = user._id;
             req.oauth2Client = oauth2Client;
             req.calendar = google.calendar('v3');
-            next()
+            next();
         } else next();
 
     } catch ( error ) {
         next( error );
     };
-}
+};
 
 module.exports = loginUser

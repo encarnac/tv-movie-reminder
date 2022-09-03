@@ -9,12 +9,12 @@ const deleteEvent = async (req, res, next) => {
             auth: oauth2Client,
             calendarId: calendarId,
             eventId: eventId
-        })
-        res.send(response.data)
+        });
+        res.send(response.data);
         
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};
 
 module.exports = deleteEvent

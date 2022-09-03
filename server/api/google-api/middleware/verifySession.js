@@ -1,5 +1,5 @@
-const User = require('../models/User')
-const { google } = require('googleapis')
+const User = require('../models/User');
+const { google } = require('googleapis');
 const calendar = google.calendar('v3');
 
 const CLIENT_ID = process.env.CLIENT_ID;
@@ -15,23 +15,24 @@ const verifySession = async (req, res, next) => {
     try {
         session = req.session;
         if (session.userId) {
-            const user = await User.findOne({ _id: session.userId })
-            console.log('Found user in database: ', user.email)
-            oauth2Client.setCredentials(user.credentials)
+            const user = await User.findOne({ _id: session.userId });
+            console.log('Found user in database: ', user.email);
+            oauth2Client.setCredentials(user.credentials);
             req.oauth2Client = oauth2Client;
             req.calendar = calendar;
             req.authUser = { 
                 displayName: user.displayName,
                 email: user.email,
                 image: user.image
-            }
-            next()
+            };
+            next();
         } else {
-            next('route')
+            next('route');
         }
+
     } catch ( error ) {
         next( error );
     };
-}
+};
 
 module.exports = verifySession
