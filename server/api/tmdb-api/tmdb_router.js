@@ -1,19 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios');
 
 const getResultsId = require('./middleware/getResultsId');
 const getTvDetails = require('./controllers/getTvDetails');
-// const getMovieDetails = require('./controllers/getMovieDetails');
+const getMovieDetails = require('./controllers/getMovieDetails');
 
-// Middleware //
+// Middleware to fetch all the IDs of the results //
 router.use(getResultsId);
 
-router.post('/', getTvDetails)
-// req.resultIds = resultIds;
-// req.category = category;
-// req.apiKey = API_KEY;
-
+// Controllers to fetch more details for each ID //
+router.post('/', getTvDetails, getMovieDetails)
 
 
 module.exports = router;
