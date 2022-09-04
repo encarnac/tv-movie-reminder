@@ -3,9 +3,9 @@
 # tv-movie-reminder / watch-soon
 
 [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-[![React][React.js]][React-url]
-![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
-![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
+[![React][React.js]][React-url]  ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![Last](https://img.shields.io/github/last-commit/encarnac/tv-movie-reminder?style=for-the-badge)
 [![MIT License][license-shield]][license-url]
 
 
