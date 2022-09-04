@@ -1,20 +1,21 @@
 const axios = require('axios');
 const Movie = require('../models/Movie');
 
+const validStatus = ['Planned', 'In Production', 'Post Production']
 
 async function getMovieDetails(req, res, next) {
     try {
         if (req.category === 'movie') {
             let movieResults = [];
             for (const id of req.resultIds) {
-                const movieInfo = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${req.apiKey}`);
-                const movie = new Movie(movieInfo.data);
-                movieResults.push(movie);
-            }
-            const upcomingMovieResults = movieResults.filter(
-                movie => ['Planned', 'In Production', 'Post Production'].includes(movie.status) 
-            );
-            res.send(upcomingMovieResults);
+                const request = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${req.apiKey}`);
+                const movieInfo = request.data;
+                if (validStatus.includes(movieInfo.status)) {
+                    const movie = new Movie(movieInfo);
+                    movieResults.push(movie);
+                } else continue;        
+            };
+            res.send(movieResults);
 
         } else next(error);
 

@@ -54,7 +54,7 @@ function Account( { user,
                 ?   <div className='offcanvas-body d-flex align-items-start my-1 py-4'>         
                         <div className='row d-flex justify-content-center align-items-center mx-3'>
                             <div className='col-12 px-3'>
-                                <h3 className='offcanvas-title text-center text-wrap mb-4 pb-4 mt-0 pt-0'><strong>Welcome back, </strong><br/>{ user?.displayName }!</h3>
+                                <h3 className='offcanvas-title text-start text-wrap mb-5 pb-4 mt-0 pt-0'><strong>Welcome back, </strong><br/>{ user?.displayName }!</h3>
                                 <img src={user?.image} className='round-edge img-thumbnail mb-2' style={{width:100, height:100}} alt='google-prof-pic'/>
                                 <p className='fs-5'>{user?.email}</p>
                                 <div className='row mx-5 gy-4' onClick={ () => handleLogout() } >
@@ -69,7 +69,7 @@ function Account( { user,
                 :   <div className='offcanvas-body d-flex align-items-start my-1 py-4'>    
                         <div className='row d-flex justify-content-cnter align-items-center mx-3'>
                             <div className='col-12 px-3'>
-                                <h3 className='offcanvas-title text-center text-wrap mb-4 pb-4 mt-0 pt-0'><strong>Welcome!</strong><br/> Let's Get Started </h3>
+                                <h3 className='offcanvas-title text-start text-wrap mb-5 pb-4 mt-0 pt-0'><strong>Welcome!</strong><br/> Let's Get Started </h3>
                                 <img src={ProfileIcon} className='round-edge img-thumbnail shadow-sm opacity-50 mb-4' style={{width:80, height:80, 'border-color':'black', 'border-width':'3px' }}  alt='user-prof-pic'/>
                                 <div className='row mx-5'>
                                     <button id='googleButton' onClick={ () => handleLogin() }>

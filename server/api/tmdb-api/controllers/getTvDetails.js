@@ -1,6 +1,7 @@
 const axios = require('axios');
 const TvSeries = require('../models/TvSeries');
 
+const validStatus = ['Returning Series', 'In Production', 'Post Production', 'Planned']
 
 const getSeasonEpisodes = async (id, seasonNum, apiKey) => {
     const season = await axios.get(`https://api.themoviedb.org/3/tv/${id}/season/${seasonNum}?api_key=${apiKey}`);
@@ -22,19 +23,17 @@ async function getTvDetails(req, res, next) {
         if (req.category === 'tv') {
             let tvResults = [];
             for (const id of req.resultIds) {
-                const tvInfo = await axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${req.apiKey}`);
-                const series = new TvSeries(tvInfo.data);
-                if (series.season_count >= 1) {
-                    const seasonEpisodes = await getSeasonEpisodes(id, series.season_count, req.apiKey);
-                    series.season_episodes = seasonEpisodes;
-                }
-                tvResults.push(series);
-            }
-            const upcomingTvResults = tvResults.filter(
-                series => ['Returning Series', 'In Production', 'Post Production', 'Planned'].includes(series.status) 
-            );
-            res.send(upcomingTvResults);
-
+                const request = await axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${req.apiKey}`);
+                const tvInfo = request.data;
+                if (validStatus.includes(tvInfo.status) && tvInfo.number_of_seasons >= 1) {
+                    const series = new TvSeries(tvInfo);
+                    const seasonEpisodes = await getSeasonEpisodes(id, series.seasonCount, req.apiKey);
+                    series.seasonEpisodes = seasonEpisodes;
+                    tvResults.push(series);
+                } else continue;
+            };
+            res.send(tvResults);
+            
         } else next();
 
     } catch(error) {
