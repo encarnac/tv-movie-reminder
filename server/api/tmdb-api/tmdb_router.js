@@ -1,11 +1,19 @@
 const express = require('express');
 const router = express.Router();
+const axios = require('axios');
+
+const getResultsId = require('./middleware/getResultsId');
+const getTvDetails = require('./controllers/getTvDetails');
+// const getMovieDetails = require('./controllers/getMovieDetails');
+
+// Middleware //
+router.use(getResultsId);
+
+router.post('/', getTvDetails)
+// req.resultIds = resultIds;
+// req.category = category;
+// req.apiKey = API_KEY;
 
 
-const tmdbReq = require('./controllers/tmdbReqController');
-const tmdbRes = require('./controllers/tmdbResController');
-
-// Handle request for the communication pipeline with the TMDB scraper
-router.get('/', tmdbReq, tmdbRes);
 
 module.exports = router;

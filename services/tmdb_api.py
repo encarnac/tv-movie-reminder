@@ -31,17 +31,17 @@ class tmdb_api:
 
     def __init__(self, category, title):
         ''' Initializes a tmdb_api object.'''
-        self.URL = 'https://api.themoviedb.org/3/'
-        self.api_key =  API_KEY
-        self.category = category
-        self.query = title
-        self.year = date.today().year
-        self.params = {'api_key': self.api_key, 
-                       'query': self.query,
-                       'year': self.year, 
-                       'language': 'en-US',
-                       'page' : '1',
-                       'include_adult': 'false'}
+        self.URL = 'https://api.themoviedb.org/3/'#
+        self.api_key =  API_KEY#
+        self.category = category#
+        self.query = title#
+        self.year = date.today().year#
+        self.params = {'api_key': self.api_key, #
+                       'query': self.query,#
+                       'year': self.year, #
+                       'language': 'en-US',#
+                       'page' : '1',#
+                       'include_adult': 'false'}#
         self.data = None
 
 

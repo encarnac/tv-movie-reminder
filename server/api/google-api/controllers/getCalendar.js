@@ -25,7 +25,7 @@ const getCalendar = async (req, res, next) => {
                 }
                 events.push(event)
             });
-            console.log('BACKEND EVENTS = ', events);
+            // console.log('BACKEND EVENTS = ', events);
             res.send({
                 events: events,
                 authUser: req.authUser

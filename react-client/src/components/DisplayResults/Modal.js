@@ -66,7 +66,7 @@ function Modal( { modalState,
                                                     <h6 className='fw-semibold'>Genres:</h6>
                                                 </div>
                                                 <div className='col-8'>
-                                                    <p>{ content.genres.map( ( genre, i, genres ) => {
+                                                    <p>{ content.genres?.map( ( genre, i, genres ) => {
                                                         if ( i + 1 === genres.length ) {
                                                             return ( <span>{ genre }</span> );
                                                         } else {
@@ -161,7 +161,7 @@ function Modal( { modalState,
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        { content.season_episodes.map( ( episode ) => (
+                                                                        { content.season_episodes?.map( ( episode ) => (
                                                                             <tr>
                                                                                 <td>{ episode.episode_number }</td>
                                                                                 <td>{ episode.name }</td>

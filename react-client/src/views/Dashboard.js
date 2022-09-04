@@ -39,7 +39,7 @@ function Dashboard( props ) {
 
     const handleFetchResults = useCallback( () => {
         setLoading( true );
-        Axios.get( url )
+        Axios.post( url )
             .then( response => {
                 setDisplay( !display );
                 setInputState( !inputState );
