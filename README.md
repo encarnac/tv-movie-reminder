@@ -103,7 +103,7 @@ Here is a working live demo: [TBA](#)
 - [x] Add confirmation alerts for add/delete actions
 - [x] Replace Python with Javascript for TMDB API access
 - [x] Added responsive mobile design
-- [ ] Only display results on/after the current year
+- [x] Only display results on/after the current year
 - [ ] Add external link to 'tv-movie' calendar in user tab
 - [ ] Add revoke token button to user tab
 - [ ] Selectively add episode reminders

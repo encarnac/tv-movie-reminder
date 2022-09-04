@@ -174,10 +174,10 @@ h2#fc-dom-44.fc-toolbar-title,
 h2#fc-dom-2.fc-toolbar-title {
     font-size: 1.25rem;
 }
-
+/* 
 .offcanvas-title {
-    letter-spacing: 2px;
-}
+    letter-spacing: 1.5px;
+} */
 
 #top-alert {
   position: fixed;
@@ -212,13 +212,13 @@ h2#fc-dom-2.fc-toolbar-title {
     align-items: center;
     color: rgba(0, 0, 0, .54);
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 0 1px 0 rgba(0, 0, 0, .14);
-    padding: 2px 15px 2px 5px;
+    padding: 2px 17px 2px 7px;
     border-color: #DADCE0;
     border-radius: 25px;
     border: 1px solid transparent;
     font-weight: 500;
     font-family: "Google Sans", arial, sans-serif;
-    font-size:.8rem;
+    font-size:.9rem;
 }
 
 #googleButton:hover {

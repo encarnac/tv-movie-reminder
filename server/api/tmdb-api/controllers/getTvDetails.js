@@ -30,7 +30,10 @@ async function getTvDetails(req, res, next) {
                 }
                 tvResults.push(series);
             }
-            res.send(tvResults);
+            const upcomingTvResults = tvResults.filter(
+                series => ['Returning Series', 'In Production', 'Post Production', 'Planned'].includes(series.status) 
+            );
+            res.send(upcomingTvResults);
 
         } else next();
 

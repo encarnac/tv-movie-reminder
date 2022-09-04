@@ -45,22 +45,20 @@ function Account( { user,
     return (
         <div className='offcanvas offcanvas-end' id='offcanvasAccount'>
 
-            <div className='offcanvas-header'>
-                 <h5 className='offcanvas-title' id='offcanvasAccountLabel'>
-                   Your Account </h5>
+            <div className='offcanvas-header d-flex justify-content-end'>
                 <button type='button' className='btn-close' data-bs-dismiss='offcanvas'></button>
             </div>
+            {/* offcanvas-body container position-absolute top-50 start-50 translate-middle px-5 pb-5 */}
         
             { calendarId
-                ?   <div className='offcanvas-body container position-absolute top-50 start-50 translate-middle px-5 pb-5'>         
-                        <div className='row d-flex justify-content-center'>
-                            <div className='col-12 flex-fill'>
-                                <img src={user?.image} className='round-edge img-thumbnail mb-2' alt='google-prof-pic'/>
-                                <h4>{user?.displayName}</h4>
+                ?   <div className='offcanvas-body d-flex align-items-start my-1 py-4'>         
+                        <div className='row d-flex justify-content-center align-items-center mx-3'>
+                            <div className='col-12 px-3'>
+                                <h3 className='offcanvas-title text-center text-wrap mb-4 pb-4 mt-0 pt-0'><strong>Welcome back, </strong><br/>{ user?.displayName }!</h3>
+                                <img src={user?.image} className='round-edge img-thumbnail mb-2' style={{width:100, height:100}} alt='google-prof-pic'/>
                                 <p className='fs-5'>{user?.email}</p>
-                                
-                                <div className='flex-fill'>
-                                    <button id='googleButton' onClick={ () => handleLogout() }>
+                                <div className='row mx-5 gy-4' onClick={ () => handleLogout() } >
+                                    <button id='googleButton' >
                                         <GoogleLogo/> Disconnect Your Google Account
                                     </button>
                                 </div>
@@ -68,14 +66,16 @@ function Account( { user,
                         </div>
                     </div>
 
-                :   <div className='offcanvas-body d-flex align-items-center pb-5'>         
-                        <div className='row d-flex justify-content-center'>
-                            <div className='col-12 flex-fill mb-4'>
-                                <img src={ProfileIcon} className='round-edge img-thumbnail mb-3' style={{width:50, height:50, 'border-color':'black'}}  alt='user-prof-pic'/>
-                                <p>Allow access to your Google account to create Google Calendar reminders and receive notifications.</p>
-                                <button id='googleButton' onClick={ () => handleLogin() }>
-                                    <GoogleLogo/> Sign In With Google 
-                                </button>
+                :   <div className='offcanvas-body d-flex align-items-start my-1 py-4'>    
+                        <div className='row d-flex justify-content-cnter align-items-center mx-3'>
+                            <div className='col-12 px-3'>
+                                <h3 className='offcanvas-title text-center text-wrap mb-4 pb-4 mt-0 pt-0'><strong>Welcome!</strong><br/> Let's Get Started </h3>
+                                <img src={ProfileIcon} className='round-edge img-thumbnail shadow-sm opacity-50 mb-4' style={{width:80, height:80, 'border-color':'black', 'border-width':'3px' }}  alt='user-prof-pic'/>
+                                <div className='row mx-5'>
+                                    <button id='googleButton' onClick={ () => handleLogin() }>
+                                        <GoogleLogo/> Sign In With Google 
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>

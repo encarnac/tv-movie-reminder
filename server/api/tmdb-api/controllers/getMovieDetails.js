@@ -11,7 +11,10 @@ async function getMovieDetails(req, res, next) {
                 const movie = new Movie(movieInfo.data);
                 movieResults.push(movie);
             }
-            res.send(movieResults);
+            const upcomingMovieResults = movieResults.filter(
+                movie => ['Planned', 'In Production', 'Post Production'].includes(movie.status) 
+            );
+            res.send(upcomingMovieResults);
 
         } else next(error);
 
