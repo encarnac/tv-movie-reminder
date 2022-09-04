@@ -189,8 +189,9 @@ button#btn-group {
 
 /* FullCalendar title */
 h2#fc-dom-44.fc-toolbar-title, 
-h2#fc-dom-2.fc-toolbar-title {
-    font-size: 1.25rem;
+h2#fc-dom-24.fc-toolbar-title {
+    font-size: 1.6rem;
+    font-weight: 500;
 }
 /* 
 .offcanvas-title {

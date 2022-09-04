@@ -66,21 +66,26 @@ function Calendar( { calendarId, events, handleAlert } ) {
         <>
             <div className='offcanvas offcanvas-end' id='offcanvasReminders'>
 
-                <div className='offcanvas-header d-flex justify-content-between ps-5 '>
-                    <h4 className='offcanvas-title' id='offcanvasReminders'>
-                        <strong>Your Watchlist</strong>
-                    </h4>
+                <div className='offcanvas-header d-flex justify-content-end ps-4'>
+
                     <button type='button' className='btn-close' data-bs-dismiss='offcanvas'></button>
                 </div>
 
-                <div className='offcanvas-body opacity-75 px-4'>
+                <div className='offcanvas-body px-5'>
+                    <div className='row d-flex justify-content-start'>
+                        <div className='col-12 d-flex justify-content-start flex-column'>
+                            <h3 className='offcanvas-title text-start text-wrap my-2'>
+                                <strong>Your Watchlist </strong> 
+                            </h3>   
+                        </div>
+                    </div>
                     { calendarId && Array.isArray( events )
                         ?   <div className='container'>
                                 <FullCalendar
                                     plugins={ [ listPlugin, bootstrap5Plugin, interactionPlugin ] }
                                     initialView='listMonth'
                                     themeSystem='bootstrap5'
-                                    aspectRatio='0.54'
+                                    aspectRatio='0.56'
                                     titleFormat={ {
                                         year: 'numeric',
                                         month: 'short',
