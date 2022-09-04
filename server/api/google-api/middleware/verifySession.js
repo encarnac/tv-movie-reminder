@@ -22,6 +22,7 @@ const verifySession = async (req, res, next) => {
             req.calendar = calendar;
             req.authUser = { 
                 displayName: user.displayName,
+                firstName: user.firstName,
                 email: user.email,
                 image: user.image
             };

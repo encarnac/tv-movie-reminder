@@ -24,9 +24,11 @@ const loginUser = async (req, res, next) => {
             });
             const { data } = await oauth2.userinfo.get();
 
+            console.log('USER DATA = ', data)
             const newUser = {
                 googleId: data.id,
                 displayName: data.name,
+                firstName: data.given_name,
                 image: data.picture,
                 email: data.email,
                 credentials: tokens,

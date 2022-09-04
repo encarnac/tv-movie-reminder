@@ -15,7 +15,6 @@ const getCalendarId = async (req, res, next) => {
         if (!calendarId?.length) {
             next();
         } else {
-            console.log('NEED TO ADD CAL ID');
             const updateUser = await User.updateOne(
                 { _id: req.session.userId }, 
                 { $set:
