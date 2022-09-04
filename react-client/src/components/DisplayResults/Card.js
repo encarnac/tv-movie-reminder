@@ -28,7 +28,7 @@ function Card( { content, calendarId, fetchEvents, handleAlert } ) {
                     <h5 className='card-title'>{ content.title }</h5>
                     { content.category === 'movie' ?
                         <p><i>{ content.release.slice( 0, 4 ) }</i></p> :
-                        <p><i>{ content.first_release.slice( 0, 4 ) }</i></p>
+                        <p><i>{ content.firstRelease.slice( 0, 4 ) }</i></p>
                     }
                     <button type='button' className='btn shadow-sm btn-search-input'
                         data-bs-toggle='modal'

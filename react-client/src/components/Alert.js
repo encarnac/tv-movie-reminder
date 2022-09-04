@@ -11,7 +11,7 @@ function Alert( { alertState, alertMessage, closeAlert } ) {
 
                     <div>
                        <strong>
-                            {alertMessage}
+                            { alertMessage }
                        </strong>
                     </div>
 

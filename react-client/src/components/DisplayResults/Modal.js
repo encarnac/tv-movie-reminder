@@ -111,7 +111,7 @@ function Modal( { modalState,
                                                             <h6 className='fw-semibold'>First Release:</h6>
                                                         </div>
                                                         <div className='col-8'>
-                                                            <p>{ content.first_release }</p>
+                                                            <p>{ content.firstRelease }</p>
                                                         </div>
                                                     </div>
 
@@ -120,7 +120,7 @@ function Modal( { modalState,
                                                             <h6 className='fw-semibold'>Latest Release:</h6>
                                                         </div>
                                                         <div className='col-8'>
-                                                            <p>{ content.latest_release }</p>
+                                                            <p>{ content.latestRelease }</p>
                                                         </div>
                                                     </div>
 
@@ -130,7 +130,7 @@ function Modal( { modalState,
                                                             <h6 className='fw-semibold'># Seasons:</h6>
                                                         </div>
                                                         <div className='col-8'>
-                                                            <p>{ content.season_count }</p>
+                                                            <p>{ content.seasonCount }</p>
                                                         </div>
                                                     </div>
 
@@ -139,7 +139,7 @@ function Modal( { modalState,
                                                             <h6 className='fw-semibold'># Episodes:</h6>
                                                         </div>
                                                         <div className='col-8'>
-                                                            <p>{ content.episode_count }</p>
+                                                            <p>{ content.episodeCount }</p>
                                                         </div>
                                                     </div>
 
@@ -147,7 +147,7 @@ function Modal( { modalState,
                                                     <div className='row'>
                                                         <div className='col-md-12 px-1'>
                                                             <a className='btn-sm text-dark text-decoration-none' data-bs-toggle='collapse' href='#episodeDetails' role='button'>
-                                                                <span className='fw-semibold'>View Season { content.season_count } Episodes &nbsp; ▼ </span>
+                                                                <span className='fw-semibold'>View Season { content.seasonCount } Episodes &nbsp; ▼ </span>
                                                             </a>
 
 
@@ -161,11 +161,11 @@ function Modal( { modalState,
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        { content.season_episodes?.map( ( episode ) => (
+                                                                        { content.seasonEpisodes?.map( ( episode ) => (
                                                                             <tr>
-                                                                                <td>{ episode.episode_number }</td>
+                                                                                <td>{ episode.episodeNumber }</td>
                                                                                 <td>{ episode.name }</td>
-                                                                                <td>{ episode.air_date }</td>
+                                                                                <td>{ episode.airDate }</td>
                                                                             </tr>
                                                                         ) ) }
                                                                     </tbody>

@@ -20,7 +20,7 @@ function Account( { user,
             handleCalendarCookie( calId );
             handleCalendarId( calId );
         } catch (error) {
-            console.error(error);
+            console.error( error );
         }
     };
 
@@ -35,7 +35,7 @@ function Account( { user,
         try {
             handleCalendarId(null);
             removeCalendarCookie();
-            handleUserData({});
+            handleUserData( {} );
             const logoutRes = await Axios.post( '/logout' );
         } catch( error ) {
             console.log( error );

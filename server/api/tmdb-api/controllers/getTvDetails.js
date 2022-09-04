@@ -8,8 +8,8 @@ const getSeasonEpisodes = async (id, seasonNum, apiKey) => {
     episodesList = [];
     seasonEpisodes.map((ep)=> {
         const episode = {
-            air_date: ep.air_date,
-            episode_number: ep.episode_number,
+            airDate: ep.air_date,
+            episodeNumber: ep.episode_number,
             name: ep.name
         };
         episodesList.push(episode);
