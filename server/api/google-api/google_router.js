@@ -12,6 +12,7 @@ const insertTvEvent = require('./controllers/insertTvEvent');
 const logoutUser = require('./controllers/logoutUser');
 const revokeAuth = require('./controllers/revokeAuth');
 
+
 // Middleware function to check for user ID in session
 router.use(verifySession);
 

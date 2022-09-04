@@ -79,7 +79,7 @@ function Calendar( { calendarId, events, handleAlert } ) {
                                     plugins={ [ listPlugin, bootstrap5Plugin, interactionPlugin ] }
                                     initialView='listMonth'
                                     themeSystem='bootstrap5'
-                                    aspectRatio='0.65'
+                                    aspectRatio='0.54'
                                     titleFormat={ {
                                         year: 'numeric',
                                         month: 'short',

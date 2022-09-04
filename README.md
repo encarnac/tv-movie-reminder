@@ -1,10 +1,10 @@
 ![watch-soon](https://user-images.githubusercontent.com/76987299/184469224-16a690f8-74f9-4f21-9b7b-ff007c7bccf1.png)
 
-# tv-movie-reminder (aka watch-soon)
+# tv-movie-reminder / watch-soon
+
 [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 [![React][React.js]][React-url]
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
 [![MIT License][license-shield]][license-url]
 
@@ -42,19 +42,21 @@
 <tr>
 <td>
   A webapp using The Movie Database API and Google Calendar API. 
-  </br> Use it to search for tv shows or movies by title and get reminders on their releases on your Google Calendar. 
+  </br> Use it to search for upcoming tv shows or movies by title and get reminders on their releases on your Google Calendar. 
 </td>
 </table>
 
 ### Built with 
-- [ReactJS](https://reactjs.org/) - A JavaScript library for building user interfaces
-- [Create React App](https://create-react-app.dev/) - Create React apps with no build configuration.
+- [ Axios ](https://axios-http.com/docs/intro) - A promise-based HTTP Client for node.js and the browser
+-  [Bootstrap](http://getbootstrap.com/) - Extensive list of components and  Bundled Javascript plugins.
+-  [Create React App](https://create-react-app.dev/) - Create React apps with no build configuration.
 - [Express.js](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for node.
-- [Bootstrap](http://getbootstrap.com/) - Extensive list of components and  Bundled Javascript plugins.
-- [React Oauth2 | Google ](https://github.com/MomenSherif/react-oauth) - Google OAuth2 using the new Google Identity Services SDK for React
+- [ FullCalendar](https://fullcalendar.io/) - A full-sized drag & drop JavaScript event calendar
 - [Google Calendar API](https://developers.google.com/calendar/api) - Integrate your app with Google Calendar, creating new ways for you to engage your users.
+-  [Mongoose](https://mongoosejs.com/) - An Object Data Modeling (ODM) library for MongoDB and Node.js. 
 - [TheMovieDatabaseAPI](https://developers.themoviedb.org/3) - Millions of movies, TV shows and people to discover. 
-- [React Icons](https://react-icons.github.io/react-icons/search) - Include popular icons in your React projects easily with react-icons, which utilizes ES6
+-  [ReactJS](https://reactjs.org/) - A JavaScript library for building user interfaces
+
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
@@ -92,19 +94,24 @@ Here is a working live demo: [TBA](#)
 - [x] Add a show to the user's calendar
 - [x] Create 'tv-movie' calendar if none exists
 - [x] Display user’s info in offcanvas
-- [x] Create a database to store calendar offline
 ### v1.1.0
+- [x] Create a database to save state offline
+- [x] Handle refresh tokens
+- [x] Display events using FullCalendar
+- [x] Mass delete content from watchlist
+- [x] Clear button appears as you scroll and jumps to top
+- [x] Add confirmation alerts for add/delete actions
+- [x] Replace Python with Javascript for TMDB API access
+- [x] Added responsive mobile design
+- [ ] Add external link to 'tv-movie' calendar in user tab
+- [ ] Add revoke token button to user tab
+- [ ] Selectively add episode reminders
+### v1.1.1
+- [ ] Fix modal bugs  
+- [ ] Implement proper React Router 6
 - [ ] Implement useReducer 
 - [ ] Implement useContext
 - [ ] Optimize rendering and remove unnecessary useEffect
-- [ ] Implement proper React Router 6
-- [ ] Add additional animations for cohesiveness
-### v2.0.0
-- [ ] Sort list of events by most recent
-- [ ] Autohide past events from rendering
-- [ ] Mass delete content from watchlist
-- [ ] Selectively add episode reminders
-- [ ] Handle refresh tokens
 ### Other
 - [ ] Deploy a live demo
 
@@ -135,6 +142,8 @@ Distributed under the MIT ©  License. See `LICENSE.txt` for more information.
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
+Header image from [Undraw](https://undraw.co/)
+
 Google Button CSS from [@google-react-login](https://github.com/anthonyjgrove/react-google-login)
 
 Loading spinner from [Contact Mentor](https://contactmentor.com/how-to-add-loading-spinner-react-js/)
