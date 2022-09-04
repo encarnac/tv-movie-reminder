@@ -115,6 +115,7 @@
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
   padding-left: 20px;
   padding-right: 20px;
+  padding: 7px 20px 7px 20px;
 }
 
 /* Buttons: submit & delete (hover/disabled) */
@@ -157,6 +158,23 @@
 
 }
 
+button#btn-group {
+    color: rgba(0, 0, 0, .6);
+    background-color: rgba(246, 246, 246, 0.3);
+    padding: 10px;
+    border: 0;
+    border-radius: 30px;
+    background: transparent;
+    font-size: 1rem;
+    font-weight: 620;
+    font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+#btn-group:hover {
+    background-color: rgba(200, 213, 239, 0.5);
+    
+}
+
 /* Button borders */
 .rounded-edge {
   border-radius: 22px;
@@ -165,7 +183,7 @@
 
 /* Thumbnail image style */
 .round-edge {
-  border-radius: 100px;
+  border-radius: 50%;
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .03);
 }
 

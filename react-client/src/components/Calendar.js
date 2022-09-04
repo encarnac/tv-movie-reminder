@@ -66,9 +66,10 @@ function Calendar( { calendarId, events, handleAlert } ) {
         <>
             <div className='offcanvas offcanvas-end' id='offcanvasReminders'>
 
-                <div className='offcanvas-header'>
-                    <h5 className='offcanvas-title' id='offcanvasReminders'>
-                        Your Watchlist</h5>
+                <div className='offcanvas-header d-flex justify-content-between ps-5 '>
+                    <h4 className='offcanvas-title' id='offcanvasReminders'>
+                        <strong>Your Watchlist</strong>
+                    </h4>
                     <button type='button' className='btn-close' data-bs-dismiss='offcanvas'></button>
                 </div>
 

@@ -3,6 +3,7 @@ import { React } from 'react';
 import Account from '../components/Account';
 import Calendar from '../components/Calendar';
 
+import { BsFillBookmarkFill } from 'react-icons/bs';
 import { FaUser } from 'react-icons/fa';
 
 function NavBar( props ) {
@@ -10,7 +11,7 @@ function NavBar( props ) {
     return (
             <>
                 <nav className='navbar navbar-expand bg-light px-2 fixed-top' >
-                    <div className='container-fluid'>
+                    <div className='container-fluid '>
 
                         <a className='navbar-brand h1' href='/'>
                             <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' className='bi bi-alarm-fill mx-2' viewBox='0 0 16 16'>
@@ -23,7 +24,7 @@ function NavBar( props ) {
                             {/* // Reminders Button // */ }     
                             <li className='nav-item'> 
                                 <a className='nav-link' data-bs-toggle='offcanvas' href='#offcanvasReminders' role='button'>
-                                    <h5 className='bi bi-calendar-heart-fill'></h5>
+                                    <BsFillBookmarkFill />
                                 </a>
                             </li>
                             
@@ -31,6 +32,7 @@ function NavBar( props ) {
                             <li className='nav-item'> 
                                 <a className='nav-link' data-bs-toggle='offcanvas' href='#offcanvasAccount' role='button'>
                                     <FaUser />
+                                    
                                 </a>
                             </li>
                         </ul>
