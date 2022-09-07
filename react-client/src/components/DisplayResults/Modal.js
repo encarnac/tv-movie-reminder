@@ -1,6 +1,7 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect, useRef } from 'react';
 import Axios from 'axios';
 import LoadingSpinner from 'assets/LoadingSpinner';
+import AddButton from 'assets/AddButton';
 
 function Modal( { modalState,
     handleClose,
@@ -14,11 +15,12 @@ function Modal( { modalState,
 
     const addConfirm = 'Successfully added reminders!';
 
-    const handleReminder = () => {
+    const handleReminder = (contentInfo) => {
+        console.log('CONTENT TO ADD = ', contentInfo)
         setLoading( true );
         Axios.post( '/add-event', {
             calendarId: calendarId,
-            content: content
+            content: contentInfo
         } )
             .then( response => {
                 console.log( response.data );
@@ -31,7 +33,8 @@ function Modal( { modalState,
                 console.log( error );
             } );
     };
-    
+
+
 
     return (
         <div className='h-50 d-inline-block'>
@@ -160,6 +163,7 @@ function Modal( { modalState,
                                                                             <th>#</th>
                                                                             <th>Title</th>
                                                                             <th>Date</th>
+                                                                            <th></th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
@@ -168,6 +172,11 @@ function Modal( { modalState,
                                                                                 <td>{ episode.episodeNumber }</td>
                                                                                 <td>{ episode.name }</td>
                                                                                 <td>{ episode.airDate }</td>
+                                                                                <td>
+                                                                                    <AddButton  content={ content } 
+                                                                                                episode={ episode }
+                                                                                                handleReminder={ handleReminder } />
+                                                                                </td>
                                                                             </tr>
                                                                         ) ) }
                                                                     </tbody>
@@ -184,7 +193,7 @@ function Modal( { modalState,
 
                             <div className='modal-footer'>
                                 <button type='button' className='btn btn-secondary rounded-edge' data-bs-dismiss='modal' onClick={ handleClose }>Close</button>
-                                <button type='button' className='btn btn-search-input' onClick={ handleReminder }>
+                                <button type='button' className='btn btn-search-input' onClick={ ()=> handleReminder(content) }>
                                     { loading ? <LoadingSpinner /> : 'Get Reminders' }
                                 </button>
                             </div>

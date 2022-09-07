@@ -46,6 +46,7 @@ function Calendar( { calendarId, events, handleAlert } ) {
                     }
                 } );
                 selection.event.remove();
+                setSelectedCount( selectedCount - 1 );
             }
             setSelectedCount( 0 );
             setSelectedEvents( [] );

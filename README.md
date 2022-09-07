@@ -104,11 +104,11 @@ Here is a working live demo: [TBA](#)
 - [x] Replace Python with Javascript for TMDB API access
 - [x] Added responsive mobile design
 - [x] Only display results on/after the current year
-- [ ] Add external link to 'tv-movie' calendar in user tab
-- [ ] Add revoke token button to user tab
-- [ ] Selectively add episode reminders
+- [x] Add external link to 'tv-movie' calendar in user tab
+- [x] Add revoke token function to logout button
+- [x] Add individual episode reminders
 ### v1.1.1
-- [ ] Fix modal bugs  
+- [ ] Fix modal bugs 
 - [ ] Implement proper React Router 6
 - [ ] Implement useReducer 
 - [ ] Implement useContext
