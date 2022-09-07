@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useRef } from 'react';
 import Axios from 'axios';
 import FullCalendar from '@fullcalendar/react';
 import listPlugin from '@fullcalendar/list';
@@ -61,31 +61,34 @@ function Calendar( { calendarId, events, handleAlert } ) {
         setSelectedEvents( [] );
         setSelectedCount( 0 );
     };
+    
+    let calendarRef = useRef(null)
+
 
     return (
         <>
             <div className='offcanvas offcanvas-end' id='offcanvasReminders'>
 
-                <div className='offcanvas-header d-flex justify-content-end ps-4'>
-
+                <div className='offcanvas-header d-flex justify-content-end'>
                     <button type='button' className='btn-close' data-bs-dismiss='offcanvas'></button>
                 </div>
 
-                <div className='offcanvas-body px-5'>
+                <div className='offcanvas-body px-4 mx-1'>
                     <div className='row d-flex justify-content-start'>
                         <div className='col-12 d-flex justify-content-start flex-column'>
-                            <h3 className='offcanvas-title text-start text-wrap my-2'>
+                            <h3 className='offcanvas-title text-start text-wrap mt-1 ms-2'>
                                 <strong>Your Watchlist </strong> 
                             </h3>   
                         </div>
                     </div>
                     { calendarId && Array.isArray( events )
-                        ?   <div className='container'>
+                        ?   <div className='container mt-1 pb-2'>
                                 <FullCalendar
+                                    ref={calendarRef}
                                     plugins={ [ listPlugin, bootstrap5Plugin, interactionPlugin ] }
                                     initialView='listMonth'
                                     themeSystem='bootstrap5'
-                                    aspectRatio='0.56'
+                                    aspectRatio='.56'
                                     titleFormat={ {
                                         year: 'numeric',
                                         month: 'short',
@@ -94,12 +97,30 @@ function Calendar( { calendarId, events, handleAlert } ) {
                                     headerToolbar={ {
                                         left: 'title',
                                         center: 'today',
-                                        right: 'prev,next'
+                                        right: 'prevCustom,nextCustom'
                                     } }
                                     buttonIcons={ {
-                                        prev: 'arrow-left-short',
-                                        next: 'arrow-right-short'
+                                        prevCustom: 'arrow-left-short',
+                                        nextCustom: 'arrow-right-short'
                                     } }
+                                    customButtons={{
+                                        prevCustom: {
+                                            text: 'prev',
+                                            click: function() {
+                                                clearSelection()
+                                                let calendar = calendarRef.current.getApi()
+                                                calendar.prev()
+                                            }
+                                        }, 
+                                        nextCustom: {
+                                            text: 'next',
+                                            click: function() {
+                                                clearSelection()
+                                                let calendar = calendarRef.current.getApi()
+                                                calendar.next()
+                                            }
+                                        }, 
+                                    }}
                                     stickyHeaderDates={ false }
                                     displayEventTime={ false }
                                     eventInteractive={ true }
@@ -118,14 +139,19 @@ function Calendar( { calendarId, events, handleAlert } ) {
                                     <div className='col-5 col-sm-8 mt-3  d-flex flex-column flex-sm-row justify-content-end gap-1'>
                                         <button className='btn btn-secondary rounded-edge px-2 px-sm-4' onClick={ () => clearSelection() }>
                                             clear</button>
-                                        <button className='btn btn-delete-input px-2' onClick={ () => deleteEvents() }>
-                                            { loading ? <LoadingSpinner /> : 'delete all' }
+                                        <button className='btn btn-delete-input px-4' onClick={ () => deleteEvents() }>
+                                            { loading ? <LoadingSpinner /> : 'delete' }
                                         </button>
                                     </div>
                                 </div>
                             </div>
 
-                        : <p>No upcoming releases found. <br /> You must link a Google Account.</p>
+                        :   <div className='row d-flex justify-content-center'>
+                                <div className='col-12 mt-5 '>
+                                    <p className='fs-5'>No upcoming releases found. <br /> You must link a Google Account.</p> 
+                                </div>
+                            </div>
+                        
                     }
                 </div>
 

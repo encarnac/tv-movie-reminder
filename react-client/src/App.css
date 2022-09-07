@@ -82,11 +82,11 @@
 
 /* Buttons: categories and next page (inactive) */
 .nav-pills .pill-1 .nav-link:not(.active),
-.fc-today-button.btn:is(:hover, :focus),
-.fc-prev-button:is(:hover, :focus),
-.fc-next-button:is(:hover, :focus) {
-  background-color: #D2E4E1;
-  border-color: #D2E4E1;
+.fc-today-button.btn, 
+.fc-prevCustom-button, 
+.fc-nextCustom-button {
+  background-color: #c1e7e0;
+  border-color: #c1e7e0;
   border-radius: 30px;
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
   color: white;
@@ -95,11 +95,11 @@
 /* Buttons: categories and next page (active) */
 .nav-pills .pill-1 .nav-link,
 .nav-pills .pill-1 .nav-link:hover,
-.fc-today-button.btn, 
-.fc-prev-button, 
-.fc-next-button {
-  background-color: rgba(165,217,208, 1);
-  border-color: rgba(165,217,208, 1);
+.fc-today-button.btn:is(:hover, :focus),
+.fc-prevCustom-button:is(:hover, :focus),
+.fc-nextCustom-button:is(:hover, :focus) {
+  background-color: #82c7bc;
+  border-color: #82c7bc;
   border-radius: 30px;
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
   color: white;
@@ -177,7 +177,7 @@ button#btn-group {
 
 /* Button borders */
 .rounded-edge {
-  border-radius: 22px;
+  border-radius: 30px;
   box-shadow:  0 .7rem 2rem rgba(0,0,0, .04);
 }
 
@@ -188,10 +188,11 @@ button#btn-group {
 }
 
 /* FullCalendar title */
-h2#fc-dom-44.fc-toolbar-title, 
-h2#fc-dom-24.fc-toolbar-title {
-    font-size: 1.6rem;
+h2#fc-dom-68.fc-toolbar-title {
+    font-size: 1.3rem;
     font-weight: 500;
+    padding-right: 7.5px;
+    color: #6c757d;
 }
 /* 
 .offcanvas-title {
