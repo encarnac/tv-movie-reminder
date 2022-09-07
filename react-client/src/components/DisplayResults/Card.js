@@ -10,6 +10,7 @@ function Card( { content, calendarId, fetchEvents, handleAlert } ) {
         document.getElementById('infoModal').classList.remove('show', 'd-block');
         document.querySelectorAll('.modal-backdrop')
                 .forEach(el => el.classList.remove('modal-backdrop'));
+        setModalState(false)
     };
 
     const handleOpen = ( e ) => {
@@ -31,9 +32,10 @@ function Card( { content, calendarId, fetchEvents, handleAlert } ) {
                         <p><i>{ content.firstRelease.slice( 0, 4 ) }</i></p>
                     }
                     <button type='button' className='btn shadow-sm btn-search-input'
+                        onClick={ handleOpen }
                         data-bs-toggle='modal'
                         data-bs-target='#infoModal'
-                        onClick={ handleOpen }> Select </button>
+                        > Select </button>
                 </div>
             </div>
 

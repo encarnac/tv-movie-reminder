@@ -13,6 +13,7 @@ function Modal( { modalState,
     const [ loading, setLoading ] = useState( false );
 
     const addConfirm = 'Successfully added reminders!';
+
     const handleReminder = () => {
         setLoading( true );
         Axios.post( '/add-event', {
@@ -30,6 +31,7 @@ function Modal( { modalState,
                 console.log( error );
             } );
     };
+    
 
     return (
         <div className='h-50 d-inline-block'>
