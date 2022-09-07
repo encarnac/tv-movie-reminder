@@ -21,6 +21,7 @@ const verifySession = async (req, res, next) => {
             req.oauth2Client = oauth2Client;
             req.calendar = calendar;
             req.authUser = { 
+                googleId: user.googleId,
                 displayName: user.displayName,
                 firstName: user.firstName,
                 email: user.email,

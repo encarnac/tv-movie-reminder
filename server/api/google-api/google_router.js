@@ -10,7 +10,6 @@ const deleteEvent = require('./controllers/deleteEvent.js');
 const insertMovieEvent = require('./controllers/insertMovieEvent');
 const insertTvEvent = require('./controllers/insertTvEvent');
 const logoutUser = require('./controllers/logoutUser');
-const revokeAuth = require('./controllers/revokeAuth');
 
 
 // Middleware function to check for user ID in session
@@ -30,8 +29,5 @@ router.post('/add-event', insertMovieEvent, insertTvEvent);
 
 // Removes user data from the session 
 router.post('/logout', logoutUser);
-
-// Revokes the access tokens linked to the user
-router.post('/revoke', revokeAuth);
 
 module.exports = router;

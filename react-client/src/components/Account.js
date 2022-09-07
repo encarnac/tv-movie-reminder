@@ -44,6 +44,7 @@ function Account( { user,
         }
     };
 
+
     return (
         <div className='offcanvas offcanvas-end' id='offcanvasAccount'>
 
@@ -72,12 +73,9 @@ function Account( { user,
                         </div>
                     </div>
 
-                    <div className='row d-flex justify-content-center mx-auto my-4 gy-2 ' >
+                    <div className='row d-flex justify-content-center mx-auto my-4 gy-1 ' >
                         <button id='' className='btn btn-search-input d-flex justify-content-between align-items-center flex-fill px-5 py-2' onClick={ () => window.open( calendarUrl, '_blank' ) } >
                             <h4 class="bi bi-calendar"></h4> Google Calendar
-                        </button>
-                        <button id='btn-group' className='btn d-flex justify-content-between align-items-center flex-fill px-5' >
-                            <h4 class="bi bi-lock-fill"></h4> Revoke Consent
                         </button>
                         <button id='btn-group' className='btn d-flex justify-content-between align-items-center flex-fill px-5' onClick={ () => handleLogout() } >
                             <h4 class="bi bi-box-arrow-in-right"></h4> Logout

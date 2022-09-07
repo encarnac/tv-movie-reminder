@@ -2,7 +2,7 @@ const Event = require('../models/Event');
 
 const insertTvEvent = async (req, res, next) => {
     try {
-        console.log('addTvEvent');
+        console.log('insertTvEvent');
         const { calendarId } = req.body;
         const { content } = req.body;
         const { oauth2Client } = req;
@@ -10,12 +10,13 @@ const insertTvEvent = async (req, res, next) => {
         
         const { title } = content;
         let promises = [];
-        for ( const episode of content.season_episodes) {
-            if (new Date(episode.air_date) < new Date()) continue;
+        for ( const episode of content.seasonEpisodes) {
+            if (new Date(episode.airDate) < new Date()) continue;
             else {
-                content.release = episode.air_date;
-                content.title = `${ title } (S${ content.season_count }x${ episode.episode_number })`;
+                content.release = episode.airDate;
+                content.title = `${ title } (S${ content.seasonCount }x${ episode.episodeNumber })`;
                 const event = JSON.stringify(new Event(content));
+                console.log(event)
                 const response = await calendar.events.insert({
                     auth: oauth2Client,
                     calendarId: calendarId,
