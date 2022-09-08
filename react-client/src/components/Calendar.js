@@ -16,14 +16,12 @@ function Calendar( { calendarId, events, handleAlert } ) {
         e.jsEvent.preventDefault();
         const find = selectedEvents.some( selection => selection.event.id === e.event.id );
         if ( find ) {
-            e.el.style.backgroundColor = '#F8F8F8';
             e.el.style.fontWeight = '400';
             e.el.style.color = 'rgb(33,37,41)';
             const filteredEvents = selectedEvents.filter( selection => selection.event.id !== e.event.id );
             setSelectedCount( selectedCount - 1 );
             setSelectedEvents( filteredEvents );
         } else {
-            e.el.style.backgroundColor = '#dedee1';
             e.el.style.fontWeight = '500';
             e.el.style.color = '#69A6E2';
             const update = await setSelectedEvents( list => [ ...list, e ] );
@@ -89,7 +87,7 @@ function Calendar( { calendarId, events, handleAlert } ) {
                                     plugins={ [ listPlugin, bootstrap5Plugin, interactionPlugin ] }
                                     initialView='listMonth'
                                     themeSystem='bootstrap5'
-                                    aspectRatio='.56'
+                                    aspectRatio='.2'
                                     titleFormat={ {
                                         year: 'numeric',
                                         month: 'short',
