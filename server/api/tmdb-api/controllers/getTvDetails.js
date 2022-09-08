@@ -25,7 +25,9 @@ async function getTvDetails(req, res, next) {
             for (const id of req.resultIds) {
                 const request = await axios.get(`https://api.themoviedb.org/3/tv/${id}?api_key=${req.apiKey}`);
                 const tvInfo = request.data;
-                if (validStatus.includes(tvInfo.status) && tvInfo.number_of_seasons >= 1) {
+                const nextRelease = tvInfo.next_episode_to_air?.air_date
+                if (( validStatus.includes(tvInfo.status) || new Date( nextRelease ) > new Date() )
+                    && tvInfo.number_of_seasons >= 1) {
                     const series = new TvSeries(tvInfo);
                     const seasonEpisodes = await getSeasonEpisodes(id, series.seasonCount, req.apiKey);
                     series.seasonEpisodes = seasonEpisodes;

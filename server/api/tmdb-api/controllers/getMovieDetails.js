@@ -10,7 +10,7 @@ async function getMovieDetails(req, res, next) {
             for (const id of req.resultIds) {
                 const request = await axios.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${req.apiKey}`);
                 const movieInfo = request.data;
-                if (validStatus.includes(movieInfo.status)) {
+                if ((validStatus.includes(movieInfo.status)) || (( new Date(movieInfo.release_date) > new Date() )) ) {
                     const movie = new Movie(movieInfo);
                     movieResults.push(movie);
                 } else continue;        
