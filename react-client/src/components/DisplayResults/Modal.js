@@ -115,6 +115,15 @@ function Modal( { modalState,
 
                                             <div className='row'>
                                                 <div className='col-4'>
+                                                    <h6 className='fw-bold'>Language:</h6>
+                                                </div>
+                                                <div className='col-8'>
+                                                    <p>{ content.language }</p>
+                                                </div>
+                                            </div>
+
+                                            <div className='row'>
+                                                <div className='col-4'>
                                                     <h6 className='fw-bold'>Popularity:</h6>
                                                 </div>
                                                 <div className='col-8'>
@@ -230,13 +239,24 @@ function Modal( { modalState,
                                             </div>
 
                                             <div className='col-6 col-md-10'>
-                                                <button type='button' className='btn btn-secondary rounded-edge px-5 px-md-3 mx-1 mb-1 mb-md-0' onClick={ ()=> handleSelectedReminders() }>
-                                                    { loading ? <LoadingSpinner /> : 'Add' }
-                                                </button>
-                                                <button type='button' className='btn btn-search-input px-3 px-md-3 mx-1' onClick={ ()=> handleReminder(content) }>
-                                                    { loading ? <LoadingSpinner /> : 'Add All Episodes' }
-                                                </button>
+                                            {   loading 
+                                                ?       <button type='button' className='btn btn-search-input px-3 px-md-3 mx-1 active' onClick={ ()=> handleReminder(content) }>
+                                                           <LoadingSpinner />
+                                                        </button>
+                                                :   <>
+                                                        <button type='button' className='btn btn-search2-input rounded-edge px-5 px-md-3 mx-1 mb-1 mb-md-0' onClick={ ()=> handleSelectedReminders() }>
+                                                            Add
+                                                        </button>
+                                                        <button type='button' className='btn btn-search-input px-3 px-md-3 mx-1' onClick={ ()=> handleReminder(content) }>
+                                                            Add All Episodes
+                                                        </button>
+                                                    </>                                          
+                                            }
                                             </div>
+
+
+
+
                                         </div>
                                     :   <div className='row d-flex justify-content-end'>
                                             <button type='button' className='btn btn-search-input px-3 px-md-3 mx-1' onClick={ ()=> handleReminder(content) }>

@@ -11,6 +11,7 @@ class Movie {
         this.episodeCount = series.number_of_episodes; 
         this.seasonCount = series.number_of_seasons;
         this.status = series.status;
+        this.language = series.original_language.toUpperCase();
         this.poster = `https://image.tmdb.org/t/p/w500/${series.poster_path}`;
     };
 };

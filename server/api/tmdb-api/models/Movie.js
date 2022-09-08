@@ -8,6 +8,7 @@ class Movie {
         this.popularity = movie.popularity;
         this.release = movie.release_date;
         this.status = movie.status;
+        this.language = movie.original_language;
         this.poster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
     };
 };
