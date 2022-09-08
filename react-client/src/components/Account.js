@@ -38,7 +38,7 @@ function Account( { user,
             handleCalendarId( null );
             removeCalendarCookie();
             handleUserData( {} );
-            const logoutRes = await Axios.post( '/logout' );
+            await Axios.post( '/logout' );
         } catch ( error ) {
             console.log( error );
         }
