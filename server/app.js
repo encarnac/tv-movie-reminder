@@ -65,7 +65,7 @@ app.use(
 );
 
 // Mounts middleware at given paths
-app.use( '/', googleRouter );
+app.use( '/google', googleRouter );
 app.use( '/search', tmdbRouter );
 
 

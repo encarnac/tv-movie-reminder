@@ -37,7 +37,7 @@ function Calendar( { calendarId, events, handleAlert } ) {
             setLoading( true );
             for ( const selection of selectedEvents ) {
                 const eventId = selection.event.id;
-                await Axios.delete( '/delete-event', {
+                await Axios.delete( '/google/delete-event', {
                     data: {
                         calendarId: calendarId,
                         eventId: eventId
