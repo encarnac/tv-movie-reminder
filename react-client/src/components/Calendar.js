@@ -24,7 +24,7 @@ function Calendar( { calendarId, events, handleAlert } ) {
         } else {
             e.el.style.fontWeight = '500';
             e.el.style.color = '#69A6E2';
-            const update = await setSelectedEvents( list => [ ...list, e ] );
+            setSelectedEvents( list => [ ...list, e ] );
             setSelectedCount( selectedCount + 1 );
         }
 
@@ -37,7 +37,7 @@ function Calendar( { calendarId, events, handleAlert } ) {
             setLoading( true );
             for ( const selection of selectedEvents ) {
                 const eventId = selection.event.id;
-                const deleteRes = await Axios.delete( '/delete-event', {
+                await Axios.delete( '/delete-event', {
                     data: {
                         calendarId: calendarId,
                         eventId: eventId

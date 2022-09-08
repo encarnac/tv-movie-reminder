@@ -7,6 +7,7 @@ package-lock.json
 .pnp.js
 /coverage 
 /build
+build/
 npm-debug.log*
 
 

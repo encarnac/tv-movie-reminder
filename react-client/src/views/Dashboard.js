@@ -1,4 +1,4 @@
-import { React, useState, useCallback, useEffect, useRef } from 'react';
+import { React, useState, useEffect, useRef } from 'react';
 import Axios from 'axios';
 
 import Header from '../layout/Header';
@@ -36,7 +36,7 @@ function Dashboard( props ) {
     const [ inputState, setInputState ] = useState( false );
     const [ tmdbData, setTmdbData ] = useState( [] );
 
-    const handleFetchResults = useCallback( () => {
+    const handleFetchResults = () => {
         setLoading( true );
         Axios.post( url )
             .then( response => {
@@ -49,11 +49,12 @@ function Dashboard( props ) {
             .catch( error => {
                 console.log( error );
             } );
-    }, [ url ] );
+    };
 
     useEffect( () => {
         handleFetchResults();
-    }, [ handleFetchResults ] );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ url ] );
 
 
 
