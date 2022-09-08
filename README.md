@@ -3,9 +3,9 @@
 
 # tv-movie-reminder / watch-soon
 
-[![Bootstrap][Bootstrap.com]][Bootstrap-url]
+
 [![React][React.js]][React-url]  ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
-![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white) [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 ![Last](https://img.shields.io/github/last-commit/encarnac/tv-movie-reminder?style=for-the-badge)
 [![MIT License][license-shield]][license-url]
 
@@ -67,7 +67,6 @@
 
 <!-- SITE -->
 ## Demo
----
 
 ### Site
 Here is a working live demo: [TBA](#)
@@ -85,7 +84,7 @@ Here is a working live demo: [TBA](#)
 ![](demo-deleteReminder.gif)
 
 ### Mobile Design
-<img src="demo-iPhone12Pro.gif" width="300" height="754">
+<img src="demo-iPhone12Pro.gif" width="300" height="649">
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
@@ -93,7 +92,6 @@ Here is a working live demo: [TBA](#)
 
 <!-- ROADMAP -->
 ## Feature Roadmap
----
 ### v1.0.0
 - [x] Configure server to call TMDB for titles
 - [x] Display list of results as cards
@@ -138,7 +136,6 @@ Here is a working live demo: [TBA](#)
 
 <!-- CONTACT -->
 ## Contact
----
 [Colene Encarnado](https://github.com/encarnac)
 
 Email: [coleneencarnado@gmail.com](coleneencarnado@gmail.com
@@ -152,7 +149,6 @@ Email: [coleneencarnado@gmail.com](coleneencarnado@gmail.com
 
 <!-- LICENSE -->
 ## License
----
 Distributed under the MIT ©  License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
@@ -160,7 +156,6 @@ Distributed under the MIT ©  License. See `LICENSE.txt` for more information.
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
----
 Images from [Undraw](https://undraw.co/)
 
 Google Button CSS from [@google-react-login](https://github.com/anthonyjgrove/react-google-login)
