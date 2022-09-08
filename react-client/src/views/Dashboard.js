@@ -1,11 +1,10 @@
-import { React, useState, useCallback, useEffect } from 'react';
+import { React, useState, useCallback, useEffect, useRef } from 'react';
 import Axios from 'axios';
 
 import Header from '../layout/Header';
 import DisplayResults from '../components/DisplayResults/DisplayResults';
 
 function Dashboard( props ) {
-
     const [ category, setCategory ] = useState( 'tv' );
 
     const selectMovie = () => {
@@ -21,7 +20,6 @@ function Dashboard( props ) {
     const handleTitle = ( e ) => {
         setTitle( e.target.value );
     };
-
 
 
     const [ url, setURL ] = useState( `/search?title=${ title }&category=${ category }` );
@@ -80,16 +78,18 @@ function Dashboard( props ) {
         } );
     };
 
+    const resultRef = useRef(null)
+
     return (
             <>
                 <section className='header'>
-                    < Header { ...{ category, selectMovie, selectSeries, inputState, handleTitle, display, loading, handleURL, clearResults } } />
+                    < Header { ...{ resultRef, category, selectMovie, selectSeries, inputState, handleTitle, display, loading, handleURL, clearResults } } />
                 </section>
 
-                <section className='results'>
+                <section className='results' ref={ resultRef }>
                     { !loading && display && (
                         <div className='container mt-4 pt-5'>
-                            <div className='row d-flex justify-content-center no-gutters gap-4' >
+                            <div className='row d-flex justify-content-center no-gutters gap-4'>
                                 <DisplayResults
                                     tmdbData={ tmdbData }
                                     calendarId={ props.calendarId }

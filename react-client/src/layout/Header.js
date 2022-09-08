@@ -3,6 +3,12 @@ import SearchForm from '../components/SearchForm/SearchForm';
 
 function Header( props ) {
 
+    const { resultRef } = props;
+
+    const viewResults = () => {
+        resultRef.current.scrollIntoView({block: "start", inline: "start", behavior: "smooth" });
+    }
+
     return (
             <div className='landing-header '>
 
@@ -24,7 +30,7 @@ function Header( props ) {
                                 <SearchForm props={props}/>
                                 {   props.display 
                                     && !props.loading 
-                                    && <div className='scroll-down'></div> 
+                                    && <div className='scroll-down p-2' style={{cursor: 'pointer'}} onClick={ ()=> viewResults() }></div> 
                                 }
                             </div>
                         </div>
