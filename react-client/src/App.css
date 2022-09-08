@@ -44,12 +44,17 @@
    CUSTOM CSS STYLESHEET
    ========================================================================== */
 
+body {
+  overflow: hidden; /* Hide scrollbars */
+}
+
+/* Header Background */
 .landing-header {
     background-image: url('./assets/HeaderImage.svg');
     background-repeat: no-repeat;
     background: 'rgba(255,255,255,.3)';
 }
-/* Header background image */
+
 @media (min-width: 992px) {
     .landing-header {
     background-position: 100% 70%;
@@ -80,7 +85,8 @@
 }
 
 
-/* Buttons: categories and next page (inactive) */
+
+/* Green Button: categories and calendar nevigation */
 .nav-pills .pill-1 .nav-link:not(.active),
 .fc-today-button.btn, 
 .fc-prevCustom-button, 
@@ -92,7 +98,6 @@
   color: white;
 }
 
-/* Buttons: categories and next page (active) */
 .nav-pills .pill-1 .nav-link,
 .nav-pills .pill-1 .nav-link:hover,
 .fc-today-button.btn:is(:hover, :focus),
@@ -105,7 +110,9 @@
   color: white;
 }
 
-/* Buttons: submit & delete (default) */
+
+
+/* Purple Button: submit & delete */
 .btn-search-input,
 .btn-delete-input {
   background-color: #b7cbf2;
@@ -118,9 +125,8 @@
   padding: 7px 20px 7px 20px;
 }
 
-/* Buttons: submit & delete (hover/disabled) */
 .btn-search-input:is(:hover, :disabled, :focus),
-.btn-delete-input:is(:hover, :disabled) {
+.btn-delete-input:is(:hover, :disabled, :focus) {
   background-color: #C8D5EF;
   border-color: #b7cbf2;
   color: white;
@@ -128,7 +134,9 @@
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
 }
 
-/* Buttons: clear results (default) */
+
+
+/* Side Green Button: clear results */
 .btn-clear-results {
   background-color: rgba(165,217,208, .7);
   border-color: rgba(165,217,208, .9);
@@ -140,24 +148,21 @@
   
 }
 
-/* Buttons: clear results (hover/focus) */
 .btn-clear-results:is(:hover,:focus) {
   background-color: rgba(165,217,208, 1);
   border-color: rgba(165,217,208, 1);
   color: white;
 }
 
-/* Icon for: clear button */
-.btn-exit-close {
-  border:0;
-  background: transparent;
-  align-items: center;
-  width: 32px;
-  height: 32px;
-  padding:0px;
-
+.top-right-fixed {
+    position: fixed;
+    top: 120px;
+    right:0;
 }
 
+
+
+/* Vertical Button Group: account sidebar */
 button#btn-group {
     color: rgba(0, 0, 0, .6);
     background-color: rgba(246, 246, 246, 0.3);
@@ -175,41 +180,14 @@ button#btn-group {
     
 }
 
-/* Button borders */
-.rounded-edge {
-  border-radius: 30px;
-  box-shadow:  0 .7rem 2rem rgba(0,0,0, .04);
-}
 
-/* Thumbnail image style */
-.round-edge {
-  border-radius: 50%;
-  box-shadow:  0 .5rem 1rem rgba(0,0,0, .03);
-}
 
-/* FullCalendar title */
-h2#fc-dom-68.fc-toolbar-title {
-    font-size: 1.3rem;
-    font-weight: 500;
-    padding-right: 7.5px;
-    color: #6c757d;
-}
-/* 
-.offcanvas-title {
-    letter-spacing: 1.5px;
-} */
-
-#top-alert {
-  position: fixed;
-  top: 0px;
-  z-index: 99999; 
-}
-
+/* Form Button: clear text input */
 .form-control {
     border-right-width:0px;
 }
 
-#clear-input {
+.btn-clear-input {
   border-style: solid;
   border-width: 0.994009px 0px 0.994009px 0px;
   border-top-color: rgb(206, 212, 218);
@@ -217,12 +195,46 @@ h2#fc-dom-68.fc-toolbar-title {
   background-color: #fff;
 }
 
-#clear-input.disable {
+.btn-clear-input.disable {
  background-color: #f4f6f7 !important;
  border-top-color: rgba(206, 212, 218, 0.5);
  border-bottom-color: rgba(206, 212, 218, 0.5);
 }
 
+
+
+/* Alert Popup */
+#top-alert {
+  position: fixed;
+  top: 0px;
+  z-index: 99999; 
+}
+
+
+
+/* Rounded border */
+.rounded-edge {
+  border-radius: 30px;
+  box-shadow:  0 .7rem 2rem rgba(0,0,0, .04);
+}
+
+.round-edge {
+  border-radius: 50%;
+  box-shadow:  0 .5rem 1rem rgba(0,0,0, .03);
+}
+
+
+
+/* Text element cursor pointer */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* FullCalendar Title */
+h2#fc-dom-2.fc-toolbar-title {
+    font-size: 1.3rem;
+    padding-right: 5px;
+}
 
 /* Google sign in buttons by anthonyjgrove@github 
    ========================================================================== */

@@ -22,6 +22,7 @@ function Dashboard( props ) {
     };
 
 
+
     const [ url, setURL ] = useState( `/search?title=${ title }&category=${ category }` );
 
     const handleURL = () => {
@@ -57,26 +58,38 @@ function Dashboard( props ) {
 
 
     const [ clearButtonState, setClearButtonState ] = useState( false );
+    const [ scrollButtonState, setScrollButtonState ] = useState( false );
 
     useEffect( () => {
         window.addEventListener( 'scroll', () => {
-            if ( window.scrollY > 60 ) {
+            if ( window.scrollY > 550 ) {
                 setClearButtonState( true );
+                if ( window.scrollY > 700 ) {
+                    setScrollButtonState( true )
+                }
             } else {
                 setClearButtonState( false );
+                setScrollButtonState( false );
             }
-        } );
+        });
     }, [] );
+
+
 
     const clearResults = () => {
         setDisplay( false );
         setTmdbData( [] );
         setInputState( true );
+        scrollToTop()
+        
+    };
+
+    const scrollToTop = () => {
         window.scrollTo( {
             top: 0,
             behavior: 'smooth',
         } );
-    };
+    }
 
     const resultRef = useRef(null)
 
@@ -98,13 +111,22 @@ function Dashboard( props ) {
                             </div>
 
                             { clearButtonState && (
-                                <div className='fixed-bottom no-gutters'>
-                                    <button className='btn btn-clear-results position-absolute bottom-0 end-0 mb-5'
+                                <div className='top-right-fixed no-gutters'>
+                                    <button className='btn btn-clear-results d-flex align-items-center'
                                         onClick={ clearResults }>
                                             <span className='bi bi-x-lg'></span>&nbsp; clear 
                                     </button>
                                 </div>
                             ) }
+
+                            { scrollButtonState && (
+                                <div className='fixed-bottom no-gutters'>
+                                    <button className='btn cursor-pointer position-absolute bottom-0 start-0 m-3 opacity-75'
+                                        onClick={ scrollToTop }>
+                                            <h2 className='bi bi-chevron-bar-up opacity-75'> </h2>
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     ) }
                 </section>

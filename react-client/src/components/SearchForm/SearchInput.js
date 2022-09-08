@@ -19,11 +19,11 @@ function SearchInput({ inputState, handleTitle, clearResults }) {
         { inputState 
             ?   <>
                     <input type='text' value={inputValue} onChange={(e)=> handleInputValue(e)} className='form-control rounded-edge' placeholder='ex. Game of Thrones' />
-                    { inputValue !== '' && <button id='clear-input'className='btn' onClick={resetInputValue}><MdClose/></button> }
+                    { inputValue !== '' && <button className='btn btn-clear-input' onClick={resetInputValue}><MdClose/></button> }
                 </>
             :   <>
                     <input type='text' value={inputValue} className='form-control rounded-edge opacity-50' placeholder='ex. Game of Thrones' disabled readOnly/>
-                    <button id='clear-input' className='btn disable' onClick={resetInputValue}><MdClose/></button>
+                    <button className='btn btn-clear-input disable opacity-75' onClick={resetInputValue}><MdClose/></button>
                 </>
         }
     </>

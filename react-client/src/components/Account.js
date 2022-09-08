@@ -90,7 +90,7 @@ function Account( { user,
                                 <strong>Welcome!</strong><br /> 
                                 Let's Get Started 
                             </h3>
-                            <img src={ ProfileIcon } className='round-edge img-thumbnail shadow-sm opacity-50 mb-4' style={ { width: 80, height: 80, 'border-color': 'black', 'border-width': '2.4px' } } alt='user-prof-pic' />
+                            <img src={ ProfileIcon } className='round-edge img-thumbnail shadow-sm opacity-50 mx-auto mb-4' style={ { width: 80, height: 80, 'border-color': 'black', 'border-width': '2.4px' } } alt='user-prof-pic' />
                             <div className='row px-5 me-1'>
                                 <button id='googleButton' onClick={ () => handleLogin() }>
                                     <GoogleLogo /> Sign In With Google

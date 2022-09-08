@@ -20,10 +20,10 @@ function AddButton({ content, episode, handleSelect }) {
   return (  
         <>
             { checked 
-                ?   <i className='bi bi-check-circle-fill'
+                ?   <i className='bi bi-check-circle-fill cursor-pointer'
                         onClick={()=> handleEpisode( episode ) }>
                     </i>
-                :   <i className={ isHovering ? 'bi bi-check-circle' : 'bi bi-circle' }
+                :   <i className={ `cursor-pointer ${ isHovering ? 'bi bi-check-circle' : 'bi bi-circle' }`}
                         onMouseOver={handleMouseOver}
                         onMouseOut={handleMouseOut}
                         onClick={()=> handleEpisode( episode ) }>

@@ -30,7 +30,7 @@ function Header( props ) {
                                 <SearchForm props={props}/>
                                 {   props.display 
                                     && !props.loading 
-                                    && <div className='scroll-down p-2' style={{cursor: 'pointer'}} onClick={ ()=> viewResults() }></div> 
+                                    && <div className='scroll-down cursor-pointer p-2' onClick={ ()=> viewResults() }></div> 
                                 }
                             </div>
                         </div>
