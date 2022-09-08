@@ -22,8 +22,9 @@
     </li>
     <li>
       <a href="#demo">Demo</a>
+    </li>
+    <li> <a href="#usage">Usage</a>
       <ul>
-        <li><a href="#site">Site</a></li>
         <li><a href="#connecting/disconnecting-your-google-calendar">Connecting/Disconnecting Your Google Calendar </a></li>
         <li><a href="#searching-and-adding-a-tv-series">Searching and Adding a TV Series</a></li>
         <li><a href="#searching-and-adding-a-movie">Searching and Adding a Movie</a></li>
@@ -71,6 +72,7 @@
 ### Site
 Here is a working live demo: [TBA](#)
 
+## Usage
 ### Connecting/Disconnecting Your Google Calendar   
 ![](demo-googleLogin.gif)
 
