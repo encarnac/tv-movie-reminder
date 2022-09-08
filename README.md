@@ -1,4 +1,5 @@
-![watch-soon](https://user-images.githubusercontent.com/76987299/184469224-16a690f8-74f9-4f21-9b7b-ff007c7bccf1.png)
+![watch-soon](watch-soon.png)
+
 
 # tv-movie-reminder / watch-soon
 
@@ -23,9 +24,11 @@
       <a href="#demo">Demo</a>
       <ul>
         <li><a href="#site">Site</a></li>
-        <li><a href="#searching-the-movie-database">Searching the Movie Database</a></li>
-        <li><a href="#connecting-your-google-calendar">Connecting Your Google Calendar</a></li>
-        <li><a href="#adding-and-deleting-reminders">Adding and Deleting Reminders</a></li>
+        <li><a href="#connecting/disconnecting-your-google-calendar">Connecting/Disconnecting Your Google Calendar </a></li>
+        <li><a href="#searching-and-adding-a-tv-series">Searching and Adding a TV Series</a></li>
+        <li><a href="#searching-and-adding-a-movie">Searching and Adding a Movie</a></li>
+        <li><a href="#delete-multiple-reminders-from-watchlist">Delete Multiple Reminders from Watchlist</a></li>
+        <li><a href="#mobile-design">Mobile Design</a></li>
       </ul>
     </li>
     <li><a href="#feature-roadmap">Roadmap</a></li>
@@ -38,8 +41,8 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
- <table>
-<tr>
+<table>
+<tr></tr>
 <td>
   A webapp using The Movie Database API and Google Calendar API. 
   </br> Use it to search for upcoming tv shows or movies by title and get reminders on their releases on your Google Calendar. 
@@ -47,15 +50,15 @@
 </table>
 
 ### Built with 
-- [ Axios ](https://axios-http.com/docs/intro) - A promise-based HTTP Client for node.js and the browser
--  [Bootstrap](http://getbootstrap.com/) - Extensive list of components and  Bundled Javascript plugins.
--  [Create React App](https://create-react-app.dev/) - Create React apps with no build configuration.
+- [ReactJS](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [Create React App](https://create-react-app.dev/) - Create React apps with no build configuration.
 - [Express.js](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for node.
 - [ FullCalendar](https://fullcalendar.io/) - A full-sized drag & drop JavaScript event calendar
 - [Google Calendar API](https://developers.google.com/calendar/api) - Integrate your app with Google Calendar, creating new ways for you to engage your users.
--  [Mongoose](https://mongoosejs.com/) - An Object Data Modeling (ODM) library for MongoDB and Node.js. 
 - [TheMovieDatabaseAPI](https://developers.themoviedb.org/3) - Millions of movies, TV shows and people to discover. 
--  [ReactJS](https://reactjs.org/) - A JavaScript library for building user interfaces
+- [Mongoose](https://mongoosejs.com/) - An Object Data Modeling (ODM) library for MongoDB and Node.js. 
+- [Bootstrap](http://getbootstrap.com/) - Extensive list of components and  Bundled Javascript plugins.
+
 
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
@@ -64,18 +67,25 @@
 
 <!-- SITE -->
 ## Demo
+---
 
 ### Site
 Here is a working live demo: [TBA](#)
 
-### Searching The Movie Database
-![](https://github.com/encarnac/tv-movie-reminder/blob/main/search-demo.gif)
+### Connecting/Disconnecting Your Google Calendar   
+![](demo-googleLogin.gif)
 
-### Connecting Your Google Calendar   
-![](https://github.com/encarnac/tv-movie-reminder/blob/main/google-login-demo.gif)
+### Searching and Adding a TV Series
+![](demo-addTvSeries.gif)
 
-### Adding and Deleting Reminders
-![](https://github.com/encarnac/tv-movie-reminder/blob/main/add-delete-demo.gif)
+### Searching and Adding a Movie
+![](demo-addMovie.gif)
+
+### Delete Multiple Reminders from Watchlist
+![](demo-deleteReminder.gif)
+
+### Mobile Design
+<img src="demo-iPhone12Pro.gif" width="300" height="754">
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
@@ -83,6 +93,7 @@ Here is a working live demo: [TBA](#)
 
 <!-- ROADMAP -->
 ## Feature Roadmap
+---
 ### v1.0.0
 - [x] Configure server to call TMDB for titles
 - [x] Display list of results as cards
@@ -91,28 +102,32 @@ Here is a working live demo: [TBA](#)
 - [x] Display user's Google Calendar events
 - [x] Delete a reminder from the user's calendar
 - [x] Add a movie to the user's calendar
-- [x] Add a show to the user's calendar
+- [x] Add a series to the user's calendar
 - [x] Create 'tv-movie' calendar if none exists
 - [x] Display user’s info in offcanvas
 ### v1.1.0
-- [x] Create a database to save state offline
+- [x] Create a database to save session offline
 - [x] Handle refresh tokens
 - [x] Display events using FullCalendar
 - [x] Mass delete content from watchlist
-- [x] Clear button appears as you scroll and jumps to top
-- [x] Add confirmation alerts for add/delete actions
-- [x] Replace Python with Javascript for TMDB API access
-- [x] Added responsive mobile design
-- [x] Only display results on/after the current year
-- [x] Add external link to 'tv-movie' calendar in user tab
-- [x] Add revoke token function to logout button
+- [x] Clear results button appears as you scroll and jumps to top
+- [x] Clear button for resetting text input value
+- [x] Alert appears to confirm add/delete actions
+- [x] Replace Python with Javascript for accessing TMDB API
+- [x] Implement responsive mobile design
+- [x] Only display upcoming content on/after the current year
+- [x] Only add episodes to the watchlist that have not aired
+- [x] External link to 'tv-movie' calendar in user tab
+- [x] Logout button also revokes permissions/access token
 - [x] Add individual episode reminders
+- [x] Sticky button for jumping to the top of the page 
+- [x] Clicking on down arrow jumps to the results section
 ### v1.1.1
 - [ ] Fix modal bugs 
-- [ ] Implement proper React Router 6
-- [ ] Implement useReducer 
-- [ ] Implement useContext
-- [ ] Optimize rendering and remove unnecessary useEffect
+- [ ] Implement React Router 6
+- [ ] Implement useReducer or useContext
+- [ ] Optimize rendering and remove unnecessary 
+- [ ] Component testing
 ### Other
 - [ ] Deploy a live demo
 
@@ -123,6 +138,7 @@ Here is a working live demo: [TBA](#)
 
 <!-- CONTACT -->
 ## Contact
+---
 [Colene Encarnado](https://github.com/encarnac)
 
 Email: [coleneencarnado@gmail.com](coleneencarnado@gmail.com
@@ -136,6 +152,7 @@ Email: [coleneencarnado@gmail.com](coleneencarnado@gmail.com
 
 <!-- LICENSE -->
 ## License
+---
 Distributed under the MIT ©  License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
@@ -143,7 +160,8 @@ Distributed under the MIT ©  License. See `LICENSE.txt` for more information.
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
-Header image from [Undraw](https://undraw.co/)
+---
+Images from [Undraw](https://undraw.co/)
 
 Google Button CSS from [@google-react-login](https://github.com/anthonyjgrove/react-google-login)
 
