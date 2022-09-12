@@ -2,6 +2,7 @@
   "name": "watch-soon",
   "version": "1.1.0",
   "private": true,
+  "proxy": "http://localhost:5000",
   "dependencies": {
     "@fullcalendar/bootstrap5": "^5.11.3",
     "@fullcalendar/interaction": "^5.11.3",
@@ -25,7 +26,7 @@
   "scripts": {
     "start": "react-scripts start",
     "server": "node server/bin/www",
-    "build": "CI=false react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
