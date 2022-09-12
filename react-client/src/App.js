@@ -1,7 +1,7 @@
 import './App.css';
 import { React, useState, useEffect } from 'react';
 import Axios from 'axios';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 
@@ -91,11 +91,11 @@ function App() {
                                 handleAlert }} />
                     </div>
 
-                    <HashRouter>
+                    <BrowserRouter>
                         <Routes>
                             <Route path='/' element={ < Dashboard {...{ calendarId, fetchEvents, handleAlert } } /> } />
                         </Routes>
-                    </HashRouter>
+                    </BrowserRouter>
 
                     <div className='row'>
                         < Footer />
