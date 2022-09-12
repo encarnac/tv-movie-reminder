@@ -9,7 +9,7 @@
         "frontend": "npm start --prefix frontend",
         "dev": "concurrently \"npm run server\" \"npm run frontend\"",
         "build" : "cd frontend && npm run build",
-        "postbuild" : "npm install --prefix frontend && npm run build --prefix frontend"
+        "postbuild" : "npm install --prefix frontend && CI=false npm run build --prefix frontend"
     },
     "dependencies": {
         "axios": "^0.27.2",
