@@ -122,9 +122,9 @@
   padding: 7px 20px 7px 20px;
 }
 
-.btn-search-input:is(:hover, :disabled, :focus),
-.btn-delete-input:is(:hover, :disabled, :focus),
-.btn-search2-input:is(:hover, :focus) {
+.btn.btn-search-input:is(:hover, :disabled, :focus),
+.btn.btn-delete-input:is(:hover, :disabled, :focus),
+.btn.btn-search2-input:is(:hover, :focus) {
   background-color: #C8D5EF;
   border-color: #b7cbf2;
   color: white;
