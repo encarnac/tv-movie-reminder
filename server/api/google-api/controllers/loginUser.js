@@ -12,6 +12,7 @@ const oauth2Client = new google.auth.OAuth2(
 
 const loginUser = async (req, res, next) => {
     try {
+        console.log('LOGIN')
         session = req.session;
         if (!session.userId) {
             const { code } = req.body;

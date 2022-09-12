@@ -13,6 +13,7 @@ const oauth2Client = new google.auth.OAuth2(
 
 const verifySession = async (req, res, next) => {
     try {
+        console.log('hello')
         session = req.session;
         if (session.userId) {
             const user = await User.findOne({ _id: session.userId });
