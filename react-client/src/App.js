@@ -58,6 +58,7 @@ function App() {
 
 
     const [ alertState, setAlertState ] = useState( false );
+    const [ alertType, setAlertType ] = useState( 'alert-success' )
     const [ alertMessage, setAlertMessage ] = useState ('');
 
     const closeAlert = () => {
@@ -65,7 +66,8 @@ function App() {
         setAlertMessage('');
     };
 
-    const handleAlert = (msg) => {
+    const handleAlert = (type, msg) => {
+        setAlertType( type )
         setAlertMessage( msg );
         setAlertState( true );
     };
@@ -75,7 +77,7 @@ function App() {
             <GoogleOAuthProvider clientId={CLIENT_ID}>
                 <div className='App'>
                     <div className='row mx-auto'>
-                        <Alert alertState={alertState} alertMessage={alertMessage} closeAlert={closeAlert} />
+                        <Alert alertState={alertState} alertType={ alertType } alertMessage={alertMessage} closeAlert={closeAlert} />
                     </div>
 
                     <div className='row'>
