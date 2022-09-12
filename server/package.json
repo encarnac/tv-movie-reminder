@@ -8,7 +8,8 @@
         "server": "nodemon ./bin/www",
         "frontend": "npm start --prefix frontend",
         "dev": "concurrently \"npm run server\" \"npm run frontend\"",
-        "build" : "cd frontend && npm run build"
+        "build" : "cd frontend && npm run build",
+        "postbuild" : "npm install --prefix client && npm run build --prefix client"
     },
     "dependencies": {
         "axios": "^0.27.2",
