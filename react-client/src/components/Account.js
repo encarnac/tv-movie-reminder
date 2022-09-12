@@ -17,7 +17,7 @@ function Account( { user,
     const loginSuccess = async ( codeResponse ) => {
         try {
             const { code } = codeResponse;
-            const loginRes = await Axios.post( '/google/login', { code } );
+            const loginRes = await Axios.post( '/login', { code } );
             const calId = loginRes.data;
             handleCalendarCookie( calId );
             handleCalendarId( calId );
@@ -38,7 +38,7 @@ function Account( { user,
             handleCalendarId( null );
             removeCalendarCookie();
             handleUserData( {} );
-            await Axios.post( '/google/logout' );
+            await Axios.post( '/logout' );
         } catch ( error ) {
             console.log( error );
         }

@@ -18,7 +18,7 @@ function Modal( { modalState,
     const handleReminder = (contentInfo) => {
         console.log('CONTENT TO ADD = ', contentInfo)
         setLoading( true );
-        Axios.post( '/google/add-event', {
+        Axios.post( '/add-event', {
             calendarId: calendarId,
             content: contentInfo
         } )

@@ -37,7 +37,7 @@ function App() {
     const [ events, setEvents ] = useState( [] );
     const fetchEvents = async () => {
         try {
-            const eventsRes = await Axios.get('/google/get-calendar', {
+            const eventsRes = await Axios.get('/get-calendar', {
                 params: {
                     calendarId: calendarId
                 }
