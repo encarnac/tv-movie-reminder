@@ -12,11 +12,15 @@ function Modal( { modalState,
     content } ) {
     
     const addConfirm = 'Successfully added reminders!';
+    const addFail = 'ERROR! You must login with your Google account to add reminders!';
 
     const [ loading, setLoading ] = useState( false );
 
     const handleReminder = (contentInfo) => {
-        console.log('CONTENT TO ADD = ', contentInfo)
+        if (!calendarId) {
+            handleAlert( 'alert-warning', addFail );
+            return;
+        };
         setLoading( true );
         Axios.post( '/add-event', {
             calendarId: calendarId,
@@ -26,7 +30,7 @@ function Modal( { modalState,
                 console.log( response.data );
                 fetchEvents();
                 setLoading( false );
-                handleAlert( addConfirm );
+                handleAlert( 'alert-success', addConfirm );
                 handleClose();
             } )
             .catch( error => {

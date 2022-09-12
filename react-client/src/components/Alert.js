@@ -11,8 +11,6 @@ function Alert( { alertState, alertMessage, closeAlert, alertType } ) {
                     { alertType === 'alert-success' && < CheckCircleIcon /> }
                     { alertType === 'alert-warning' && < ExclamationTriangleIcon /> }
 
-
-
                     <div>
                        <strong>
                             { alertMessage }

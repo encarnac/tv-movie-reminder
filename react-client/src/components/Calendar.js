@@ -10,6 +10,7 @@ import LoadingSpinner from 'assets/LoadingSpinner';
 function Calendar( { calendarId, events, handleAlert } ) {
     const deleteConfirm = 'Successfully deleted reminders!';
     const deleteFail = 'Error! You must select reminders to delete.';
+    
     const [ selectedEvents, setSelectedEvents ] = useState( [] );
     const [ selectedCount, setSelectedCount ] = useState( 0 );
 
@@ -36,9 +37,9 @@ function Calendar( { calendarId, events, handleAlert } ) {
     const deleteEvents = async () => {
         try {
             if (selectedCount === 0) {
-                handleAlert('alert-warning', deleteFail)
-                return
-            }
+                handleAlert( 'alert-warning', deleteFail );
+                return;
+            };
             setLoading( true );
             for ( const selection of selectedEvents ) {
                 const eventId = selection.event.id;
