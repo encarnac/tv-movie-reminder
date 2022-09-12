@@ -7,7 +7,7 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const oauth2Client = new google.auth.OAuth2(
     CLIENT_ID,
     CLIENT_SECRET,
-    'http://localhost:3000'
+    'http://localhost:5000'
 );
 
 const loginUser = async (req, res, next) => {
@@ -25,7 +25,6 @@ const loginUser = async (req, res, next) => {
             });
             const { data } = await oauth2.userinfo.get();
 
-            console.log('USER DATA = ', data)
             const newUser = {
                 googleId: data.id,
                 displayName: data.name,
@@ -36,6 +35,7 @@ const loginUser = async (req, res, next) => {
                 calendarId: ''
             };
             const user = await User.create(newUser);
+            console.log('USER DATA = ', user)
             console.log(' Added new Google account: ', user.email);
             session.userId = user._id;
             req.oauth2Client = oauth2Client;

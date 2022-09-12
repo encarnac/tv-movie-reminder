@@ -8,12 +8,11 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const oauth2Client = new google.auth.OAuth2(
     CLIENT_ID,
     CLIENT_SECRET,
-    'http://localhost:3000'
+    'http://localhost:5000'
 );
 
 const verifySession = async (req, res, next) => {
     try {
-        console.log('hello')
         session = req.session;
         if (session.userId) {
             const user = await User.findOne({ _id: session.userId });

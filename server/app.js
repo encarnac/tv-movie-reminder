@@ -7,6 +7,7 @@ const cors = require( "cors" );
 const mongoose = require( 'mongoose' );
 const session = require( 'express-session' );
 const MongoStore = require( 'connect-mongo' );
+const port = process.env.PORT || 3000
 
 // Paths to middleware controllers
 const tmdbRouter = require( './api/tmdb-api/tmdb_router' );
@@ -19,7 +20,8 @@ app.use( logger( 'dev' ) );
 app.use( express.json() );
 app.use( express.urlencoded( { extended: true } ) );
 app.use( cookieParser() );
-app.use( express.static( path.join( __dirname, 'public' ) ) );
+app.use(express.static(path.join(__dirname, 'frontend', 'build')));
+
 
 // Connect MongoDB
 mongoose.connect( process.env.MONGO_URI, {
@@ -49,8 +51,13 @@ app.use(
 );
 
 // Mounts middleware at given paths
-app.use( '/google', googleRouter );
 app.use( '/search', tmdbRouter );
+app.use( '/google', googleRouter );
+
+// Serve frontend build file
+app.get('/*', async (req, res) => {
+   res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'));
+ });
 
 
 // Catch 404 and forward to error handler
