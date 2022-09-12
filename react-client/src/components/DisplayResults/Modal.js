@@ -22,7 +22,7 @@ function Modal( { modalState,
             return;
         };
         setLoading( true );
-        Axios.post( '/add-event', {
+        Axios.post( '/google/add-event', {
             calendarId: calendarId,
             content: contentInfo
         } )
