@@ -25,7 +25,7 @@ function Footer( props ) {
                             <h6 className='text-uppercase'>About</h6>
                             <p> Search for tv shows or movies by title using
                                 the <a href='https://www.themoviedb.org/' className='text-decoration-none text-dark fw-semibold'>The Movie Database API</a>,
-                                and select content to receive future release reminders about
+                                and select content to receive future release reminders
                                 on your linked Google Calendar.</p>
                         </div>
 
@@ -34,7 +34,7 @@ function Footer( props ) {
                                 <span className='bi bi-alarm-fill'>  watch-soon</span>
                                 <span className='text-lowercase'>
                                     <a className='font-monospace text-decoration-none text-dark fs-6'
-                                        href='https://github.com/encarnac/craigslist-scraper-ms'> v1.0.0
+                                        href='https://github.com/encarnac/tv-movie-reminder'> v1.1.0
                                         </a>
                                     </span>
                             </h6>
