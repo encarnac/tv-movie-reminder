@@ -61,8 +61,8 @@
 
 @media (min-width: 769px) and (max-width: 992px) {
     .landing-header {
-        background-position: 50% 25%;
-        background-size: auto 55%;
+        background-position: 50% 20%;
+        background-size: auto 50%;
         
     }
 }

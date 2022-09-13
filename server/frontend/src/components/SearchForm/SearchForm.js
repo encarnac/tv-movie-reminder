@@ -11,7 +11,7 @@ function SearchForm( { props } ) {
                 <CategoryButtons {...{ props }} />
             </div>
 
-            <div className='input-group my-2'>
+            <div className='input-group my-2 mb-md-5 mt-md-1'>
                 <SearchInput inputState={ props.inputState } handleTitle={ props.handleTitle } clearResults={ props.clearResults } />
                 { !props.display && !props.loading &&
                     <button className='btn btn-outline-secondary btn-search-input' type='button' id='button-addon2' onClick={ props.handleURL } >search</button> }
