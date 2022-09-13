@@ -6,6 +6,7 @@
 
 [![React][React.js]][React-url]  ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white) [![Bootstrap][Bootstrap.com]][Bootstrap-url]
+
 ![Last](https://img.shields.io/github/last-commit/encarnac/tv-movie-reminder?style=for-the-badge)
 [![MIT License][license-shield]][license-url]
 
@@ -25,7 +26,7 @@
     </li>
     <li> <a href="#usage">Usage</a>
       <ul>
-        <li><a href="#connecting/disconnecting-your-google-calendar">Connecting/Disconnecting Your Google Calendar </a></li>
+        <li><a href="#connectingdisconnecting-your-google-calendar">Connecting/Disconnecting Your Google Calendar </a></li>
         <li><a href="#searching-and-adding-a-tv-series">Searching and Adding a TV Series</a></li>
         <li><a href="#searching-and-adding-a-movie">Searching and Adding a Movie</a></li>
         <li><a href="#delete-multiple-reminders-from-watchlist">Delete Multiple Reminders from Watchlist</a></li>
@@ -72,6 +73,9 @@
 ### Site
 Live demo: [HERE](https://watch-soon.up.railway.app/)
 
+> **Note: Pending Google app verification - you are welcome to send me an email to be added as a test user*
+
+
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
 
@@ -115,6 +119,7 @@ Live demo: [HERE](https://watch-soon.up.railway.app/)
 - [x] Responsive mobile design using Bootstrap 5 breakpoints
 ### To-Do:
 - [x] Deploy a live demo
+- [ ] Apply for Google app verification
 - [ ] Fix modal bugs 
 - [ ] Implement React Router 6
 - [ ] Implement useReducer or useContext
@@ -134,7 +139,6 @@ Live demo: [HERE](https://watch-soon.up.railway.app/)
 Email: [coleneencarnado@gmail.com](coleneencarnado@gmail.com
 ) 
   
-  Project Link: [https://github.com/encarnac/tv-movie-reminder](https://github.com/encarnac/tv-movie-reminder)
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
