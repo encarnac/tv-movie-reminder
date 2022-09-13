@@ -73,7 +73,7 @@
 ### Site
 Live demo: [HERE](https://watch-soon.up.railway.app/)
 
-> **Note: Pending Google app verification - you are welcome to send me an email to be added as a test user*
+> **Note: Pending Google app verification*
 
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
@@ -126,29 +126,8 @@ Live demo: [HERE](https://watch-soon.up.railway.app/)
 - [ ] Optimize rendering and remove unnecessary 
 - [ ] Component testing
 
-
-
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
-
-
-<!-- CONTACT -->
-## Contact
-[Colene Encarnado](https://github.com/encarnac)
-
-Email: [coleneencarnado@gmail.com](coleneencarnado@gmail.com
-) 
-  
-
-<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-Distributed under the MIT ©  License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
 
 <!-- ACKNOWLEDGEMENTS -->
@@ -164,6 +143,22 @@ Animated scroll icon from [Unused CSS](https://unused-css.com/blog/animated-down
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
 
+
+<!-- CONTACT -->
+## Contact
+[Colene Encarnado](https://github.com/encarnac)
+
+Email: [coleneencarnado@gmail.com](coleneencarnado@gmail.com) 
+  
+<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
+
+
+
+<!-- LICENSE -->
+## License
+Distributed under the MIT ©  License. See `LICENSE.txt` for more information.
+
+<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
