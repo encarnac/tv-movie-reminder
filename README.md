@@ -32,7 +32,7 @@
         <li><a href="#mobile-design">Mobile Design</a></li>
       </ul>
     </li>
-    <li><a href="#feature-roadmap">Roadmap</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgments</a></li>
@@ -59,7 +59,7 @@
 - [TheMovieDatabaseAPI](https://developers.themoviedb.org/3) - Millions of movies, TV shows and people to discover. 
 - [Mongoose](https://mongoosejs.com/) - An Object Data Modeling (ODM) library for MongoDB and Node.js. 
 - [Bootstrap](http://getbootstrap.com/) - Extensive list of components and  Bundled Javascript plugins.
-
+- [Railway](https://railway.app/) - Infrastructure platform where you can provision infrastructure, develop with that infrastructure locally, and then deploy to the cloud.
 
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
@@ -71,6 +71,8 @@
 
 ### Site
 Live demo: [HERE](https://watch-soon.up.railway.app/)
+
+<p align="right">(<a href="#table-of-contents">back to top</a>)</p>
 
 
 
@@ -95,43 +97,30 @@ Live demo: [HERE](https://watch-soon.up.railway.app/)
 
 
 <!-- ROADMAP -->
-## Feature Roadmap
+## Roadmap
 ### v1.0.0
-- [x] Configure server to call TMDB for titles
-- [x] Display list of results as cards
-- [x] Toggle modal with selected card's details
-- [x] Authenticate the Google Oauth2 Client
-- [x] Display user's Google Calendar events
-- [x] Delete a reminder from the user's calendar
-- [x] Add a movie to the user's calendar
-- [x] Add a series to the user's calendar
-- [x] Create 'tv-movie' calendar if none exists
-- [x] Display user’s info in offcanvas
-### v1.1.0
-- [x] Create a database to save session offline
-- [x] Handle refresh tokens
-- [x] Display events using FullCalendar
-- [x] Mass delete content from watchlist
-- [x] Clear results button appears as you scroll and jumps to top
-- [x] Clear button for resetting text input value
-- [x] Alert appears to confirm add/delete actions
-- [x] Replace Python with Javascript for accessing TMDB API
-- [x] Implement responsive mobile design
-- [x] Only display upcoming content on/after the current year
-- [x] Only add episodes to the watchlist that have not aired
-- [x] External link to 'tv-movie' calendar in user tab
-- [x] Logout button also revokes permissions/access token
-- [x] Add individual episode reminders
-- [x] Sticky button for jumping to the top of the page 
-- [x] Clicking on down arrow jumps to the results section
-### v1.1.1
+- [x] Search The Movie Database API for tv shows or movies by title 
+- [x] Display results as a collection of Bootstrap 5 cards
+- [x] Filters out cancelled/released content from results
+- [x] Selecting a card opens a modal with more detailed info and option to add 
+- [x] Selectively add episodes to the watchlist or add all upcoming
+- [x] Only adds future release dates to calendar
+- [x] Authenticate with Google OAuth2 using [@react-oauth](https://github.com/MomenSherif/react-oauth) and Google API Node Client 
+- [x] Adds user token database on login and uses cookies to save session state
+- [x] Deletes user from the database and revokes tokens onlogout
+- [x] Displays the user's profile photo, name, email, and link to Google Calendar in a Bootstrap offcanvas component
+- [x] Creates a secondary calendar called 'tv-movie' in the user's Google Calendar or finds one if it exists
+- [x] Display the user's Google Calendar watchlist as a [FullCalendar](https://fullcalendar.io/) list (monthly view)
+- [x] Select multiple events to delete from the watchlist
+- [x] Responsive mobile design using Bootstrap 5 breakpoints
+### To-Do:
+- [x] Deploy a live demo
 - [ ] Fix modal bugs 
 - [ ] Implement React Router 6
 - [ ] Implement useReducer or useContext
 - [ ] Optimize rendering and remove unnecessary 
 - [ ] Component testing
-### Other
-- [x] Deploy a live demo
+
 
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
