@@ -37,6 +37,7 @@ database.once( 'connected', () => {
     console.log( 'Database Connected' );
 });
 
+
 // Setup session with database
 const oneDay = 1000 * 60 * 60 * 24;
 app.use( express.urlencoded( { extended: true } ) );
