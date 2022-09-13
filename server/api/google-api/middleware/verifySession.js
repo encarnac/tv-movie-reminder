@@ -16,6 +16,7 @@ const oauth2Client = new google.auth.OAuth2(
 
 const verifySession = async (req, res, next) => {
     try {
+        console.log('CALLBACK URL = ', CALLBACK_URL);
         session = req.session;
         if (session.userId) {
             const user = await User.findOne({ _id: session.userId });
