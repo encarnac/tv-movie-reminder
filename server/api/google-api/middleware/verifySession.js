@@ -5,13 +5,13 @@ const calendar = google.calendar('v3');
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const PORT = process.env.PORT;
-const CALLBACK_URL = process.env.RAILWAY_STATIC_URL || `localhost:${PORT}`
-
+const RAILWAY_STATIC_URL = process.env.RAILWAY_STATIC_URL
+const CALLBACK_URL = RAILWAY_STATIC_URL ? `https://${RAILWAY_STATIC_URL}` : `http://localhost:${PORT}`
 
 const oauth2Client = new google.auth.OAuth2(
     CLIENT_ID,
     CLIENT_SECRET,
-    `https://${CALLBACK_URL}`
+    `${CALLBACK_URL}`
 );
 
 const verifySession = async (req, res, next) => {
