@@ -98,13 +98,17 @@
 .nav-pills .pill-1 .nav-link,
 .nav-pills .pill-1 .nav-link:hover,
 .fc-today-button.btn:is(:hover, :focus),
-.fc-prevCustom-button:is(:hover, :focus),
-.fc-nextCustom-button:is(:hover, :focus) {
+.fc-nextCustom-button.btn:is(:hover, :focus),
+.fc-prevCustom-button.btn:is(:hover, :focus) {
   background-color: #82c7bc;
   border-color: #82c7bc;
   border-radius: 30px;
   box-shadow:  0 .5rem 1rem rgba(0,0,0, .06);
   color: white;
+}
+
+.fc-nextCustom-button.btn:is(:hover, :focus) {
+    border-radius: 2px 30px 30px 0px;
 }
 
 
