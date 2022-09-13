@@ -4,12 +4,12 @@ const calendar = google.calendar('v3');
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const PORT = process.env.PORT;
+const RAILWAY_STATIC_URL = process.env.RAILWAY_STATIC_URL;
 
 const oauth2Client = new google.auth.OAuth2(
     CLIENT_ID,
     CLIENT_SECRET,
-    `http://localhost:${PORT}`
+    RAILWAY_STATIC_URL 
 );
 
 const verifySession = async (req, res, next) => {
