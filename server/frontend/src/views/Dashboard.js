@@ -43,7 +43,6 @@ function Dashboard( props ) {
                 setDisplay( !display );
                 setInputState( !inputState );
                 setTmdbData( response.data );
-                console.log( response.data );
                 setLoading( false );
             } )
             .catch( error => {

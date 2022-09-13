@@ -44,9 +44,9 @@ function App() {
             });
             setEvents( eventsRes.data.events );
             setUser(eventsRes.data.authUser);
-            console.log('CALENDERID = ', calendarId);
-            console.log( 'EVENTS RESPONSE: ', eventsRes.data );
-            console.log('USER = ', eventsRes.data.authUser);
+            console.log('CALENDERID = ', Boolean(calendarId));
+            console.log( 'EVENTS RESPONSE: ', eventsRes.data.events?.length );
+            console.log('USER = ', Boolean(eventsRes.data.authUser));
         } catch(error) {
             console.log(error);
         }
