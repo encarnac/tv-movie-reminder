@@ -70,7 +70,7 @@
 ## Demo
 
 ### Site
-Here is a working live demo: [TBA](#)
+Live demo: [HERE](https://watch-soon.up.railway.app/)
 
 
 
@@ -131,7 +131,7 @@ Here is a working live demo: [TBA](#)
 - [ ] Optimize rendering and remove unnecessary 
 - [ ] Component testing
 ### Other
-- [ ] Deploy a live demo
+- [x] Deploy a live demo
 
 
 <p align="right">(<a href="#table-of-contents">back to top</a>)</p>
